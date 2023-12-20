@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Extending diseasystore</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Extending diseasystore</h1>
+
+
+
+<p>This vignette gives you the knowledge you need to create your own
+<code>diseasystore</code>.</p>
+<div id="the-diseasy-data-model" class="section level1">
+<h1>The diseasy data model</h1>
+<p>To begin, we go through the data model used within the
+<code>diseasystores</code>. It is this data models that enables the
+automatic coupling of features and powers the package.</p>
+<div id="a-bitemporal-data-model" class="section level2">
+<h2>A bitemporal data model</h2>
+<p>The data created by <code>diseasystores</code> are so-called
+“bitemporal” data. This means we have two temporal dimensions. One
+representing the validity of the record, and one representing the
+availability of the record.</p>
+<div id="valid_from-and-valid_until" class="section level3">
+<h3><code>valid_from</code> and <code>valid_until</code></h3>
+<p>The validity dimension indicates when a given data point is “valid”,
+e.g. a hospitalisation is valid between admission and discharge date.
+This temporal dimension should be familiar to you is simply “regular”
+time.</p>
+<p>We encode the validity information into the columns
+<code>valid_from</code> and <code>valid_until</code> such that a record
+is valid for any time <code>t</code> which satisfies
+<code>valid_from &lt;= t &lt; valid_until</code>. For many features, the
+validity is a single day (such as a test result) and the
+<code>valid_until</code> column will be the day after
+<code>valid_from</code>.</p>
+<p>By convention, we place these column as the last columns of the
+table<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+</div>
+<div id="from_ts-and-until_ts" class="section level3">
+<h3><code>from_ts</code> and <code>until_ts</code></h3>
+<p><code>diseasystore</code> uses <code>{SCDB}</code> in the background
+to store the computed features. <code>SCDB</code> implements the second
+temporal dimension which indicates when a record was present in the
+data. This information is encoded in the columns <code>from_ts</code>
+and <code>until_ts</code>. Normally, you don’t see these columns when
+working with <code>diseasystore</code> since they are masked by
+<code>SCDB</code>. However, if you inspect the tables crated in the data
+base by <code>diseasystore</code>, you will find they are present. For
+our purposes, it is sufficient to know that these column gives a
+time-versioned data base where we can extract previous versions through
+the <code>slice_ts</code> argument. By supplying any time <code>τ</code>
+as <code>slice_ts</code>, we get the data as they were available on that
+date. This allows us to build continuous integration of our features
+while preserving previously computed features.</p>
+</div>
+</div>
+<div id="automatic-data-coupling" class="section level2">
+<h2>Automatic data-coupling</h2>
+<p>A primary feature of <code>diseasystore</code> is its ability to
+automatically couple and aggregate features. This coupling requires
+common “key_*” columns between the features. Any feature in a
+<code>diseasystore</code> therefore must have at least one “key_*”
+column. By convention, we place these column as the first columns of the
+table.</p>
+</div>
+<div id="features" class="section level2">
+<h2>Features</h2>
+<p>Finally, we come to the main data of the <code>diseasystore</code>,
+namely the features. First, a reminder that “feature” here comes from
+machine learning and is any individual piece of information.</p>
+<p>We subdivide features into two categories: “observables” and
+“stratifications”. On most levels, these are indistinguishable, but
+their purposes differ and hence we need to handle them individually.</p>
+<div id="observables" class="section level3">
+<h3>Observables</h3>
+<p>In <code>diseasystore</code> any feature whose name either starts
+with “n_” or ends with “_temperature” are treated as “observables”. From
+a modelling perspective, these observables are typically the metrics you
+want to model or take as inputs to inform your model.</p>
+</div>
+<div id="stratifications" class="section level3">
+<h3>Stratifications</h3>
+<p>Conversely, any other feature is a “stratification” feature. These
+features are the variables used to subdivide your analysis to match the
+structure of your model (hence why they are called stratification
+features).</p>
+<p>A prominent example for most disease models would be a stratification
+feature like “age_group”, since most diseases show a strong dependency
+on the age of the affected individuals.</p>
+</div>
+<div id="naming-convention" class="section level3">
+<h3>Naming convention</h3>
+<p>While there is no formal requirement for the naming of the
+observables or stratifications, it is considered best practice to use
+the same names as other <code>diseasystores</code> for features where
+possible<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. This simplifies the process of adapting
+analyses and disease models to new <code>diseasystores</code>.</p>
+</div>
+</div>
+</div>
+<div id="creating-featurehandlers" class="section level1">
+<h1>Creating FeatureHandlers</h1>
+<p>To facilitate the automatic coupling and aggregation of features, we
+use the <code>?FeatureHandler</code> class. Each feature<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> in the
+<code>diseasystore</code> has an associated <code>FeatureHandler</code>
+which implements the computation, retrieval and aggregation of the
+feature.</p>
+<div id="computing-features" class="section level2">
+<h2>Computing features</h2>
+<p>The <code>FeatureHandler</code> defines a <code>compute</code>
+function which must be on the form:</p>
+<pre><code>compute = function(start_date, end_date, slice_ts, source_conn)</code></pre>
+<p>The arguments <code>start_date</code> and <code>end_date</code>
+indicates the period for which features should be computed. The
+<code>diseasystores</code> are <a href="quick-start.html#dynamically-expanded">dynamically expanded</a>,
+so feature computation is often restricted to limited time intervals as
+indicated by <code>start_date</code> and <code>end_date</code>.</p>
+<p>As mentioned <a href="#from_ts-and-until_ts">above</a>
+<code>slice_ts</code> specifies what date the should be computed for.
+E.g. if <code>slice_ts</code> is the current date, the current features
+should be computed. Conversely, if <code>slice_ts</code> is some past
+date, features corresponding to this date should be computed.</p>
+<p>Lastly, the <code>source_conn</code> is a flexible argument passed to
+the <code>FeatureHandler</code> indicating where the source data needed
+to compute the features are stored (e.g. a data base connection or
+directory).</p>
+<p>Note that multiple features can be computed by a single
+<code>FeatureHandler</code>. For example, you may decide that it is more
+convenient for compute multiple different features simultaneously
+(e.g. a hospitalisation and the classification of said hospitalisation
+or a test and the associated test result).</p>
+</div>
+<div id="retrieving-features" class="section level2">
+<h2>Retrieving features</h2>
+<p>The <code>FeatureHandler</code> defines a <code>get</code> function
+which must be on the form:</p>
+<pre><code>get = function(target_table, slice_ts, target_conn)</code></pre>
+<p>Typically, you do not need to specify this function since the default
+(a variant of <code>SCDB::get_table()</code>) always works.</p>
+<p>However, in the case that you do need to specify it, the
+<code>target_table</code> argument will be a <code>DBI::Id</code>
+specifying the location of the data base table where the features are
+stored. <code>target_conn</code> is connection to the data base. And as
+above, <code>slice_ts</code> is the time-keeping variable.</p>
+</div>
+<div id="aggregators" class="section level2">
+<h2>Aggregators</h2>
+<p>The <code>FeatureHandler</code> defines a <code>key_join</code>
+function which must be on the form:</p>
+<pre><code>key_join = function(.data, feature)</code></pre>
+<p>In most cases, you should be able to use the bundled
+<code>key_join_*</code> functions (see <code>?aggregators</code> for a
+full list).</p>
+<p>In the event, that you need to create your own aggregator the
+arguments are as follows:</p>
+<ul>
+<li><p><code>.data</code> is a grouped <code>data.frame</code> whose
+groups are those specified by the <code>stratification</code> argument
+(see <a href="quick-start.html#automatic-aggregation">Automatic
+aggregation</a>).</p></li>
+<li><p><code>feature</code> is the name of the feature(s) to
+aggregate.</p></li>
+</ul>
+<p>Your aggregator should return a <code>dplyr::summarise()</code> call
+which operates on all columns specified in the <code>feature</code>
+argument.</p>
+</div>
+<div id="putting-it-all-together" class="section level2">
+<h2>Putting it all together</h2>
+<p>By now, you should know the basics of creating your own
+<code>FeatureHandlers</code>. To see some <code>FeatureHandlers</code>
+in action, you can consult a few of those bundled with the
+<code>diseasystore</code> package.</p>
+<p>For example:</p>
+<ul>
+<li><p><a href="https://github.com/ssi-dk/diseasystore/blob/ceedbe1/R/DiseasystoreGoogleCovid19.R#L161">DiseasystoreGoogleCovid19:
+index</a></p></li>
+<li><p><a href="https://github.com/ssi-dk/diseasystore/blob/ceedbe1/R/DiseasystoreGoogleCovid19.R#L253">DiseasystoreGoogleCovid19:
+min temperature</a></p></li>
+</ul>
+</div>
+</div>
+<div id="creating-a-diseasystore" class="section level1">
+<h1>Creating a <code>diseasystore</code></h1>
+<p>With the knowledge of how to build custom
+<code>FeatureHandlers</code>, we turn our attention to the remaining
+parts of the <code>diseasystore</code>’s anatomy.</p>
+<p>The <code>diseasystores</code> are <a href="https://r6.r-lib.org/index.html">R6 classes</a> which is a
+implementation of object-oriented (OO) programming. To those unfamiliar
+with OO programming, the <code>diseasystores</code> are single “objects”
+with a number of “public” and “private” functions and variables. The
+public functions and variables are visible to the user of the
+<code>diseasystore</code> with the private functions and variables are
+visible only to us (the developers).</p>
+<p>When extending <code>diseasystore</code>, we are only writing private
+functions and variables. The public functions and variables are handled
+elsewhere<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
+<div id="ds_map" class="section level2">
+<h2>ds_map</h2>
+<p>The <code>ds_map</code> field of the <code>diseasystore</code> tells
+the <code>diseasystore</code> which <code>FeatureHandler</code> is
+responsible for each feature and thus allows the
+<code>diseasystore</code> to retrieve the features specified in the
+<code>observable</code> and <code>stratification</code> arguments of
+calls to <code>$get_feature()</code>.</p>
+<p>In other words, it maps the names of features to their corresponding
+<code>FeatureHandlers</code>.</p>
+<p>As we saw above, a <code>FeatureHandler</code> may compute more than
+single feature. Each feature should be mapped to the
+<code>FeatureHandler</code> here or else the <code>diseasystore</code>
+will not be able to automatically interact with it.</p>
+<p>By convention, the name of the <code>FeatureHandler</code> should be
+snake_case and contain a <code>diseasystore</code> specific prefix
+(e.g. for <code>DiseasystoreGoogleCovid19</code>, all
+<code>FeatureHandlers</code> are named “google_covid_19_<feature>”).</p>
+<p>These names are used as the table names when storing the features in
+the data base, and the prefix helps structure the data base
+accordingly.</p>
+<p>This latter part becomes important when <a href="quick-start.html#dropping-computed-features">clean up</a> for the
+data base needs to be performed.</p>
+</div>
+<div id="key-join-filter" class="section level2">
+<h2>Key join filter</h2>
+<p>The <code>diseasystore</code> are made to be as flexible as possible
+which means that it can incorporate both individual level data and
+semi-aggregated data. For semi-aggregated data, it is often the case
+that the data includes aggregations at different levels nested within
+the data.</p>
+<p>For example, the Google COVID-19 data repository contains information
+on both country-level and region-level in the same data files. When the
+user of <code>DiseasystoreGoogleCovid19</code> asks to get a feature
+stratified by, for example, “country_id”, then we need to filter out the
+data aggregated at the region-level.</p>
+<p>This is the purpose of <code>$key_join_filter()</code>. It takes as
+input the requested stratifications and filters the data accordingly
+after the features have been joined inside the
+<code>diseasystore</code>.</p>
+<p>For an example, you can consult <a href="https://github.com/ssi-dk/diseasystore/blob/ceedbe1/R/DiseasystoreGoogleCovid19.R#L75">DiseasystoreGoogleCovid19:
+key_join_filter</a></p>
+</div>
+<div id="testing-your-diseasystore" class="section level2">
+<h2>Testing your <code>diseasystore</code></h2>
+<p>The <code>diseasystore</code> package includes a large set of tests
+for <code>DiseasystoreGoogleCovid19</code> that you can adapt to your
+custom <code>diseasystore</code>. The latest version of these tests are
+available <a href="https://github.com/ssi-dk/diseasystore/blob/main/tests/testthat/test-DiseasystoreGoogleCovid19.R">here</a>.</p>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>The <code>SCDB</code> package places
+<code>checksum</code>, <code>from_ts</code>, and <code>until_ts</code>
+as the last columns. But <code>valid_from</code> and
+<code>valid_until</code> should be the last columns in the output passed
+to <code>SCDB</code>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>In practice, this means that the names of features
+should be in <code>snake_case</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Or “coupled” set of features as we will soon see.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>By the <code>DiseasystoreBase</code> class.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

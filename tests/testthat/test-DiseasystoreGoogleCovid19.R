@@ -15,30 +15,48 @@ remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
 
 # In practice, it is best to make a local copy of the data which is stored in the "vignette_data" folder
 # This folder can either be in the package folder (preferred, please create the folder) or in the tempdir()
-local_conns <- c(testthat::test_path("test_data"), file.path(tempdir(), "test_data"))
-local_conn <- purrr::detect(local_conns, checkmate::test_directory_exists, .default = local_conns[2])
+local_conn <- purrr::detect("test_data", checkmate::test_directory_exists, .default = tempdir())
 
-# Check that the files are available
-test_data_missing <- purrr::some(google_files, ~ !file.exists(file.path(local_conn, .)))
+# Then we download the first n rows of each data set of interest
+remote_data_available <- curl::has_internet() # Assume available
+purrr::walk(google_files, \(file) {
+  remote_url <- paste0(remote_conn, file)
 
-# If they aren't, we download some of the Google COVID-19 data for this vignette
-if (test_data_missing) {
+  # If we have the file locally, do not re-download but check it exists
+  if (checkmate::test_file_exists(file.path(local_conn, file))) {
+    tryCatch(
+      readr::read_csv(remote_url, n_max = 1, show_col_types = FALSE, progress = FALSE),
+      error = function(e) {
+        remote_data_available <- FALSE
+      }
+    )
+  } else { # If we don't have the file locally, copy it down
+    tryCatch(
+      readr::read_csv(remote_url, n_max = getOption("diseasystore.DiseasystoreGoogleCovid19.n_max"),
+                      show_col_types = FALSE, progress = FALSE) |>
+        readr::write_csv(file.path(local_conn, file)),
+      error = function(e) {
+        remote_data_available <- FALSE
+      }
+    )
+  }
+})
 
-  # Ensure download folder exists
-  if (!checkmate::test_directory_exists(local_conn)) dir.create(local_conn)
-
-  # Then we download the first n rows of each data set of interest
-  purrr::discard(google_files, ~ file.exists(file.path(local_conn, .))) |>
-    purrr::walk(\(file) {
-      paste0(remote_conn, file) |>
-        readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
-        readr::write_csv(file.path(local_conn, file))
-    })
+# Throw warning if data unavailable
+if (curl::has_internet() && !remote_data_available) {
+  warning("remote_conn for DiseasystoreGoogleCovid19 unavailable!")
 }
 
 # Check that the files are available after attempting to download
-if (purrr::some(google_files, ~ !file.exists(file.path(local_conn, .)))) {
-  stop("DiseasystoreGoogleCovid19: test data not available and could not be downloaded")
+if (purrr::some(google_files, ~ !checkmate::test_file_exists(file.path(local_conn, .)))) {
+  data_unavailable <- TRUE
+} else {
+  data_unavailable <- FALSE
+}
+
+# Throw warning if data unavailable
+if (curl::has_internet() && data_unavailable) {
+  warning("local_conn for DiseasystoreGoogleCovid19 unavailable!")
 }
 
 
@@ -73,23 +91,22 @@ test_that("DiseasystoreGoogleCovid19 initialises correctly", {
 
 
 test_that("DiseasystoreGoogleCovid19 works with URL source_conn", {
+  testthat::skip_if_not(curl::has_internet())
+  testthat::skip_if_not(remote_data_available)
 
-  if (curl::has_internet()) {
+  # Ensure source is set as the remote
+  withr::local_options("diseasystore.DiseasystoreGoogleCovid19.source_conn" = remote_conn)
 
-    # Ensure source is set as the remote
-    withr::local_options("diseasystore.DiseasystoreGoogleCovid19.source_conn" = remote_conn)
+  ds <- expect_no_error(DiseasystoreGoogleCovid19$new(
+    target_conn = DBI::dbConnect(RSQLite::SQLite()),
+    start_date = as.Date("2020-03-01"),
+    end_date = as.Date("2020-03-01"),
+    verbose = FALSE
+  ))
 
-    ds <- expect_no_error(DiseasystoreGoogleCovid19$new(
-      target_conn = DBI::dbConnect(RSQLite::SQLite()),
-      start_date = as.Date("2020-03-01"),
-      end_date = as.Date("2020-03-01"),
-      verbose = FALSE
-    ))
+  expect_no_error(ds$get_feature("n_hospital"))
 
-    expect_no_error(suppressWarnings(ds$get_feature("n_hospital")))
-
-    rm(ds)
-  }
+  rm(ds)
   invisible(gc())
 })
 
@@ -99,6 +116,7 @@ withr::local_options("diseasystore.DiseasystoreGoogleCovid19.source_conn" = loca
 
 
 test_that("DiseasystoreGoogleCovid19 works with directory source_conn", {
+  testthat::skip_if(data_unavailable)
 
   ds <- expect_no_error(DiseasystoreGoogleCovid19$new(
     target_conn = DBI::dbConnect(RSQLite::SQLite()),
@@ -107,7 +125,7 @@ test_that("DiseasystoreGoogleCovid19 works with directory source_conn", {
     verbose = FALSE
   ))
 
-  expect_no_error(suppressWarnings(ds$get_feature("n_hospital")))
+  expect_no_error(ds$get_feature("n_hospital"))
 
   rm(ds)
   invisible(gc())
@@ -115,6 +133,8 @@ test_that("DiseasystoreGoogleCovid19 works with directory source_conn", {
 
 
 test_that("DiseasystoreGoogleCovid19 can retrieve features from a fresh state", {
+  testthat::skip_if(data_unavailable)
+
   for (conn in get_test_conns()) {
 
     # Initialise without start_date and end_date
@@ -149,15 +169,24 @@ test_that("DiseasystoreGoogleCovid19 can retrieve features from a fresh state", 
         sort()
 
       expect_identical(feature_checksum, reference_checksum)
+
+      # Stop-gap measure to clear dbplyr_### tables
+      SCDB::get_tables(ds %.% target_conn, show_temp = TRUE) |>
+        dplyr::pull(table) |>
+        purrr::keep(~ stringr::str_detect(., "#?dbplyr_")) |>
+        purrr::walk(~ DBI::dbRemoveTable(ds %.% target_conn, .))
+
     })
 
     rm(ds)
+    invisible(gc())
   }
-  invisible(gc())
 })
 
 
 test_that("DiseasystoreGoogleCovid19 can extend existing features", {
+  testthat::skip_if(data_unavailable)
+
   for (conn in get_test_conns()) {
 
     # Initialise without start_date and end_date
@@ -188,11 +217,17 @@ test_that("DiseasystoreGoogleCovid19 can extend existing features", {
         sort()
 
       expect_identical(feature, reference)
+
+      # Stop-gap measure to clear dbplyr_### tables
+      SCDB::get_tables(ds %.% target_conn, show_temp = TRUE) |>
+        dplyr::pull(table) |>
+        purrr::keep(~ stringr::str_detect(., "#?dbplyr_")) |>
+        purrr::walk(~ DBI::dbRemoveTable(ds %.% target_conn, .))
     })
 
     rm(ds)
+    invisible(gc())
   }
-  invisible(gc())
 })
 
 
@@ -211,6 +246,8 @@ end_date   <- as.Date("2020-03-10")
 
 
 test_that("DiseasystoreGoogleCovid19 can key_join features", {
+  testthat::skip_if(data_unavailable)
+
   for (conn in get_test_conns()) {
 
     # Initialise without start_date and end_date
@@ -243,15 +280,15 @@ test_that("DiseasystoreGoogleCovid19 can key_join features", {
             start_date, end_date
           )
         },
-        warning = function(w) {
-          checkmate::expect_character(w$message, pattern = "Observable already stratified by")
-          return(NULL)
-        },
         error = function(e) {
           expect_identical(
             e$message,
             paste("(At least one) stratification feature does not match observable aggregator. Not implemented yet.")
           )
+          return(NULL)
+        },
+        warning = function(w) {
+          checkmate::expect_character(w$message, pattern = "Observable already stratified by")
           return(NULL)
         })
 
@@ -259,15 +296,23 @@ test_that("DiseasystoreGoogleCovid19 can key_join features", {
         if (!is.null(output)) {
           key_join_features_tester(dplyr::collect(output), start_date, end_date)
         }
+
+        # Stop-gap measure to clear dbplyr_### tables
+        SCDB::get_tables(ds %.% target_conn, show_temp = TRUE) |>
+          dplyr::pull(table) |>
+          purrr::keep(~ stringr::str_detect(., "#?dbplyr_")) |>
+          purrr::walk(~ DBI::dbRemoveTable(ds %.% target_conn, .))
       })
 
     rm(ds)
+    invisible(gc())
   }
-  invisible(gc())
 })
 
 
 test_that("DiseasystoreGoogleCovid19 key_join fails gracefully", {
+  testthat::skip_if(data_unavailable)
+
   for (conn in get_test_conns()) {
 
     # Initialise without start_date and end_date
@@ -302,6 +347,12 @@ test_that("DiseasystoreGoogleCovid19 key_join fails gracefully", {
         if (!is.null(output)) {
           key_join_features_tester(dplyr::collect(output), start_date, end_date)
         }
+
+        # Stop-gap measure to clear dbplyr_### tables
+        SCDB::get_tables(ds %.% target_conn, show_temp = TRUE) |>
+          dplyr::pull(table) |>
+          purrr::keep(~ stringr::str_detect(., "#?dbplyr_")) |>
+          purrr::walk(~ DBI::dbRemoveTable(ds %.% target_conn, .))
       })
 
 
@@ -330,11 +381,17 @@ test_that("DiseasystoreGoogleCovid19 key_join fails gracefully", {
         if (!is.null(output)) {
           key_join_features_tester(dplyr::collect(output), start_date, end_date)
         }
+
+        # Stop-gap measure to clear dbplyr_### tables
+        SCDB::get_tables(ds %.% target_conn, show_temp = TRUE) |>
+          dplyr::pull(table) |>
+          purrr::keep(~ stringr::str_detect(., "#?dbplyr_")) |>
+          purrr::walk(~ DBI::dbRemoveTable(ds %.% target_conn, .))
       })
 
 
     # Clean up
     rm(ds)
+    invisible(gc())
   }
-  invisible(gc())
 })

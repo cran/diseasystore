@@ -31,8 +31,6 @@ get_test_conns <- function() {
     # Define our local connection backends
     conn_list <- list(
       # Backend string = package::function
-      "SQLite"     = "RSQLite::SQLite",
-      "PostgreSQL" = "RPostgres::Postgres"
     )
 
   } else {
@@ -48,7 +46,6 @@ get_test_conns <- function() {
     # Define our local connection arguments
     conn_args <- list(
       # Backend string = list(named args)
-      "SQLite" = list(dbname = tempfile())
     )
 
   } else {
@@ -83,11 +80,16 @@ get_test_conns <- function() {
 
     # SQLite back end gives an error in SCDB if there are no tables (it assumes a bad configuration)
     # We create a table to suppress this warning
-    if (checkmate::test_class(conn, "SQLiteConnection")) {
+    if (!DBI::dbExistsTable(conn, "iris")) {
       DBI::dbWriteTable(conn, "iris", iris)
     }
 
     return(conn)
+  }
+
+  # Early return if no connections are defined
+  if (length(conn_list) == 0) {
+    return(list())
   }
 
   # Create connection generator

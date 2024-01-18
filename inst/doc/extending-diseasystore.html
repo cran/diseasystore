@@ -344,7 +344,7 @@ function which must be on the form:</p>
 <pre><code>compute = function(start_date, end_date, slice_ts, source_conn)</code></pre>
 <p>The arguments <code>start_date</code> and <code>end_date</code>
 indicates the period for which features should be computed. The
-<code>diseasystores</code> are <a href="quick-start.html#dynamically-expanded">dynamically expanded</a>,
+<code>diseasystores</code> are <a href="diseasystore.html#dynamically-expanded">dynamically expanded</a>,
 so feature computation is often restricted to limited time intervals as
 indicated by <code>start_date</code> and <code>end_date</code>.</p>
 <p>As mentioned <a href="#from_ts-and-until_ts">above</a>
@@ -388,7 +388,7 @@ arguments are as follows:</p>
 <ul>
 <li><p><code>.data</code> is a grouped <code>data.frame</code> whose
 groups are those specified by the <code>stratification</code> argument
-(see <a href="quick-start.html#automatic-aggregation">Automatic
+(see <a href="diseasystore.html#automatic-aggregation">Automatic
 aggregation</a>).</p></li>
 <li><p><code>feature</code> is the name of the feature(s) to
 aggregate.</p></li>
@@ -448,7 +448,7 @@ snake_case and contain a <code>diseasystore</code> specific prefix
 <p>These names are used as the table names when storing the features in
 the data base, and the prefix helps structure the data base
 accordingly.</p>
-<p>This latter part becomes important when <a href="quick-start.html#dropping-computed-features">clean up</a> for the
+<p>This latter part becomes important when <a href="diseasystore.html#dropping-computed-features">clean up</a> for the
 data base needs to be performed.</p>
 </div>
 <div id="key-join-filter" class="section level2">

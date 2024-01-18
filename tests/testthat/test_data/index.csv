@@ -1,0 +1,1001 @@
+location_key,place_id,wikidata_id,datacommons_id,country_code,country_name,subregion1_code,subregion1_name,subregion2_code,subregion2_name,locality_code,locality_name,iso_3166_1_alpha_2,iso_3166_1_alpha_3,aggregation_level
+AD,ChIJlfCemC71pRIRkn_qeNc-yQc,Q228,country/AND,AD,Andorra,NA,NA,NA,NA,NA,NA,AD,AND,0
+AE,ChIJvRKrsd9IXj4RpwoIwFYv0zM,Q878,country/ARE,AE,United Arab Emirates,NA,NA,NA,NA,NA,NA,AE,ARE,0
+AF,ChIJbQL_-LZu0TgReNqWvg1GtfM,Q889,country/AFG,AF,Afghanistan,NA,NA,NA,NA,NA,NA,AF,AFG,0
+AF_BAL,ChIJWZOescNSyzgRkmVJ8fmfR3k,Q121104,NA,AF,Afghanistan,BAL,Balkh,NA,NA,NA,NA,AF,AFG,1
+AF_BAM,ChIJw-bKQwDr0jgRQiw8jHsQ-HI,Q171382,NA,AF,Afghanistan,BAM,Bamyan,NA,NA,NA,NA,AF,AFG,1
+AF_BDG,ChIJn3_EDIFQOj8RqKoIiHwIkRA,Q172052,NA,AF,Afghanistan,BDG,Badghis,NA,NA,NA,NA,AF,AFG,1
+AF_BDS,ChIJ3SDHVxMjxDgRV_5_fAjNfsE,Q165376,NA,AF,Afghanistan,BDS,Badakhshan,NA,NA,NA,NA,AF,AFG,1
+AF_BGL,ChIJ2_A6g-gxzDgRjD-If2PZcS0,Q170309,NA,AF,Afghanistan,BGL,Baghlan,NA,NA,NA,NA,AF,AFG,1
+AF_DAY,ChIJFYmA4wttLD8RAPdF4XqwhWs,Q181220,NA,AF,Afghanistan,DAY,Daykundi,NA,NA,NA,NA,AF,AFG,1
+AF_FRA,ChIJfdoK65pjIT8R8idMzdvTQi8,Q180330,NA,AF,Afghanistan,FRA,Farah,NA,NA,NA,NA,AF,AFG,1
+AF_FYB,ChIJAd_7s-MwNz8RVnwJqYNWi28,Q173830,NA,AF,Afghanistan,FYB,Faryab,NA,NA,NA,NA,AF,AFG,1
+AF_GHA,ChIJt8Y_iOZD1DgRVCLSqsmYA34,Q180415,NA,AF,Afghanistan,GHA,Ghazni,NA,NA,NA,NA,AF,AFG,1
+AF_GHO,ChIJ6d-j9sWRLz8R7f9Wmxx2ptU,Q186392,NA,AF,Afghanistan,GHO,Ghor,NA,NA,NA,NA,AF,AFG,1
+AF_HEL,ChIJzZj4Asr31z4ROcQE0J8lluY,Q173821,NA,AF,Afghanistan,HEL,Helmand,NA,NA,NA,NA,AF,AFG,1
+AF_HER,ChIJZd8i5jrZPD8RqJ4yJq2HzHE,Q182844,NA,AF,Afghanistan,HER,Herat,NA,NA,NA,NA,AF,AFG,1
+AF_JOW,ChIJy3Y1tPgsND8RtHLduwJl08g,Q183036,NA,AF,Afghanistan,JOW,Jowzjan,NA,NA,NA,NA,AF,AFG,1
+AF_KAB,ChIJKy5_RIcT0TgREnPvD_jShow,Q188933,NA,AF,Afghanistan,KAB,Kabul,NA,NA,NA,NA,AF,AFG,1
+AF_KAN,ChIJN4jioLpx1j4RoFWbhJF_35A,Q173808,NA,AF,Afghanistan,KAN,Kandahar,NA,NA,NA,NA,AF,AFG,1
+AF_KAP,ChIJlXRMFGE20DgR4TSBTQDEsog,Q173816,NA,AF,Afghanistan,KAP,Kapisa,NA,NA,NA,NA,AF,AFG,1
+AF_KDZ,ChIJRaKR8XvYyzgRkqC69uKmZJo,Q186418,NA,AF,Afghanistan,KDZ,Kunduz,NA,NA,NA,NA,AF,AFG,1
+AF_KHO,ChIJx-OXl9qj1zgRtB4RTtpSc7U,Q185752,NA,AF,Afghanistan,KHO,Khost,NA,NA,NA,NA,AF,AFG,1
+AF_KNR,ChIJNeyraVhS2jgRMl1qCQ6D2iY,Q188147,NA,AF,Afghanistan,KNR,Kunar,NA,NA,NA,NA,AF,AFG,1
+AF_LAG,ChIJMeNlJoCQ0DgRfNDKWAO3ufk,Q185442,NA,AF,Afghanistan,LAG,Laghman,NA,NA,NA,NA,AF,AFG,1
+AF_LOG,ChIJDYU_q_Wu1jgRvK89m5geWbc,Q6667298,NA,AF,Afghanistan,LOG,Logar,NA,NA,NA,NA,AF,AFG,1
+AF_NAN,ChIJSQqHpM3-2TgRdRNRqQWW0Tw,Q178471,NA,AF,Afghanistan,NAN,Nangarhar,NA,NA,NA,NA,AF,AFG,1
+AF_NIM,ChIJkfefVGga3z4ROESisQoTSIE,Q183021,NA,AF,Afghanistan,NIM,Nimruz,NA,NA,NA,NA,AF,AFG,1
+AF_NUR,ChIJQyOIsAOB0DgRh-3gejOpMuM,Q167485,NA,AF,Afghanistan,NUR,Nuristan,NA,NA,NA,NA,AF,AFG,1
+AF_PAN,ChIJ2cBvFsYk0DgR2uRiSbnkfn4,Q181235,NA,AF,Afghanistan,PAN,Panjshir,NA,NA,NA,NA,AF,AFG,1
+AF_PAR,ChIJ1WolE2iP0TgRa2st5xx7J_o,Q188157,NA,AF,Afghanistan,PAR,Parwan,NA,NA,NA,NA,AF,AFG,1
+AF_PIA,ChIJTTsPzXaS1jgRjHf-sgy6MoQ,Q182493,NA,AF,Afghanistan,PIA,Paktia,NA,NA,NA,NA,AF,AFG,1
+AF_PKA,ChIJf0EgW2jW1TgRwl8W58n_gS4,Q185575,NA,AF,Afghanistan,PKA,Paktika,NA,NA,NA,NA,AF,AFG,1
+AF_SAM,ChIJkRkkHpmMzDgRxl2E02iWTU4,Q183015,NA,AF,Afghanistan,SAM,Samangan,NA,NA,NA,NA,AF,AFG,1
+AF_SAR,ChIJ5Wh-KEC0Mz8R7DqSAbOUNxY,Q182487,NA,AF,Afghanistan,SAR,Sar-e Pol,NA,NA,NA,NA,AF,AFG,1
+AF_TAK,ChIJW2nqHxvRzjgR-2IgrlsPjKM,Q186395,NA,AF,Afghanistan,TAK,Takhar,NA,NA,NA,NA,AF,AFG,1
+AF_URU,ChIJsaD-6A0tKj8R0ISSlq0BizU,Q183028,NA,AF,Afghanistan,URU,Urozgan,NA,NA,NA,NA,AF,AFG,1
+AF_WAR,ChIJXxxWsQyW0zgRwkYzvYZ9WWs,Q183056,NA,AF,Afghanistan,WAR,Maidan Wardak,NA,NA,NA,NA,AF,AFG,1
+AF_ZAB,ChIJJXvPbCpb1T4RkMy9IEWILdw,Q139126,NA,AF,Afghanistan,ZAB,Zabul,NA,NA,NA,NA,AF,AFG,1
+AG,ChIJwdG4bbluDYwRlHmL4Yg3aic,Q781,country/ATG,AG,Antigua and Barbuda,NA,NA,NA,NA,NA,NA,AG,ATG,0
+AI,ChIJ5QHvjnRjDowRgdTghNNqnTs,Q25228,country/AIA,AI,Anguilla,NA,NA,NA,NA,NA,NA,AI,AIA,0
+AL,ChIJLUwnvfM7RRMR7juY1onlfAc,Q222,country/ALB,AL,Albania,NA,NA,NA,NA,NA,NA,AL,ALB,0
+AM,ChIJx7pz54RWFUARIy2C63p1tNA,Q399,country/ARM,AM,Armenia,NA,NA,NA,NA,NA,NA,AM,ARM,0
+AN,NA,Q25227,country/ANT,AN,Netherlands Antilles,NA,NA,NA,NA,NA,NA,NA,NA,0
+AO,ChIJJ4utyk7yURoRPU5KDZ0oClk,Q916,country/AGO,AO,Angola,NA,NA,NA,NA,NA,NA,AO,AGO,0
+AQ,NA,Q51,NA,AQ,Antarctica,NA,NA,NA,NA,NA,NA,AQ,ATA,0
+AR,ChIJZ8b99fXKvJURqA_wKpl3Lz0,Q414,country/ARG,AR,Argentina,NA,NA,NA,NA,NA,NA,AR,ARG,0
+AR_A,ChIJx9DqOCkNG5QRmHnD9tEbSos,Q44803,NA,AR,Argentina,A,Salta,NA,NA,NA,NA,AR,ARG,1
+AR_A_007,ChIJifnEzNY3F5QR9dlE1P3fI-Q,Q1190229,NA,AR,Argentina,A,Salta,007,Anta,NA,NA,AR,ARG,2
+AR_A_014,ChIJNZpTP2IYHJQR7FPRyxBV2oM,Q1190296,NA,AR,Argentina,A,Salta,014,Cachi,NA,NA,AR,ARG,2
+AR_A_021,ChIJPW9EEOw0H5QRPzacI1LcdZM,Q1190297,NA,AR,Argentina,A,Salta,021,Cafayate,NA,NA,AR,ARG,2
+AR_A_028,ChIJoX0e-DTYG5QRNrGQNbyjIuE,Q1190331,NA,AR,Argentina,A,Salta,028,Capital,NA,NA,AR,ARG,2
+AR_A_035,ChIJVS6sG03fG5QRvILK68B-lSM,Q665915,NA,AR,Argentina,A,Salta,035,Cerrillos,NA,NA,AR,ARG,2
+AR_A_042,ChIJ6eEin4tbGZQRkO1fKzqggn0,Q547590,NA,AR,Argentina,A,Salta,042,Chicoana,NA,NA,AR,ARG,2
+AR_A_049,ChIJ8WcAP28uGpQRzfoaQLTOhvI,Q1190531,NA,AR,Argentina,A,Salta,049,General Güemes,NA,NA,AR,ARG,2
+AR_A_056,ChIJ2-U1OS2wD5QRWXurHw3U2E0,Q1190529,NA,AR,Argentina,A,Salta,056,General José de San Martín,NA,NA,AR,ARG,2
+AR_A_070,ChIJa7H9CmKoBZQRP4QTziFhOtY,Q1190632,NA,AR,Argentina,A,Salta,070,Iruya,NA,NA,AR,ARG,2
+AR_A_077,ChIJq73r3KO9G5QRYtU-Erv9-Ew,Q1190675,NA,AR,Argentina,A,Salta,077,La Caldera,NA,NA,AR,ARG,2
+AR_A_098,ChIJEe8Giag9GZQRMb8qldEeCII,Q746361,NA,AR,Argentina,A,Salta,098,La Viña,NA,NA,AR,ARG,2
+AR_A_105,ChIJL7qhLW59HZQR_W8mTlsSQWI,Q514500,NA,AR,Argentina,A,Salta,105,Los Andes,NA,NA,AR,ARG,2
+AR_A_112,ChIJgbEK84vPGZQRs0vBUKJMvhI,Q1190811,NA,AR,Argentina,A,Salta,112,Metán,NA,NA,AR,ARG,2
+AR_A_119,ChIJ0-Smp0ztHpQR78OGQk__ZbY,Q1190836,NA,AR,Argentina,A,Salta,119,Molinos,NA,NA,AR,ARG,2
+AR_A_126,ChIJ49CEMXL8D5QRREK3CYyJCJw,Q1190909,NA,AR,Argentina,A,Salta,126,Orán,NA,NA,AR,ARG,2
+AR_A_133,ChIJaTpbOtqOEZQRX8AKcmBWUlY,Q1190994,NA,AR,Argentina,A,Salta,133,Rivadavia,NA,NA,AR,ARG,2
+AR_A_140,ChIJ_3qUfMRAGJQRtePoAdoYWQ8,Q1191020,NA,AR,Argentina,A,Salta,140,Rosario de la Frontera,NA,NA,AR,ARG,2
+AR_A_147,ChIJ_0GvfYWHG5QRK5Rlu27oALc,Q1191017,NA,AR,Argentina,A,Salta,147,Rosario de Lerma,NA,NA,AR,ARG,2
+AR_A_154,NA,Q1191069,NA,AR,Argentina,A,Salta,154,San Carlos,NA,NA,AR,ARG,2
+AR_A_161,ChIJR7DwRpDIBZQRrV18eq7vnrU,Q1191167,NA,AR,Argentina,A,Salta,161,Santa Victoria,NA,NA,AR,ARG,2
+AR_B,ChIJ2YFSWbe87ZURRKHw3PwJ00o,Q44754,NA,AR,Argentina,B,Buenos Aires Province,NA,NA,NA,NA,AR,ARG,1
+AR_B_007,ChIJeV8qz0eJ6ZURfDKn85AdGVM,Q505021,NA,AR,Argentina,B,Buenos Aires Province,007,Adolfo Alsina,NA,NA,AR,ARG,2
+AR_B_014,ChIJ9_JGTs1KkpURZMNZ85RK7Rs,Q505050,NA,AR,Argentina,B,Buenos Aires Province,014,Adolfo Gonzales Chaves,NA,NA,AR,ARG,2
+AR_B_021,ChIJmxAZ-CrBvpUR-_yT4e55w8Y,Q578717,NA,AR,Argentina,B,Buenos Aires Province,021,Alberti,NA,NA,AR,ARG,2
+AR_B_028,ChIJI5GNLh4to5URpkUocyVBASA,Q1399432,NA,AR,Argentina,B,Buenos Aires Province,028,Almirante Brown,NA,NA,AR,ARG,2
+AR_B_035,ChIJ14EM2bzMvJURkaCAfSuL7F4,Q1882267,NA,AR,Argentina,B,Buenos Aires Province,035,Avellaneda,NA,NA,AR,ARG,2
+AR_B_042,ChIJeYxXgkemkJURKIjrLcBtoFU,Q783091,NA,AR,Argentina,B,Buenos Aires Province,042,Ayacucho,NA,NA,AR,ARG,2
+AR_B_049,ChIJz3n0ZQ6YlpURt550cSZY9-g,Q239789,NA,AR,Argentina,B,Buenos Aires Province,049,Azul,NA,NA,AR,ARG,2
+AR_B_056,ChIJ_Qg5eS-v7ZURkJ8Tr_dW7oQ,Q788626,NA,AR,Argentina,B,Buenos Aires Province,056,Bahía Blanca,NA,NA,AR,ARG,2
+AR_B_063,ChIJLxbK7wakmpURN2h1gzE7-44,Q629119,NA,AR,Argentina,B,Buenos Aires Province,063,Balcarce,NA,NA,AR,ARG,2
+AR_B_070,ChIJA_UDCqZKupURtAN6M3WexwM,Q790179,NA,AR,Argentina,B,Buenos Aires Province,070,Baradero,NA,NA,AR,ARG,2
+AR_B_077,ChIJE37ekTiDuZURCcne59JxJIQ,Q777895,NA,AR,Argentina,B,Buenos Aires Province,077,Arrecifes,NA,NA,AR,ARG,2
+AR_B_084,ChIJIW8f20ffk5URfo3Bh_5R4D4,Q792933,NA,AR,Argentina,B,Buenos Aires Province,084,Benito Juárez,NA,NA,AR,ARG,2
+AR_B_091,ChIJceyBPlzXopURu-lEZftn2oc,Q2502677,NA,AR,Argentina,B,Buenos Aires Province,091,Berazategui,NA,NA,AR,ARG,2
+AR_B_098,ChIJ64RatgPwopURONNDc1C43Ik,Q793491,NA,AR,Argentina,B,Buenos Aires Province,098,Berisso,NA,NA,AR,ARG,2
+AR_B_105,ChIJfYPr56Xiv5URGAeMsqC0bNM,Q834261,NA,AR,Argentina,B,Buenos Aires Province,105,Bolívar,NA,NA,AR,ARG,2
+AR_B_112,ChIJpfk56g4ov5URP5xEDqX6Mts,Q268491,NA,AR,Argentina,B,Buenos Aires Province,112,Bragado,NA,NA,AR,ARG,2
+AR_B_119,ChIJmT7W97W5opURcoex71ISGKk,Q848995,NA,AR,Argentina,B,Buenos Aires Province,119,Brandsen,NA,NA,AR,ARG,2
+AR_B_126,ChIJketB0tltu5URcmDrSeeSOP0,Q857788,NA,AR,Argentina,B,Buenos Aires Province,126,Campana,NA,NA,AR,ARG,2
+AR_B_134,ChIJRfEmgzE9vZURYJMDGB1vpTo,Q370120,NA,AR,Argentina,B,Buenos Aires Province,134,Cañuelas,NA,NA,AR,ARG,2
+AR_B_140,ChIJodRwwZt9uZURRZXOPQSLeog,Q858225,NA,AR,Argentina,B,Buenos Aires Province,140,Capitán Sarmiento,NA,NA,AR,ARG,2
+AR_B_147,ChIJAXS1Dil-wJURe5-X2GeTySU,Q858587,NA,AR,Argentina,B,Buenos Aires Province,147,Carlos Casares,NA,NA,AR,ARG,2
+AR_B_154,ChIJDWx8_DM0wZURFe17s90SIXI,Q858617,NA,AR,Argentina,B,Buenos Aires Province,154,Carlos Tejedor,NA,NA,AR,ARG,2
+AR_B_161,ChIJ47GhMZNeuZURsYLvs7YPasQ,Q858650,NA,AR,Argentina,B,Buenos Aires Province,161,Carmen de Areco,NA,NA,AR,ARG,2
+AR_B_168,ChIJX6SuiVQHmZURWCQpduufbmk,Q510285,NA,AR,Argentina,B,Buenos Aires Province,168,Castelli,NA,NA,AR,ARG,2
+AR_B_175,ChIJCzI78HQauJURucdsngH5-1s,Q692762,NA,AR,Argentina,B,Buenos Aires Province,175,Colón,NA,NA,AR,ARG,2
+AR_B_182,ChIJ8w7S3m1v7ZURQiImH2UDwo4,Q653605,NA,AR,Argentina,B,Buenos Aires Province,182,Coronel Rosales,NA,NA,AR,ARG,2
+AR_B_189,ChIJ__hqdsq6kpURruIRSscfH3U,Q869191,NA,AR,Argentina,B,Buenos Aires Province,189,Coronel Dorrego,NA,NA,AR,ARG,2
+AR_B_196,ChIJ-YX6aysqk5URLVHoso-xMtI,Q585345,NA,AR,Argentina,B,Buenos Aires Province,196,Coronel Pringles,NA,NA,AR,ARG,2
+AR_B_203,ChIJ08T46YFx65URLOIqlrOG8OM,Q269509,NA,AR,Argentina,B,Buenos Aires Province,203,Coronel Suárez,NA,NA,AR,ARG,2
+AR_B_210,ChIJ6Sjrcws6uZUR9sKA-20puno,Q859886,NA,AR,Argentina,B,Buenos Aires Province,210,Chacabuco,NA,NA,AR,ARG,2
+AR_B_217,ChIJkS543-xpmJURdodW1r4j6Y4,Q860350,NA,AR,Argentina,B,Buenos Aires Province,217,Chascomús,NA,NA,AR,ARG,2
+AR_B_224,ChIJvypI1EekvpURNtgk7edqy98,Q860848,NA,AR,Argentina,B,Buenos Aires Province,224,Chivilcoy,NA,NA,AR,ARG,2
+AR_B_231,ChIJLRjOiema6pURbjsOUZvcT7U,Q901248,NA,AR,Argentina,B,Buenos Aires Province,231,Daireaux,NA,NA,AR,ARG,2
+AR_B_238,ChIJ_ezxVzOdmZURG99T8S_8DH4,Q633321,NA,AR,Argentina,B,Buenos Aires Province,238,Dolores,NA,NA,AR,ARG,2
+AR_B_245,ChIJ0VvSuMHgopUR3IgXiGbwEPE,Q768431,NA,AR,Argentina,B,Buenos Aires Province,245,Ensenada,NA,NA,AR,ARG,2
+AR_B_252,ChIJy4LsgVJgu5UR6Pk6q85G84o,Q991287,NA,AR,Argentina,B,Buenos Aires Province,252,Escobar,NA,NA,AR,ARG,2
+AR_B_260,ChIJ3Qji2j3OvJURVvBpTjYF-pM,Q1685960,NA,AR,Argentina,B,Buenos Aires Province,260,Esteban Echeverría,NA,NA,AR,ARG,2
+AR_B_266,ChIJURf5StScu5URhEPFmXscMAQ,Q253247,NA,AR,Argentina,B,Buenos Aires Province,266,Exaltación de la Cruz,NA,NA,AR,ARG,2
+AR_B_270,ChIJl8p7znTQvJURS00xtaxOckE,Q2510045,NA,AR,Argentina,B,Buenos Aires Province,270,Ezeiza,NA,NA,AR,ARG,2
+AR_B_274,ChIJ2Tpp55Uro5URSyaBCEblwqc,Q2621603,NA,AR,Argentina,B,Buenos Aires Province,274,Florencio Varela,NA,NA,AR,ARG,2
+AR_B_277,ChIJadRI4yXsxpURF8MQQz8NMAg,Q970548,NA,AR,Argentina,B,Buenos Aires Province,277,Florentino Ameghino,NA,NA,AR,ARG,2
+AR_B_280,ChIJcafxFbFBhZURpYTVVH9CZg4,Q240441,NA,AR,Argentina,B,Buenos Aires Province,280,General Alvarado,NA,NA,AR,ARG,2
+AR_B_287,ChIJ868VDg32lZURGTPyquWUank,Q944419,NA,AR,Argentina,B,Buenos Aires Province,287,General Alvear,NA,NA,AR,ARG,2
+AR_B_294,ChIJ52I0N4F3uJURxVG2Vxizosk,Q1009107,NA,AR,Argentina,B,Buenos Aires Province,294,General Arenales,NA,NA,AR,ARG,2
+AR_B_301,ChIJ26s5Vu7pl5URrQ89bH39ngs,Q1009113,NA,AR,Argentina,B,Buenos Aires Province,301,General Belgrano,NA,NA,AR,ARG,2
+AR_B_308,ChIJj5Hxv24gmpURUw5GuulhhaA,Q1009125,NA,AR,Argentina,B,Buenos Aires Province,308,General Guido,NA,NA,AR,ARG,2
+AR_B_315,ChIJfx211mpzm5UReIEM3P7eGJY,Q1009146,NA,AR,Argentina,B,Buenos Aires Province,315,General Madariaga,NA,NA,AR,ARG,2
+AR_B_322,ChIJG8gzWiSzlJURjK_7I204_Nw,Q1009130,NA,AR,Argentina,B,Buenos Aires Province,322,General La Madrid,NA,NA,AR,ARG,2
+AR_B_329,ChIJp989DK_wvJURCqZ2cLjPeLY,Q1009139,NA,AR,Argentina,B,Buenos Aires Province,329,General Las Heras,NA,NA,AR,ARG,2
+AR_B_336,ChIJKfBVzFzzm5UR3N_fhWRIEzw,Q1009144,NA,AR,Argentina,B,Buenos Aires Province,336,General Lavalle,NA,NA,AR,ARG,2
+AR_B_343,ChIJHzmtSctUvZURSPik-DwdAx0,Q691166,NA,AR,Argentina,B,Buenos Aires Province,343,General Paz,NA,NA,AR,ARG,2
+AR_B_351,ChIJXyaJTcMDx5URjyIIiRAjzNI,Q1009156,NA,AR,Argentina,B,Buenos Aires Province,351,General Pinto,NA,NA,AR,ARG,2
+AR_B_357,ChIJic_Q_54vhZURLXNx6QUNbtI,Q671742,NA,AR,Argentina,B,Buenos Aires Province,357,General Pueyrredón,NA,NA,AR,ARG,2
+AR_B_364,ChIJu0S0ztaOvJURP96rBRPL_hk,Q1009163,NA,AR,Argentina,B,Buenos Aires Province,364,General Rodríguez,NA,NA,AR,ARG,2
+AR_B_371,ChIJu8qd6wW6vJURQte4RqKfiaI,Q2157253,NA,AR,Argentina,B,Buenos Aires Province,371,General San Martín,NA,NA,AR,ARG,2
+AR_B_385,ChIJy1WmED6zuJURofyrAuNtVuw,Q644027,NA,AR,Argentina,B,Buenos Aires Province,385,General Viamonte,NA,NA,AR,ARG,2
+AR_B_392,ChIJPaXWAOMpxJUREw5jMR30lf0,Q604640,NA,AR,Argentina,B,Buenos Aires Province,392,General Villegas,NA,NA,AR,ARG,2
+AR_B_399,ChIJV4ZmquJq6pUREjLUkntnqNY,Q1028493,NA,AR,Argentina,B,Buenos Aires Province,399,Guaminí,NA,NA,AR,ARG,2
+AR_B_406,ChIJWTVNLIQXwJUR3Y6qWunN2yU,Q935606,NA,AR,Argentina,B,Buenos Aires Province,406,Hipólito Yrigoyen,NA,NA,AR,ARG,2
+AR_B_408,ChIJsUVV10m5vJURzuwfg_6y0i0,Q2514038,NA,AR,Argentina,B,Buenos Aires Province,408,Hurlingham,NA,NA,AR,ARG,2
+AR_B_410,ChIJi3cwCni_vJURGgCvOcXbONY,Q2713086,NA,AR,Argentina,B,Buenos Aires Province,410,Ituzaingó,NA,NA,AR,ARG,2
+AR_B_412,ChIJU9hbrEiYvJURUjoh1M6g1Eg,Q2329785,NA,AR,Argentina,B,Buenos Aires Province,412,José C. Paz,NA,NA,AR,ARG,2
+AR_B_413,ChIJw1D5SaaTuJURMPlOqIC2qQ8,Q1038802,NA,AR,Argentina,B,Buenos Aires Province,413,Junín,NA,NA,AR,ARG,2
+AR_B_420,ChIJ3XYbww1ynJURSwO4QU6A2Ig,Q1038912,NA,AR,Argentina,B,Buenos Aires Province,420,La Costa,NA,NA,AR,ARG,2
+AR_B_427,ChIJyb-rO9nHvJURFBKUaNO8aXA,Q1308616,NA,AR,Argentina,B,Buenos Aires Province,427,La Matanza,NA,NA,AR,ARG,2
+AR_B_434,ChIJ59YjjIbMvJURHyohbfG4alU,Q730109,NA,AR,Argentina,B,Buenos Aires Province,434,Lanús,NA,NA,AR,ARG,2
+AR_B_441,ChIJ4y8KScLeopURniKCiwyf1mw,Q260600,NA,AR,Argentina,B,Buenos Aires Province,441,La Plata,NA,NA,AR,ARG,2
+AR_B_448,ChIJG17U3dd8k5URgLKnEjWF38I,Q1039006,NA,AR,Argentina,B,Buenos Aires Province,448,Laprida,NA,NA,AR,ARG,2
+AR_B_455,ChIJYX7Xars2lpUR6EE8Ny_pHLE,Q748639,NA,AR,Argentina,B,Buenos Aires Province,455,Las Flores,NA,NA,AR,ARG,2
+AR_B_462,ChIJiYd2MYt1x5URmz-hiDnBUgI,Q282918,NA,AR,Argentina,B,Buenos Aires Province,462,Leandro N. Alem,NA,NA,AR,ARG,2
+AR_B_469,ChIJURxRm_c1x5URF7c1spCEofM,Q632108,NA,AR,Argentina,B,Buenos Aires Province,469,Lincoln,NA,NA,AR,ARG,2
+AR_B_476,ChIJt4XSrQ8fkJURW7uWCmXpNGo,Q628370,NA,AR,Argentina,B,Buenos Aires Province,476,Lobería,NA,NA,AR,ARG,2
+AR_B_483,ChIJe0MOy_qrvZURwh5lW99X5ic,Q1038822,NA,AR,Argentina,B,Buenos Aires Province,483,Lobos,NA,NA,AR,ARG,2
+AR_B_490,ChIJCeaxaTfMvJURRnkO7LbleqI,Q14638682,NA,AR,Argentina,B,Buenos Aires Province,490,Lomas de Zamora,NA,NA,AR,ARG,2
+AR_B_497,ChIJjcnQflN8vJURT_bGp9i6OIM,Q662536,NA,AR,Argentina,B,Buenos Aires Province,497,Luján,NA,NA,AR,ARG,2
+AR_B_505,ChIJD_t_nruBmJURvjjzjzUxm2c,Q1038813,NA,AR,Argentina,B,Buenos Aires Province,505,Magdalena,NA,NA,AR,ARG,2
+AR_B_511,ChIJU_WErKi1m5URmgJ051XS-7k,Q1039014,NA,AR,Argentina,B,Buenos Aires Province,511,Maipú,NA,NA,AR,ARG,2
+AR_B_515,ChIJzyXgo7O8vJUREJHkTeC0SNs,Q2721011,NA,AR,Argentina,B,Buenos Aires Province,515,Malvinas Argentinas,NA,NA,AR,ARG,2
+AR_B_518,ChIJ5QbzKInfmpUReWIAP1HlNXc,Q1827027,NA,AR,Argentina,B,Buenos Aires Province,518,Mar Chiquita,NA,NA,AR,ARG,2
+AR_B_525,ChIJzRRK8_PuvJUR8F2ljsJTaug,Q2622327,NA,AR,Argentina,B,Buenos Aires Province,525,Marcos Paz,NA,NA,AR,ARG,2
+AR_B_532,ChIJidWHsupyvJUR_oJxXoyWJW0,Q2348421,NA,AR,Argentina,B,Buenos Aires Province,532,Mercedes,NA,NA,AR,ARG,2
+AR_B_539,ChIJZXAdYkyVvJUROftpTNdHaIQ,Q1239732,NA,AR,Argentina,B,Buenos Aires Province,539,Merlo,NA,NA,AR,ARG,2
+AR_B_547,ChIJI2O3GCJmvZUR0OncRXVc0tQ,Q2136297,NA,AR,Argentina,B,Buenos Aires Province,547,Monte,NA,NA,AR,ARG,2
+AR_B_553,ChIJhYOKpVFSjZURL8Rl1T7S-Nw,Q2199691,NA,AR,Argentina,B,Buenos Aires Province,553,Monte Hermoso,NA,NA,AR,ARG,2
+AR_B_560,ChIJbxnks0iXvJUR6BH1PLohwyA,Q2037611,NA,AR,Argentina,B,Buenos Aires Province,560,Moreno,NA,NA,AR,ARG,2
+AR_B_568,ChIJPXwBM_u4vJUReOvH6Iong-I,Q2213772,NA,AR,Argentina,B,Buenos Aires Province,568,Morón,NA,NA,AR,ARG,2
+AR_B_574,ChIJs__sMetHvJURTohlwaf-u4E,Q775558,NA,AR,Argentina,B,Buenos Aires Province,574,Navarro,NA,NA,AR,ARG,2
+AR_B_581,ChIJE4nvwn3UkZURFAOLNknhvCQ,Q2622293,NA,AR,Argentina,B,Buenos Aires Province,581,Necochea,NA,NA,AR,ARG,2
+AR_B_588,ChIJpUEEf510v5URNF0TiKcA9l8,Q2289733,NA,AR,Argentina,B,Buenos Aires Province,588,Nueve de Julio,NA,NA,AR,ARG,2
+AR_B_595,ChIJs5XxzKv9lJURLczjVKZ2zSc,Q2621613,NA,AR,Argentina,B,Buenos Aires Province,595,Olavarría,NA,NA,AR,ARG,2
+AR_B_602,ChIJjx0qgPvg85URpJYbTaaqxtE,Q2621919,NA,AR,Argentina,B,Buenos Aires Province,602,Patagones,NA,NA,AR,ARG,2
+AR_B_609,ChIJc3aMY_1WwJURlxZXAVlziFY,Q2345020,NA,AR,Argentina,B,Buenos Aires Province,609,Pehuajó,NA,NA,AR,ARG,2
+AR_B_616,ChIJDz6SgXg2wpURkai1TeEN08k,Q2054688,NA,AR,Argentina,B,Buenos Aires Province,616,Pellegrini,NA,NA,AR,ARG,2
+AR_B_623,ChIJmz4RU_DKuZURv4eHXbzoTWg,Q2192713,NA,AR,Argentina,B,Buenos Aires Province,623,Pergamino,NA,NA,AR,ARG,2
+AR_B_630,NA,Q2054697,NA,AR,Argentina,B,Buenos Aires Province,630,Pila,NA,NA,AR,ARG,2
+AR_B_638,ChIJjR4CAOCcvJUR4NNtqoZsR7c,Q2621913,NA,AR,Argentina,B,Buenos Aires Province,638,Pilar,NA,NA,AR,ARG,2
+AR_B_644,ChIJ6_XsEticnJURd8efcPEIJUk,Q2501574,NA,AR,Argentina,B,Buenos Aires Province,644,Pinamar,NA,NA,AR,ARG,2
+AR_B_648,ChIJWYVwsFArvZURQI-0mzWEf7c,Q2360669,NA,AR,Argentina,B,Buenos Aires Province,648,Presidente Perón,NA,NA,AR,ARG,2
+AR_B_651,ChIJVc5getyt7pURDxbdZk-n-Xw,Q2761723,NA,AR,Argentina,B,Buenos Aires Province,651,Puán,NA,NA,AR,ARG,2
+AR_B_655,ChIJkR451K2amJURKlpI1tXKN0k,Q2711703,NA,AR,Argentina,B,Buenos Aires Province,655,Punta Indio,NA,NA,AR,ARG,2
+AR_B_658,ChIJgSytIYUto5URUb5SLUHdF6s,Q1855418,NA,AR,Argentina,B,Buenos Aires Province,658,Quilmes,NA,NA,AR,ARG,2
+AR_B_665,ChIJVZ6awXvluZURhBWZ7g7dwv0,Q2297669,NA,AR,Argentina,B,Buenos Aires Province,665,Ramallo,NA,NA,AR,ARG,2
+AR_B_672,ChIJ6bkWfZQXl5UR9WU_8rLd6Ss,Q2167140,NA,AR,Argentina,B,Buenos Aires Province,672,Rauch,NA,NA,AR,ARG,2
+AR_B_679,ChIJv8Kh53L6w5URxDC73ijBzdU,Q2149622,NA,AR,Argentina,B,Buenos Aires Province,679,Rivadavia,NA,NA,AR,ARG,2
+AR_B_686,ChIJ78aYqotZuJURX6_aa4z1964,Q2621930,NA,AR,Argentina,B,Buenos Aires Province,686,Rojas,NA,NA,AR,ARG,2
+AR_B_693,ChIJGzavzZyVvZURsYGI7HfnE18,Q2531829,NA,AR,Argentina,B,Buenos Aires Province,693,Roque Pérez,NA,NA,AR,ARG,2
+AR_B_700,ChIJB1-jHkPt65URbfi4wxwKjfQ,Q2622314,NA,AR,Argentina,B,Buenos Aires Province,700,Saavedra,NA,NA,AR,ARG,2
+AR_B_707,ChIJdQPZ5jLkvZUR4ajL7F6cSRw,Q2621623,NA,AR,Argentina,B,Buenos Aires Province,707,Saladillo,NA,NA,AR,ARG,2
+AR_B_714,ChIJMT-k0EYMuZUReWkkzWMVShg,Q2042858,NA,AR,Argentina,B,Buenos Aires Province,714,Salto,NA,NA,AR,ARG,2
+AR_B_721,ChIJXRZ_cxEPwpURBPqB4o0iIEc,Q2054758,NA,AR,Argentina,B,Buenos Aires Province,721,Salliqueló,NA,NA,AR,ARG,2
+AR_B_728,ChIJ_TaLsrnyu5UR8WkQr3d7t4I,Q2392259,NA,AR,Argentina,B,Buenos Aires Province,728,San Andrés de Giles,NA,NA,AR,ARG,2
+AR_B_735,ChIJmUTAxBrBu5URrWDJLLQYvhU,Q2398056,NA,AR,Argentina,B,Buenos Aires Province,735,San Antonio de Areco,NA,NA,AR,ARG,2
+AR_B_742,ChIJ6Qvjtw0djpURTZC2-2Igkvc,Q2342207,NA,AR,Argentina,B,Buenos Aires Province,742,San Cayetano,NA,NA,AR,ARG,2
+AR_B_749,ChIJmXemZFGlvJURFVsyd692nGo,Q1971695,NA,AR,Argentina,B,Buenos Aires Province,749,San Fernando,NA,NA,AR,ARG,2
+AR_B_756,ChIJ1bcpY1awvJURG5iHsEdQXL8,Q2644735,NA,AR,Argentina,B,Buenos Aires Province,756,San Isidro,NA,NA,AR,ARG,2
+AR_B_760,ChIJy0i_EYe8vJURCEKEJuMmLV4,Q2209426,NA,AR,Argentina,B,Buenos Aires Province,760,San Miguel,NA,NA,AR,ARG,2
+AR_B_763,ChIJfb_HXC9it5URbxJcmBQmv_0,Q2027949,NA,AR,Argentina,B,Buenos Aires Province,763,San Nicolás,NA,NA,AR,ARG,2
+AR_B_770,ChIJfcUjgu8mupURgW6SuT0B-ok,Q1925048,NA,AR,Argentina,B,Buenos Aires Province,770,San Pedro,NA,NA,AR,ARG,2
+AR_B_778,ChIJ-YqC62AyvZURy3zb_-RT2SU,Q2594035,NA,AR,Argentina,B,Buenos Aires Province,778,San Vicente,NA,NA,AR,ARG,2
+AR_B_784,ChIJXfNzIlIEvJURsN4fum3z3GM,Q593401,NA,AR,Argentina,B,Buenos Aires Province,784,Suipacha,NA,NA,AR,ARG,2
+AR_B_791,ChIJ1339sFQfkZURcZCB11QQa50,Q2101298,NA,AR,Argentina,B,Buenos Aires Province,791,Tandil,NA,NA,AR,ARG,2
+AR_B_798,ChIJR5xzQsjBlZURuHRnIn20Dpw,Q730947,NA,AR,Argentina,B,Buenos Aires Province,798,Tapalqué,NA,NA,AR,ARG,2
+AR_B_805,ChIJwZXXiJilvJURhrmoV2BagBA,Q1906802,NA,AR,Argentina,B,Buenos Aires Province,805,Tigre,NA,NA,AR,ARG,2
+AR_B_812,ChIJoxM02bBfmZURckzH3FWw8i4,Q1861464,NA,AR,Argentina,B,Buenos Aires Province,812,Tordillo,NA,NA,AR,ARG,2
+AR_B_819,ChIJFamBxIRE7JURemlTdxrUcNc,Q2096228,NA,AR,Argentina,B,Buenos Aires Province,819,Tornquist,NA,NA,AR,ARG,2
+AR_B_826,ChIJVWm14TSdwZURfGR_z6AjeVs,Q967691,NA,AR,Argentina,B,Buenos Aires Province,826,Trenque Lauquen,NA,NA,AR,ARG,2
+AR_B_833,ChIJq-uYbGcLkpURYen7wBTB5XE,Q1982616,NA,AR,Argentina,B,Buenos Aires Province,833,Tres Arroyos,NA,NA,AR,ARG,2
+AR_B_840,ChIJTdjr1MS7vJUR0hJ8j7luADc,Q2054829,NA,AR,Argentina,B,Buenos Aires Province,840,Tres de Febrero,NA,NA,AR,ARG,2
+AR_B_847,ChIJ2VwSQ2MewpUR6YLLb-1d0N8,Q2388331,NA,AR,Argentina,B,Buenos Aires Province,847,Tres Lomas,NA,NA,AR,ARG,2
+AR_B_854,ChIJNTpy39xnvpURzWh5D-aZMEs,Q2438138,NA,AR,Argentina,B,Buenos Aires Province,854,Veinticinco de Mayo,NA,NA,AR,ARG,2
+AR_B_861,ChIJO3vyXa22vJUR0voAU6R5GbM,Q2099330,NA,AR,Argentina,B,Buenos Aires Province,861,Vicente López,NA,NA,AR,ARG,2
+AR_B_868,ChIJseHax5Jcm5URqhYtGpPMI00,Q2426312,NA,AR,Argentina,B,Buenos Aires Province,868,Villa Gesell,NA,NA,AR,ARG,2
+AR_B_875,ChIJnyKnvhL57ZUR54AvOca7bgg,Q2621992,NA,AR,Argentina,B,Buenos Aires Province,875,Villarino,NA,NA,AR,ARG,2
+AR_B_882,ChIJRfz1EjsIu5URBtk9iTLWN10,Q2622012,NA,AR,Argentina,B,Buenos Aires Province,882,Zárate,NA,NA,AR,ARG,2
+AR_C,ChIJvQz5TjvKvJURh47oiC6Bs6A,Q1486,NA,AR,Argentina,C,City of Buenos Aires,NA,NA,NA,NA,AR,ARG,1
+AR_C_001,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,001,Comuna 1,NA,NA,AR,ARG,2
+AR_C_002,ChIJL_wJxpnKvJURdYqAUZOpLDk,Q1010253,NA,AR,Argentina,C,City of Buenos Aires,002,Recoleta,NA,NA,AR,ARG,2
+AR_C_003,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,003,Comuna 3,NA,NA,AR,ARG,2
+AR_C_004,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,004,Comuna 4,NA,NA,AR,ARG,2
+AR_C_005,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,005,Comuna 5,NA,NA,AR,ARG,2
+AR_C_006,ChIJLav4ETnKvJURLX3Y88KUsyc,Q536312,NA,AR,Argentina,C,City of Buenos Aires,006,Caballito,NA,NA,AR,ARG,2
+AR_C_007,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,007,Comuna 7,NA,NA,AR,ARG,2
+AR_C_008,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,008,Comuna 8,NA,NA,AR,ARG,2
+AR_C_009,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,009,Comuna 9,NA,NA,AR,ARG,2
+AR_C_010,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,010,Comuna 10,NA,NA,AR,ARG,2
+AR_C_011,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,011,Comuna 11,NA,NA,AR,ARG,2
+AR_C_012,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,012,Comuna 12,NA,NA,AR,ARG,2
+AR_C_013,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,013,Comuna 13,NA,NA,AR,ARG,2
+AR_C_014,ChIJM7ked5y1vJURaYzXlrUTMWs,Q1018128,NA,AR,Argentina,C,City of Buenos Aires,014,Palermo,NA,NA,AR,ARG,2
+AR_C_015,NA,NA,NA,AR,Argentina,C,City of Buenos Aires,015,Comuna 15,NA,NA,AR,ARG,2
+AR_D,ChIJPdeaUuQ71JURRryKvYMe7l0,Q44818,NA,AR,Argentina,D,San Luis,NA,NA,NA,NA,AR,ARG,1
+AR_D_007,ChIJ6WSb2mvU1JURaxmc3G1m1e8,Q1190260,NA,AR,Argentina,D,San Luis,007,Ayacucho,NA,NA,AR,ARG,2
+AR_D_014,ChIJCR4lfUEb1ZURyoeBBOz7JAc,Q1190272,NA,AR,Argentina,D,San Luis,014,Belgrano,NA,NA,AR,ARG,2
+AR_D_021,ChIJfbAwue501JURXemdLBDck_U,Q1190436,NA,AR,Argentina,D,San Luis,021,Coronel Pringles,NA,NA,AR,ARG,2
+AR_D_028,ChIJvz5E-CCp05URa1Hwr_-L6MM,Q377310,NA,AR,Argentina,D,San Luis,028,Chacabuco,NA,NA,AR,ARG,2
+AR_D_035,ChIJG_hX7AA80ZUR3l4BgNWDChk,Q1190560,NA,AR,Argentina,D,San Luis,035,General Pedernera,NA,NA,AR,ARG,2
+AR_D_042,ChIJFxV3MsqH2ZURx2tOIamAj_U,Q1190573,NA,AR,Argentina,D,San Luis,042,Gobernador Dupuy,NA,NA,AR,ARG,2
+AR_D_049,ChIJrYmcrcM605UROWldQwA8-GM,Q530745,NA,AR,Argentina,D,San Luis,049,Junín,NA,NA,AR,ARG,2
+AR_D_056,ChIJ9zJgmvlh1pURKhHhZMrUm1w,Q955598,NA,AR,Argentina,D,San Luis,056,La Capital,NA,NA,AR,ARG,2
+AR_D_063,ChIJ5RXWJjt705URQ6co9XsLBbc,Q1120737,NA,AR,Argentina,D,San Luis,063,Libertador General San Martín,NA,NA,AR,ARG,2
+AR_E,ChIJvy9Iut1RpZURgmPU3PBLKGk,Q44762,NA,AR,Argentina,E,Entre Ríos,NA,NA,NA,NA,AR,ARG,1
+AR_E_008,ChIJ4WNNVvwQrpURD_wNgvsetDY,Q426903,NA,AR,Argentina,E,Entre Ríos,008,Colón,NA,NA,AR,ARG,2
+AR_E_015,ChIJp23d8uSMrZUR7f_lLYcNtqE,Q868704,NA,AR,Argentina,E,Entre Ríos,015,Concordia,NA,NA,AR,ARG,2
+AR_E_021,ChIJ_a5YbmeCtpURO0_JxHRyXvg,Q534519,NA,AR,Argentina,E,Entre Ríos,021,Diamante,NA,NA,AR,ARG,2
+AR_E_028,ChIJVevFKWdvrZUR4sGVdatLn2s,Q590918,NA,AR,Argentina,E,Entre Ríos,028,Federación,NA,NA,AR,ARG,2
+AR_E_035,ChIJO5Fh8LPxspURMStLYBWyfCk,Q248162,NA,AR,Argentina,E,Entre Ríos,035,Federal,NA,NA,AR,ARG,2
+AR_E_042,ChIJ6Y1iZpVKTZQRmuJMf7arf5Q,Q908650,NA,AR,Argentina,E,Entre Ríos,042,Feliciano,NA,NA,AR,ARG,2
+AR_E_049,ChIJtyiOX86xsJURzCWzQm9Vv_0,Q908545,NA,AR,Argentina,E,Entre Ríos,049,Gualeguay,NA,NA,AR,ARG,2
+AR_E_056,ChIJmYtNuIYMsJURNmkh84s3QlQ,Q1028486,NA,AR,Argentina,E,Entre Ríos,056,Gualeguaychú,NA,NA,AR,ARG,2
+AR_E_063,ChIJ5Zrp1NX2upUR6jB1mbSqqC0,Q239594,NA,AR,Argentina,E,Entre Ríos,063,Islas del Ibicuy,NA,NA,AR,ARG,2
+AR_E_070,ChIJ7TJULGQ_s5UR0MtGSDaRlMM,Q908631,NA,AR,Argentina,E,Entre Ríos,070,La Paz,NA,NA,AR,ARG,2
+AR_E_077,ChIJ1R3hO59NsZURTQ9AcTXlfGE,Q908555,NA,AR,Argentina,E,Entre Ríos,077,Nogoyá,NA,NA,AR,ARG,2
+AR_E_084,ChIJ5UTNsJNltJURDfdsOprPVTc,Q518847,NA,AR,Argentina,E,Entre Ríos,084,Paraná,NA,NA,AR,ARG,2
+AR_E_088,ChIJI9aGWk4EspUR7wzm1Af6cFE,Q248156,NA,AR,Argentina,E,Entre Ríos,088,San Salvador,NA,NA,AR,ARG,2
+AR_E_091,ChIJe5O6WnISsZURP0Ys19AxsdQ,Q908565,NA,AR,Argentina,E,Entre Ríos,091,Tala,NA,NA,AR,ARG,2
+AR_E_098,ChIJB0DuXasxsJURXW663p8Oxts,Q1038949,NA,AR,Argentina,E,Entre Ríos,098,Uruguay,NA,NA,AR,ARG,2
+AR_E_105,ChIJr9YVJC7ntpURxcSw6wbquzg,Q751407,NA,AR,Argentina,E,Entre Ríos,105,Victoria,NA,NA,AR,ARG,2
+AR_E_113,ChIJY5N9O9YzspURmHB-i1cSeA4,Q908583,NA,AR,Argentina,E,Entre Ríos,113,Villaguay,NA,NA,AR,ARG,2
+AR_F,ChIJm_z9wv8FKJQRYHNdBKV3wbc,Q44796,NA,AR,Argentina,F,La Rioja,NA,NA,NA,NA,AR,ARG,1
+AR_F_007,ChIJUUuqbkccJ5QRlUgzEX6z-kw,Q782464,NA,AR,Argentina,F,La Rioja,007,Arauco,NA,NA,AR,ARG,2
+AR_F_014,ChIJOeNU9W6eKJQRaiYh04NzKag,Q732783,NA,AR,Argentina,F,La Rioja,014,Capital,NA,NA,AR,ARG,2
+AR_F_021,ChIJa0dNuRyhJ5QRK4GgDmE_E28,Q940554,NA,AR,Argentina,F,La Rioja,021,Castro Barros,NA,NA,AR,ARG,2
+AR_F_028,ChIJPcsfeyXdnJYR3YYZxNi03W4,Q535484,NA,AR,Argentina,F,La Rioja,028,Coronel Felipe Varela,NA,NA,AR,ARG,2
+AR_F_035,ChIJ8Te9V5suKZQRWj4dlYbP3P4,Q1190364,NA,AR,Argentina,F,La Rioja,035,Chamical,NA,NA,AR,ARG,2
+AR_F_042,ChIJWYRDdldYnZYRykKEaNRnMFM,Q522453,NA,AR,Argentina,F,La Rioja,042,Chilecito,NA,NA,AR,ARG,2
+AR_F_049,ChIJdx5IAsuNnZYRpHK306-Hi1A,Q1190490,NA,AR,Argentina,F,La Rioja,049,Famatina,NA,NA,AR,ARG,2
+AR_F_056,ChIJrdz7F42pKZQR4LTj_70kvLA,Q1190571,NA,AR,Argentina,F,La Rioja,056,General Angel V. Peñaloza,NA,NA,AR,ARG,2
+AR_F_063,ChIJO2OOHAxOKZQRIux7zVZeFl8,Q764225,NA,AR,Argentina,F,La Rioja,063,General Belgrano,NA,NA,AR,ARG,2
+AR_F_070,ChIJpSoxn_GOKZQRe0BLAUjxUOE,Q1190540,NA,AR,Argentina,F,La Rioja,070,General Juan Facundo Quiroga,NA,NA,AR,ARG,2
+AR_F_077,ChIJNWR_zNkNnJYROfPl92IyUYg,Q1190538,NA,AR,Argentina,F,La Rioja,077,General Lamadrid,NA,NA,AR,ARG,2
+AR_F_084,ChIJkzXOhJXtK5QRAL0Xj8piWvA,Q766274,NA,AR,Argentina,F,La Rioja,084,General Ocampo,NA,NA,AR,ARG,2
+AR_F_091,ChIJmX4YRQkMK5QRyy3gw5pHKhs,Q379383,NA,AR,Argentina,F,La Rioja,091,General San Martín,NA,NA,AR,ARG,2
+AR_F_098,ChIJ29en1cemnpYR1raYAwli85Y,Q1191272,NA,AR,Argentina,F,La Rioja,098,Vinchina,NA,NA,AR,ARG,2
+AR_F_105,ChIJK6Gtq7edgpYRZIsUwumo2VY,Q1190620,NA,AR,Argentina,F,La Rioja,105,Independencia,NA,NA,AR,ARG,2
+AR_F_112,ChIJhd_C4rJTKpQR21gXFYrwoHU,Q1191009,NA,AR,Argentina,F,La Rioja,112,Rosario Vera Peñaloza,NA,NA,AR,ARG,2
+AR_F_119,ChIJXfe_g9VnJ5QRr2JYt_MOzWg,Q1191057,NA,AR,Argentina,F,La Rioja,119,San Blas de los Sauces,NA,NA,AR,ARG,2
+AR_F_126,ChIJh_qgjcuVJ5QRs5fI39B_VT4,Q1191131,NA,AR,Argentina,F,La Rioja,126,Sanagasta,NA,NA,AR,ARG,2
+AR_G,ChIJzxmuSU-oJZQRpZuk02QcO-I,Q44827,NA,AR,Argentina,G,Santiago del Estero,NA,NA,NA,NA,AR,ARG,1
+AR_G_007,ChIJp5rRV0MhN5QRDenzzGp-4s4,Q1190192,NA,AR,Argentina,G,Santiago del Estero,007,Aguirre,NA,NA,AR,ARG,2
+AR_G_014,ChIJY_dtPol-PpQRdUNlxcQzK0A,Q1190206,NA,AR,Argentina,G,Santiago del Estero,014,Alberdi,NA,NA,AR,ARG,2
+AR_G_021,ChIJ3fAvOT-UOpQRdaaQBQd0vzc,Q676101,NA,AR,Argentina,G,Santiago del Estero,021,Atamisqui,NA,NA,AR,ARG,2
+AR_G_028,ChIJf8AEd5BsOpQRVj6vyHhKJLo,Q1190254,NA,AR,Argentina,G,Santiago del Estero,028,Avellaneda,NA,NA,AR,ARG,2
+AR_G_035,NA,Q738865,NA,AR,Argentina,G,Santiago del Estero,035,Banda,NA,NA,AR,ARG,2
+AR_G_042,ChIJd20KFygbN5QRmkM7961FUQA,Q475010,NA,AR,Argentina,G,Santiago del Estero,042,Belgrano,NA,NA,AR,ARG,2
+AR_G_049,ChIJ-b0oCfuzJJQRREsamkddhnM,Q510050,NA,AR,Argentina,G,Santiago del Estero,049,Capital,NA,NA,AR,ARG,2
+AR_G_056,ChIJqzde3QMAFpQRphz6fofZck8,Q1190424,NA,AR,Argentina,G,Santiago del Estero,056,Copo,NA,NA,AR,ARG,2
+AR_G_063,ChIJtVKT_RNsJZQRt-exWupcj7o,Q420227,NA,AR,Argentina,G,Santiago del Estero,063,Choya,NA,NA,AR,ARG,2
+AR_G_070,ChIJiQbxLfuHPJQRzGYvhAfa64A,Q583289,NA,AR,Argentina,G,Santiago del Estero,070,Figueroa,NA,NA,AR,ARG,2
+AR_G_077,ChIJCcbCzdffOZQRfzGehCumkac,Q1190567,NA,AR,Argentina,G,Santiago del Estero,077,General Taboada,NA,NA,AR,ARG,2
+AR_G_084,ChIJiaj1BE2QJJQR25bAOzsFk9o,Q587984,NA,AR,Argentina,G,Santiago del Estero,084,Guasayán,NA,NA,AR,ARG,2
+AR_G_091,ChIJm1wUvnPWPJQRvBKLSlKQfW8,Q1190644,NA,AR,Argentina,G,Santiago del Estero,091,Jiménez,NA,NA,AR,ARG,2
+AR_G_098,ChIJw7z8S7-cOZQRIEmDVmpVJfY,Q1190654,NA,AR,Argentina,G,Santiago del Estero,098,Juan Felipe Ibarra,NA,NA,AR,ARG,2
+AR_G_105,ChIJCZhgiXjJOpQRgHqdwfHo9Qc,Q1190767,NA,AR,Argentina,G,Santiago del Estero,105,Loreto,NA,NA,AR,ARG,2
+AR_G_112,ChIJK5bEA9fMNpQR6U5IXvTZ6kw,Q1190833,NA,AR,Argentina,G,Santiago del Estero,112,Mitre,NA,NA,AR,ARG,2
+AR_G_119,ChIJAbRU2lVKOZQRhNAoK9V2Z90,Q1190857,NA,AR,Argentina,G,Santiago del Estero,119,Moreno,NA,NA,AR,ARG,2
+AR_G_126,ChIJQxXqFYdqMJQRQhProM9SdGc,Q1190897,NA,AR,Argentina,G,Santiago del Estero,126,Ojo de Agua,NA,NA,AR,ARG,2
+AR_G_133,ChIJyTl4dPhYPZQRI30FOXqklz8,Q532654,NA,AR,Argentina,G,Santiago del Estero,133,Pellegrini,NA,NA,AR,ARG,2
+AR_G_140,ChIJd8iYgsHlMJQRLHVRX5g4Oxg,Q598034,NA,AR,Argentina,G,Santiago del Estero,140,Quebrachos,NA,NA,AR,ARG,2
+AR_G_147,ChIJ7-b89BVqI5QRo3iKiTORMMg,Q1191034,NA,AR,Argentina,G,Santiago del Estero,147,Río Hondo,NA,NA,AR,ARG,2
+AR_G_154,ChIJozZkXCMkNJQRaZ-6_aztT74,Q1190999,NA,AR,Argentina,G,Santiago del Estero,154,Rivadavia,NA,NA,AR,ARG,2
+AR_G_161,ChIJY3xa4HhqO5QRwO3GhUgyuR8,Q919499,NA,AR,Argentina,G,Santiago del Estero,161,Robles,NA,NA,AR,ARG,2
+AR_G_168,ChIJF9vZ87WEMJQRdHOhV_QrRQU,Q1191046,NA,AR,Argentina,G,Santiago del Estero,168,Salavina,NA,NA,AR,ARG,2
+AR_G_175,ChIJTzwLRNQdO5QRnTB-HThHGP4,Q1191115,NA,AR,Argentina,G,Santiago del Estero,175,San Martín,NA,NA,AR,ARG,2
+AR_G_182,ChIJranu5MutO5QRYgK9qzfLheM,Q1191181,NA,AR,Argentina,G,Santiago del Estero,182,Sarmiento,NA,NA,AR,ARG,2
+AR_G_189,ChIJp7YWVk8tO5QRm5lpDhnutjs,Q1191187,NA,AR,Argentina,G,Santiago del Estero,189,Silípica,NA,NA,AR,ARG,2
+AR_H,ChIJR3LI4_rvQJQRleyel8CWr04,Q44757,NA,AR,Argentina,H,Chaco,NA,NA,NA,NA,AR,ARG,1
+AR_H_007,ChIJbyfUCFKAFZQRnNdwY0mYMYk,Q657774,NA,AR,Argentina,H,Chaco,007,Almirante Brown,NA,NA,AR,ARG,2
+AR_H_014,ChIJUYWu4afeRJQR0r1-JMcO2P4,Q746130,NA,AR,Argentina,H,Chaco,014,Bermejo,NA,NA,AR,ARG,2
+AR_H_021,ChIJ7Zgz4ossQZQRu9EK87yvGUg,Q604926,NA,AR,Argentina,H,Chaco,021,Comandante Fernández,NA,NA,AR,ARG,2
+AR_H_028,ChIJCyV_djJUR5QRPsJqozJWCFk,Q859885,NA,AR,Argentina,H,Chaco,028,Chacabuco,NA,NA,AR,ARG,2
+AR_H_036,ChIJYfdUxsKgOJQRU3UUX17hVlc,Q389021,NA,AR,Argentina,H,Chaco,036,Doce de Octubre,NA,NA,AR,ARG,2
+AR_H_039,ChIJ-c34rEV-R5QRTwiOTuUGkZ0,Q909282,NA,AR,Argentina,H,Chaco,039,Dos de Abril,NA,NA,AR,ARG,2
+AR_H_043,ChIJeT4WUmeHR5QRVoeBaUuBQ1A,Q531359,NA,AR,Argentina,H,Chaco,043,Fray Justo Santa María de Oro,NA,NA,AR,ARG,2
+AR_H_049,ChIJaYwhXtqzQJQRwRYSjLpU7HQ,Q631549,NA,AR,Argentina,H,Chaco,049,General Belgrano,NA,NA,AR,ARG,2
+AR_H_056,ChIJoakt03ZORJQRDFjcKtJ0WHw,Q922325,NA,AR,Argentina,H,Chaco,056,General Donovan,NA,NA,AR,ARG,2
+AR_H_063,ChIJjxTJ2XAuFZQR3sI_neCRScw,Q1009128,NA,AR,Argentina,H,Chaco,063,General Güemes,NA,NA,AR,ARG,2
+AR_H_070,ChIJWUgvBBzQQJQRm5isdWfrISA,Q731983,NA,AR,Argentina,H,Chaco,070,Independencia,NA,NA,AR,ARG,2
+AR_H_077,ChIJJ-T5if-tRZQR-JKCKAgewJ0,Q279489,NA,AR,Argentina,H,Chaco,077,Libertad,NA,NA,AR,ARG,2
+AR_H_084,ChIJ978WS5WVQ5QRzHn4LQrE8Ww,Q971461,NA,AR,Argentina,H,Chaco,084,Libertador General San Martín,NA,NA,AR,ARG,2
+AR_H_091,ChIJT59NUcQbQZQR4hm_9q7AphM,Q1063322,NA,AR,Argentina,H,Chaco,091,Maipú,NA,NA,AR,ARG,2
+AR_H_098,ChIJf_0w9Z-tR5QRpv9r-bO03hE,Q586608,NA,AR,Argentina,H,Chaco,098,Mayor Luis J. Fontana,NA,NA,AR,ARG,2
+AR_H_105,ChIJbzlkdiyrQJQRZp7zqCyGEBs,Q942143,NA,AR,Argentina,H,Chaco,105,Nueve de Julio,NA,NA,AR,ARG,2
+AR_H_112,ChIJM4gdwYgiR5QR_0pUMNnOERI,Q1063347,NA,AR,Argentina,H,Chaco,112,O'Higgins,NA,NA,AR,ARG,2
+AR_H_119,ChIJm0rMOb8fRJQRue9Z24_tJUw,Q925479,NA,AR,Argentina,H,Chaco,119,Presidencia de la Plaza,NA,NA,AR,ARG,2
+AR_H_126,NA,Q1063333,NA,AR,Argentina,H,Chaco,126,Primero de Mayo,NA,NA,AR,ARG,2
+AR_H_133,ChIJkQWZvPM1QZQRiepAYcnoHtM,Q1063326,NA,AR,Argentina,H,Chaco,133,Quitilipi,NA,NA,AR,ARG,2
+AR_H_140,ChIJr49LVWSdRZQRMkdnk0Wauh8,Q1063341,NA,AR,Argentina,H,Chaco,140,San Fernando,NA,NA,AR,ARG,2
+AR_H_147,ChIJZ8ktW47wRpQRHXUBwpm1Z5Q,Q587922,NA,AR,Argentina,H,Chaco,147,San Lorenzo,NA,NA,AR,ARG,2
+AR_H_154,ChIJm6sOEIQNRJQReG50u3oVPmY,Q1063313,NA,AR,Argentina,H,Chaco,154,Sargento Cabral,NA,NA,AR,ARG,2
+AR_H_161,ChIJGytFOxPfRZQRWRc1QN1wSjY,Q1063069,NA,AR,Argentina,H,Chaco,161,Tapenagá,NA,NA,AR,ARG,2
+AR_H_168,NA,Q537561,NA,AR,Argentina,H,Chaco,168,Veinticinco de Mayo,NA,NA,AR,ARG,2
+AR_J,ChIJl9Q8oylAgZYR37HjZ-P_UjU,Q44805,NA,AR,Argentina,J,San Juan,NA,NA,NA,NA,AR,ARG,1
+AR_J_007,ChIJaztieoTfg5YRn60laAI56aU,Q1190205,NA,AR,Argentina,J,San Juan,007,Albardón,NA,NA,AR,ARG,2
+AR_J_014,ChIJoeCQ5TqAgZYRFw2zIqMIT1U,Q537390,NA,AR,Argentina,J,San Juan,014,Angaco,NA,NA,AR,ARG,2
+AR_J_021,ChIJUZ2N_Ql4hpYR6ncf0PDMOR8,Q1190309,NA,AR,Argentina,J,San Juan,021,Calingasta,NA,NA,AR,ARG,2
+AR_J_028,ChIJT5TMe9BBgZYRgylAPmzR6Co,Q1190333,NA,AR,Argentina,J,San Juan,028,Capital,NA,NA,AR,ARG,2
+AR_J_035,ChIJxViIaV3dgZYRFaj0-b5pyUc,Q1190349,NA,AR,Argentina,J,San Juan,035,Caucete,NA,NA,AR,ARG,2
+AR_J_042,ChIJi9d-HglCgZYRFvdgHmqCu2Y,Q1190374,NA,AR,Argentina,J,San Juan,042,Chimbas,NA,NA,AR,ARG,2
+AR_J_049,ChIJ1R_C_3UXm5YRnG5jZX4jvko,Q974455,NA,AR,Argentina,J,San Juan,049,Iglesia,NA,NA,AR,ARG,2
+AR_J_056,ChIJ3zlRSywbg5YRJiz0-xuru6U,Q1190671,NA,AR,Argentina,J,San Juan,056,Jáchal,NA,NA,AR,ARG,2
+AR_J_063,ChIJ7ddKsqYRgZYRAzzQdZ6UD3E,Q1190873,NA,AR,Argentina,J,San Juan,063,Nueve de Julio,NA,NA,AR,ARG,2
+AR_J_070,ChIJ7TUuhRs9gZYRr4M3hwgboy0,Q1190967,NA,AR,Argentina,J,San Juan,070,Pocito,NA,NA,AR,ARG,2
+AR_J_077,ChIJ11cSXkQWgZYRbMAdVfNtJAY,Q651437,NA,AR,Argentina,J,San Juan,077,Rawson,NA,NA,AR,ARG,2
+AR_J_084,ChIJ-RIgW9RGgZYRUjJv9Pvy-mY,Q613945,NA,AR,Argentina,J,San Juan,084,Rivadavia,NA,NA,AR,ARG,2
+AR_J_091,ChIJV9KWZU4LgZYRnPJEuA3X2pk,Q685766,NA,AR,Argentina,J,San Juan,091,San Martín,NA,NA,AR,ARG,2
+AR_J_098,ChIJ2U2O1wtrgZYRiloWn8IRGL0,Q1191155,NA,AR,Argentina,J,San Juan,098,Santa Lucía,NA,NA,AR,ARG,2
+AR_J_105,ChIJE7s0xGTagJYRoaWvXLGFrYA,Q548342,NA,AR,Argentina,J,San Juan,105,Sarmiento,NA,NA,AR,ARG,2
+AR_J_112,ChIJ835c5nZFgZYRb0OXoQgFHAw,Q1191231,NA,AR,Argentina,J,San Juan,112,Ullúm,NA,NA,AR,ARG,2
+AR_J_119,ChIJMdxi2vtogpYRiq1KhUwekyo,Q1191252,NA,AR,Argentina,J,San Juan,119,Valle Fértil,NA,NA,AR,ARG,2
+AR_J_126,ChIJzdSLvo5GgJYR86kcnMLxWEw,Q373588,NA,AR,Argentina,J,San Juan,126,Veinticinco de Mayo,NA,NA,AR,ARG,2
+AR_J_133,ChIJIxo4joS0hpYRPWMkFSqbTQE,Q571569,NA,AR,Argentina,J,San Juan,133,Zonda,NA,NA,AR,ARG,2
+AR_K,ChIJvdQKAsVdIJQR3MJsfSPDVzI,Q44756,NA,AR,Argentina,K,Catamarca,NA,NA,NA,NA,AR,ARG,1
+AR_K_007,ChIJAZTQARyrJpQRnmlFKTYhHZM,Q688734,NA,AR,Argentina,K,Catamarca,007,Ambato,NA,NA,AR,ARG,2
+AR_K_014,ChIJBbmnmzjHJZQRKHMaOGbD-iw,Q760261,NA,AR,Argentina,K,Catamarca,014,Ancasti,NA,NA,AR,ARG,2
+AR_K_021,ChIJb0P73Q0UIZQR4FaASpNwFPI,Q1190227,NA,AR,Argentina,K,Catamarca,021,Andalgalá,NA,NA,AR,ARG,2
+AR_K_028,ChIJMT1jYRmGoJYRXrfKj8hp-_U,Q772414,NA,AR,Argentina,K,Catamarca,028,Antofagasta de la Sierra,NA,NA,AR,ARG,2
+AR_K_035,ChIJOc4afvo7IJQRnTv9gqS9Doo,Q792603,NA,AR,Argentina,K,Catamarca,035,Belén,NA,NA,AR,ARG,2
+AR_K_042,ChIJvbjnI_8GJpQRoEKb6DAd6Cc,Q858107,NA,AR,Argentina,K,Catamarca,042,Capayán,NA,NA,AR,ARG,2
+AR_K_049,ChIJQVdv5bQgJJQR25wKottdXY4,Q858182,NA,AR,Argentina,K,Catamarca,049,Capital,NA,NA,AR,ARG,2
+AR_K_056,ChIJmWtmTjpPJJQRWSdEKcL3Sk4,Q988605,NA,AR,Argentina,K,Catamarca,056,El Alto,NA,NA,AR,ARG,2
+AR_K_063,ChIJFZWsr0siJJQRG9YKXnxmQW8,Q775145,NA,AR,Argentina,K,Catamarca,063,Fray Mamerto Esquiú,NA,NA,AR,ARG,2
+AR_K_070,ChIJDctJY4t5L5QRNfRQH8L76oo,Q1127089,NA,AR,Argentina,K,Catamarca,070,La Paz,NA,NA,AR,ARG,2
+AR_K_077,ChIJI3CepRMQJJQRua9xdac4Av8,Q285492,NA,AR,Argentina,K,Catamarca,077,Paclín,NA,NA,AR,ARG,2
+AR_K_084,ChIJrS_Ka0jXJpQRqOh0fsouqS0,Q1190970,NA,AR,Argentina,K,Catamarca,084,Pomán,NA,NA,AR,ARG,2
+AR_K_091,ChIJoUt1d-XdIZQRc7RumC1ZGNw,Q1080656,NA,AR,Argentina,K,Catamarca,091,Santa María,NA,NA,AR,ARG,2
+AR_K_098,ChIJMVDnMyRvJJQR6lgiDjeJyoQ,Q638965,NA,AR,Argentina,K,Catamarca,098,Santa Rosa,NA,NA,AR,ARG,2
+AR_K_105,ChIJCVTSUoayn5YR1kUoq1afx1o,Q1080210,NA,AR,Argentina,K,Catamarca,105,Tinogasta,NA,NA,AR,ARG,2
+AR_K_112,ChIJ-Wv-mTwtJJQRr3PcJkf1mlk,Q288586,NA,AR,Argentina,K,Catamarca,112,Valle Viejo,NA,NA,AR,ARG,2
+AR_L,ChIJ6TZppA1t3JURyFjyX753Fqw,Q44795,NA,AR,Argentina,L,La Pampa,NA,NA,NA,NA,AR,ARG,1
+AR_L_007,ChIJD-pe9_wl6JUR-ksyPJzgkMg,Q2608914,NA,AR,Argentina,L,La Pampa,007,Atreucó,NA,NA,AR,ARG,2
+AR_L_014,ChIJ6yk4atEM75URKLPyNATmx5Q,Q1190307,NA,AR,Argentina,L,La Pampa,014,Caleu Caleu,NA,NA,AR,ARG,2
+AR_L_021,ChIJa1cqpaHRwpURXnVZUakdTy4,Q2398948,NA,AR,Argentina,L,La Pampa,021,Capital,NA,NA,AR,ARG,2
+AR_L_028,ChIJRTttq6L0wpURAUCkLg7IFX0,Q2536555,NA,AR,Argentina,L,La Pampa,028,Catriló,NA,NA,AR,ARG,2
+AR_L_035,NA,Q2364899,NA,AR,Argentina,L,La Pampa,035,Conhelo,NA,NA,AR,ARG,2
+AR_L_042,ChIJ7QmNdncc4ZURLW2oaTDKGYk,Q2343740,NA,AR,Argentina,L,La Pampa,042,Curacó,NA,NA,AR,ARG,2
+AR_L_049,ChIJ94C9aB7X3pURCAJ07rxWUmc,Q2201685,NA,AR,Argentina,L,La Pampa,049,Chalileo,NA,NA,AR,ARG,2
+AR_L_056,ChIJAaOhA6j2xJURmsTojr-sa7g,Q588291,NA,AR,Argentina,L,La Pampa,056,Chapaleufú,NA,NA,AR,ARG,2
+AR_L_070,ChIJH4KhW3Ja6JURc51hjO_a4WA,Q2367427,NA,AR,Argentina,L,La Pampa,070,Guatraché,NA,NA,AR,ARG,2
+AR_L_077,ChIJgeVgsXvA6JUR-vXtD058d6k,Q1190602,NA,AR,Argentina,L,La Pampa,077,Hucal,NA,NA,AR,ARG,2
+AR_L_098,ChIJtSMKih053JURxv5XgTin-SM,Q2143130,NA,AR,Argentina,L,La Pampa,098,Loventué,NA,NA,AR,ARG,2
+AR_L_105,ChIJsTeKkI9-w5UR_zTKMnouIOE,Q2106928,NA,AR,Argentina,L,La Pampa,105,Maracó,NA,NA,AR,ARG,2
+AR_L_112,ChIJS8h6PShEdZYRwnOuisQAouw,Q2555310,NA,AR,Argentina,L,La Pampa,112,Puelén,NA,NA,AR,ARG,2
+AR_L_119,ChIJ-eLOkhEGw5URrx2A928fHL8,Q2606376,NA,AR,Argentina,L,La Pampa,119,Quemú Quemú,NA,NA,AR,ARG,2
+AR_L_126,ChIJmRLSk1gX25UR-l5n2KXoggA,Q1960252,NA,AR,Argentina,L,La Pampa,126,Rancul,NA,NA,AR,ARG,2
+AR_L_133,ChIJfb5PQAnRxJUREiN0Okg07vk,Q2606381,NA,AR,Argentina,L,La Pampa,133,Realicó,NA,NA,AR,ARG,2
+AR_L_140,ChIJ9X8RCock3ZURigcZu1IjNLU,Q2145575,NA,AR,Argentina,L,La Pampa,140,Toay,NA,NA,AR,ARG,2
+AR_L_147,ChIJs0c1P1muxJURa34ieTU197Y,Q2608919,NA,AR,Argentina,L,La Pampa,147,Trenel,NA,NA,AR,ARG,2
+AR_L_154,ChIJ5c8DBCCC55URgdndS9leLt8,Q524309,NA,AR,Argentina,L,La Pampa,154,Utracán,NA,NA,AR,ARG,2
+AR_M,ChIJ_f_VXVt0eZYRJHgEHW9YAgk,Q44797,NA,AR,Argentina,M,Mendoza,NA,NA,NA,NA,AR,ARG,1
+AR_M_007,ChIJv3lRxD4JfpYROvoO0vZ4WiA,Q44237,NA,AR,Argentina,M,Mendoza,007,Capital,NA,NA,AR,ARG,2
+AR_M_014,ChIJ3aaOFb4Q2JURDLW1OhYRqS8,Q1190513,NA,AR,Argentina,M,Mendoza,014,General Alvear,NA,NA,AR,ARG,2
+AR_M_021,ChIJpTbffIsJfpYR9fI4Ne3h2D4,Q1190576,NA,AR,Argentina,M,Mendoza,021,Godoy Cruz,NA,NA,AR,ARG,2
+AR_M_028,ChIJi6tg0BgOfpYRGwvRtJm2dpY,Q512660,NA,AR,Argentina,M,Mendoza,028,Guaymallén,NA,NA,AR,ARG,2
+AR_M_035,ChIJtzqG_thcfpYRWuCEqWULzA0,Q1190664,NA,AR,Argentina,M,Mendoza,035,Junín,NA,NA,AR,ARG,2
+AR_M_042,ChIJ6Scf6WH71ZURFi4W4_HNyng,Q584369,NA,AR,Argentina,M,Mendoza,042,La Paz,NA,NA,AR,ARG,2
+AR_M_049,ChIJ-5NGZ3pph5YRWzTMp3K9km0,Q1190729,NA,AR,Argentina,M,Mendoza,049,Las Heras,NA,NA,AR,ARG,2
+AR_M_056,ChIJcV5uK1HXf5YRF5ozkzpnQfQ,Q426743,NA,AR,Argentina,M,Mendoza,056,Lavalle,NA,NA,AR,ARG,2
+AR_M_063,ChIJozxKYvOTfZYRumTdRxsNypA,Q972194,NA,AR,Argentina,M,Mendoza,063,Luján de Cuyo,NA,NA,AR,ARG,2
+AR_M_070,ChIJ6zW06iUTfpYRqcazzLyjmfo,Q588032,NA,AR,Argentina,M,Mendoza,070,Maipú,NA,NA,AR,ARG,2
+AR_M_077,ChIJAxDJKbXjcJYRAb9c0Jy7naU,Q1190790,NA,AR,Argentina,M,Mendoza,077,Malargüe,NA,NA,AR,ARG,2
+AR_M_084,ChIJuTduTO2OfpYRLq-mk9P9Dd8,Q2187699,NA,AR,Argentina,M,Mendoza,084,Rivadavia,NA,NA,AR,ARG,2
+AR_M_091,ChIJi1m8FCQIfJYRqn6Djt9InNY,Q1191066,NA,AR,Argentina,M,Mendoza,091,San Carlos,NA,NA,AR,ARG,2
+AR_M_098,ChIJmQ4o4QlJfpYRwbuZZybtulM,Q376089,NA,AR,Argentina,M,Mendoza,098,San Martín,NA,NA,AR,ARG,2
+AR_M_105,ChIJo9xPorrBeZYRVtV317tb_g8,Q2004531,NA,AR,Argentina,M,Mendoza,105,San Rafael,NA,NA,AR,ARG,2
+AR_M_112,ChIJ2XHyC_YXf5YRdabK7QLs9lE,Q600622,NA,AR,Argentina,M,Mendoza,112,Santa Rosa,NA,NA,AR,ARG,2
+AR_M_119,ChIJz_pPzb1PfJYRAE3_j_8Uqb4,Q1191226,NA,AR,Argentina,M,Mendoza,119,Tunuyán,NA,NA,AR,ARG,2
+AR_M_126,ChIJrxupw-K3fZYRjdg46jgn9dU,Q2317932,NA,AR,Argentina,M,Mendoza,126,Tupungato,NA,NA,AR,ARG,2
+AR_N,ChIJM-NMXSQR-JQRHVqx6381Xfs,Q44798,NA,AR,Argentina,N,Misiones,NA,NA,NA,NA,AR,ARG,1
+AR_N_007,ChIJkVKGQtU8VpQRC9K3cDz95_s,Q1190234,NA,AR,Argentina,N,Misiones,007,Apóstoles,NA,NA,AR,ARG,2
+AR_N_014,ChIJ610Qn89M-JQRKfQzcyQiIZk,Q1190301,NA,AR,Argentina,N,Misiones,014,Cainguás,NA,NA,AR,ARG,2
+AR_N_021,ChIJudXE4Q3XV5QRacuPSxKFWz8,Q1190313,NA,AR,Argentina,N,Misiones,021,Candelaria,NA,NA,AR,ARG,2
+AR_N_028,ChIJoyODwTLIV5QR5GZiwFe2FL8,Q1190326,NA,AR,Argentina,N,Misiones,028,Capital,NA,NA,AR,ARG,2
+AR_N_035,ChIJowK5a8Cg-JQRise-z1L36To,Q728171,NA,AR,Argentina,N,Misiones,035,Concepción,NA,NA,AR,ARG,2
+AR_N_042,ChIJuSZT4i1A95QR3NH-POu-vZI,Q1190481,NA,AR,Argentina,N,Misiones,042,Eldorado,NA,NA,AR,ARG,2
+AR_N_049,ChIJiSsDngLQ8JQRQKteJLCFpSI,Q1190549,NA,AR,Argentina,N,Misiones,049,General Manuel Belgrano,NA,NA,AR,ARG,2
+AR_N_056,ChIJkc5Vj_GP-ZQRLyvBCkeS-g0,Q1190595,NA,AR,Argentina,N,Misiones,056,Guaraní,NA,NA,AR,ARG,2
+AR_N_063,ChIJhSXhYerd9pQR4aEQs7tJT4o,Q947494,NA,AR,Argentina,N,Misiones,063,Iguazú,NA,NA,AR,ARG,2
+AR_N_070,ChIJ3cZZQE-B-JQRqEkGugAzFfM,Q519809,NA,AR,Argentina,N,Misiones,070,Leandro N. Alem,NA,NA,AR,ARG,2
+AR_N_077,ChIJwWX-Xggv-JQRnFjEIRi_vQ0,Q1190758,NA,AR,Argentina,N,Misiones,077,Libertador Grl. San Martín,NA,NA,AR,ARG,2
+AR_N_084,ChIJs717VzbZ-ZQRXmYGXTe_Mhk,Q1190847,NA,AR,Argentina,N,Misiones,084,Montecarlo,NA,NA,AR,ARG,2
+AR_N_091,ChIJLyeGeWX1-JQRLvvJeZbeCoM,Q1190885,NA,AR,Argentina,N,Misiones,091,Oberá,NA,NA,AR,ARG,2
+AR_N_098,ChIJ_btISv4M-JQRt7dOYJmiw9Y,Q1191078,NA,AR,Argentina,N,Misiones,098,San Ignacio,NA,NA,AR,ARG,2
+AR_N_105,ChIJi978Bx2V-JQRTGZQebDKrJ0,Q730306,NA,AR,Argentina,N,Misiones,105,San Javier,NA,NA,AR,ARG,2
+AR_N_112,ChIJUwFLihEZ-pQRJD6XSSGwezA,Q782340,NA,AR,Argentina,N,Misiones,112,San Pedro,NA,NA,AR,ARG,2
+AR_N_119,ChIJO2cwah4G-ZQRpHTLFA2H4s8,Q1190177,NA,AR,Argentina,N,Misiones,119,Veinticinco de Mayo,NA,NA,AR,ARG,2
+AR_P,ChIJpwz0Xr4sapQRRF1cxa5GtKA,Q44761,NA,AR,Argentina,P,Formosa,NA,NA,NA,NA,AR,ARG,1
+AR_P_007,ChIJv2ZbTie6bJQRfUp1OLPbuNM,Q1190280,NA,AR,Argentina,P,Formosa,007,Bermejo,NA,NA,AR,ARG,2
+AR_P_014,ChIJL0uKS7TKXJQR_cKU6fcCEfQ,Q649840,NA,AR,Argentina,P,Formosa,014,Formosa,NA,NA,AR,ARG,2
+AR_P_021,ChIJ7Zg1wwylRJQRQ_3pnOl5gMY,Q1190720,NA,AR,Argentina,P,Formosa,021,Laishi,NA,NA,AR,ARG,2
+AR_P_028,ChIJf9hyLpOnE5QRdtWKMRxMZxU,Q1190801,NA,AR,Argentina,P,Formosa,028,Matacos,NA,NA,AR,ARG,2
+AR_P_035,ChIJH0Cs4uUZapQR37KUjn0_oVY,Q1190925,NA,AR,Argentina,P,Formosa,035,Patiño,NA,NA,AR,ARG,2
+AR_P_042,ChIJ-2mclzWgQpQR2H6o2eROqS4,Q1190946,NA,AR,Argentina,P,Formosa,042,Pilagás,NA,NA,AR,ARG,2
+AR_P_049,ChIJr2K8aRE8XZQRVleqsRtTBWs,Q1190958,NA,AR,Argentina,P,Formosa,049,Pilcomayo,NA,NA,AR,ARG,2
+AR_P_056,ChIJP2V5O5pVQpQRsZc_jPzK6zc,Q1190956,NA,AR,Argentina,P,Formosa,056,Pirané,NA,NA,AR,ARG,2
+AR_P_063,ChIJz5Gw5TaADZQRryFfk-zFndI,Q1190984,NA,AR,Argentina,P,Formosa,063,Ramón Lista,NA,NA,AR,ARG,2
+AR_Q,ChIJiRjkWq1rDZYRL9Kzu9ExMIw,Q44800,NA,AR,Argentina,Q,Neuquén,NA,NA,NA,NA,AR,ARG,1
+AR_Q_007,ChIJk02q7thWEpYRQOwT23jkbmI,Q1190215,NA,AR,Argentina,Q,Neuquén,007,Aluminé,NA,NA,AR,ARG,2
+AR_Q_014,ChIJh3XO87-vDJYRROf27COxyHk,Q1190264,NA,AR,Argentina,Q,Neuquén,014,Añelo,NA,NA,AR,ARG,2
+AR_Q_021,ChIJuS0bdHz4DZYR0jFa2UMKADg,Q1190347,NA,AR,Argentina,Q,Neuquén,021,Catán Lil,NA,NA,AR,ARG,2
+AR_Q_028,ChIJl1rlJEAwDpYRzcivMf2jAgw,Q1190400,NA,AR,Argentina,Q,Neuquén,028,Collón Curá,NA,NA,AR,ARG,2
+AR_Q_035,ChIJ41n6CMmOC5YR8KrEt80Exoc,Q960802,NA,AR,Argentina,Q,Neuquén,035,Confluencia,NA,NA,AR,ARG,2
+AR_Q_042,ChIJZRlsI1TlcZYRS6mnbweZz8E,Q1190390,NA,AR,Argentina,Q,Neuquén,042,Chos Malal,NA,NA,AR,ARG,2
+AR_Q_049,ChIJawpSRYp-EZYRXJ11D6EwlLw,Q538584,NA,AR,Argentina,Q,Neuquén,049,Huiliches,NA,NA,AR,ARG,2
+AR_Q_056,ChIJWZ1l6H6qEZYRm3fqMg4RmuU,Q546774,NA,AR,Argentina,Q,Neuquén,056,Lácar,NA,NA,AR,ARG,2
+AR_Q_063,ChIJCTwpLC2gcpYRmiArzVOzWo4,Q1190769,NA,AR,Argentina,Q,Neuquén,063,Loncopué,NA,NA,AR,ARG,2
+AR_Q_070,ChIJVf-RSx2TEJYRPu89kLy8eR0,Q1190776,NA,AR,Argentina,Q,Neuquén,070,Los Lagos,NA,NA,AR,ARG,2
+AR_Q_077,ChIJ1bzSpJlqbpYRcsjUVMYNL4o,Q1190823,NA,AR,Argentina,Q,Neuquén,077,Minas,NA,NA,AR,ARG,2
+AR_Q_084,ChIJOVHcWLqcbZYRX9-VHOqvmD8,Q1191327,NA,AR,Argentina,Q,Neuquén,084,Ñorquín,NA,NA,AR,ARG,2
+AR_Q_091,ChIJdVKns16Rc5YRQdHTyApleqI,Q1190930,NA,AR,Argentina,Q,Neuquén,091,Pehuenches,NA,NA,AR,ARG,2
+AR_Q_098,ChIJ4xj5j5YnDJYR9fi7Cc4YRbE,Q263760,NA,AR,Argentina,Q,Neuquén,098,Picún Leufú,NA,NA,AR,ARG,2
+AR_Q_105,ChIJZRxIAKhnDZYRu3paAX4hmPQ,Q686221,NA,AR,Argentina,Q,Neuquén,105,Picunches,NA,NA,AR,ARG,2
+AR_Q_112,ChIJcXGppBinDZYR6XaoC5S5B2c,Q1191283,NA,AR,Argentina,Q,Neuquén,112,Zapala,NA,NA,AR,ARG,2
+AR_R,ChIJC1OmsMSC4pUR266wM__G38I,Q44802,NA,AR,Argentina,R,Río Negro,NA,NA,NA,NA,AR,ARG,1
+AR_R_007,ChIJGVEwysEu95URWabX1ylmaQc,Q1190188,NA,AR,Argentina,R,Río Negro,007,Adolfo Alsina,NA,NA,AR,ARG,2
+AR_R_014,ChIJ9eC6NBW045URaVSL7BpW0DA,Q1190249,NA,AR,Argentina,R,Río Negro,014,Avellaneda,NA,NA,AR,ARG,2
+AR_R_021,ChIJWzdkYSlGGpYRRUN89OMjSPY,Q1190269,NA,AR,Argentina,R,Río Negro,021,Bariloche,NA,NA,AR,ARG,2
+AR_R_028,ChIJgTmQIH1_8JURkeBAZRiCrts,Q949133,NA,AR,Argentina,R,Río Negro,028,Conesa,NA,NA,AR,ARG,2
+AR_R_035,ChIJHd5xsywACZYR6GQ9DsAGciM,Q1190468,NA,AR,Argentina,R,Río Negro,035,El Cuy,NA,NA,AR,ARG,2
+AR_R_042,ChIJ14YSAu2ACpYRfp4AX6aAs6g,Q429295,NA,AR,Argentina,R,Río Negro,042,General Roca,NA,NA,AR,ARG,2
+AR_R_049,ChIJgaEKrfWCB5YR8BeCI5laWPI,Q1121540,NA,AR,Argentina,R,Río Negro,049,Nueve de Julio,NA,NA,AR,ARG,2
+AR_R_063,ChIJ93fqonX175URSkKBjfBPCIU,Q1190936,NA,AR,Argentina,R,Río Negro,063,Pichi Mahuida,NA,NA,AR,ARG,2
+AR_R_070,ChIJ2SnJfcocEJYRU03MUrYBV7Q,Q1190948,NA,AR,Argentina,R,Río Negro,070,Pilcaniyeu,NA,NA,AR,ARG,2
+AR_R_077,ChIJC6xfA6zW-5URQN82t9C6G5s,Q1191059,NA,AR,Argentina,R,Río Negro,077,San Antonio,NA,NA,AR,ARG,2
+AR_R_084,ChIJQc3e6ZRA_JURcA9XJs8YM8M,Q1191243,NA,AR,Argentina,R,Río Negro,084,Valcheta,NA,NA,AR,ARG,2
+AR_R_091,ChIJi9tLAfHEBZYRHakmsCpQb9I,Q1191263,NA,AR,Argentina,R,Río Negro,091,Veinticinco de Mayo,NA,NA,AR,ARG,2
+AR_S,ChIJbxhssh7ASpQRvDtaZyBOPo4,Q44823,NA,AR,Argentina,S,Santa Fe,NA,NA,NA,NA,AR,ARG,1
+AR_S_007,ChIJc2SMtmWNyZURnYSlyAcxzqk,Q1120013,NA,AR,Argentina,S,Santa Fe,007,Belgrano,NA,NA,AR,ARG,2
+AR_S_014,ChIJeb0lX30zyJURAQXiI5bGt5w,Q1190342,NA,AR,Argentina,S,Santa Fe,014,Caseros,NA,NA,AR,ARG,2
+AR_S_021,ChIJs8qVKZe1ypURmVJf260XOVI,Q1125823,NA,AR,Argentina,S,Santa Fe,021,Castellanos,NA,NA,AR,ARG,2
+AR_S_028,ChIJGWkZX8aNt5UR345vc77CXvo,Q1190426,NA,AR,Argentina,S,Santa Fe,028,Constitución,NA,NA,AR,ARG,2
+AR_S_035,ChIJO9-nOa69tJURwyPiHmnI-ag,Q652955,NA,AR,Argentina,S,Santa Fe,035,Garay,NA,NA,AR,ARG,2
+AR_S_042,ChIJtwUx1h9_yJURyx1wl6P1RXE,Q1190551,NA,AR,Argentina,S,Santa Fe,042,General López,NA,NA,AR,ARG,2
+AR_S_049,ChIJ29bN_YzdTpQRf-o4wxEpO4Y,Q1190556,NA,AR,Argentina,S,Santa Fe,049,General Obligado,NA,NA,AR,ARG,2
+AR_S_056,ChIJrw9juXEftpURtq0jff9lLPk,Q538693,NA,AR,Argentina,S,Santa Fe,056,Iriondo,NA,NA,AR,ARG,2
+AR_S_063,ChIJWZwrAr0DtZURvi01tqap4bU,Q1190687,NA,AR,Argentina,S,Santa Fe,063,La Capital,NA,NA,AR,ARG,2
+AR_S_070,ChIJ1-V88pFatZURXdsNOxUKs6s,Q1190728,NA,AR,Argentina,S,Santa Fe,070,Las Colonias,NA,NA,AR,ARG,2
+AR_S_077,ChIJyXQj8R4oSJQRE9a0XP-f2W4,Q1190875,NA,AR,Argentina,S,Santa Fe,077,Nueve de Julio,NA,NA,AR,ARG,2
+AR_S_084,ChIJEXDth6-ot5UR2_OukieewYs,Q1191010,NA,AR,Argentina,S,Santa Fe,084,Rosario,NA,NA,AR,ARG,2
+AR_S_091,ChIJi83rG0yKNZQRqaH15I3G1TE,Q645679,NA,AR,Argentina,S,Santa Fe,091,San Cristóbal,NA,NA,AR,ARG,2
+AR_S_098,ChIJucUJBaSDS5QRudHydlNQV2k,Q651117,NA,AR,Argentina,S,Santa Fe,098,San Javier,NA,NA,AR,ARG,2
+AR_S_105,ChIJmQCywvLutZUR7y3e2DRduA0,Q1191089,NA,AR,Argentina,S,Santa Fe,105,San Jerónimo,NA,NA,AR,ARG,2
+AR_S_112,ChIJi53iR1cfS5QRStSJNDKrt-w,Q1191097,NA,AR,Argentina,S,Santa Fe,112,San Justo,NA,NA,AR,ARG,2
+AR_S_119,ChIJXWKBVA9KtpUR-RHsQFr_1k4,Q1191103,NA,AR,Argentina,S,Santa Fe,119,San Lorenzo,NA,NA,AR,ARG,2
+AR_S_126,ChIJSx7z0Y9bypURHf7O0wmJ9wk,Q284326,NA,AR,Argentina,S,Santa Fe,126,San Martín,NA,NA,AR,ARG,2
+AR_S_133,ChIJO6aai0gOSZQRn21yPWAEMeg,Q1191274,NA,AR,Argentina,S,Santa Fe,133,Vera,NA,NA,AR,ARG,2
+AR_T,ChIJWUwJqOlFIpQR_QxdHCqFwuk,Q44829,NA,AR,Argentina,T,Tucumán,NA,NA,NA,NA,AR,ARG,1
+AR_T_007,ChIJK1yu6uqQIpQRd6WR8HBMo6E,Q1190285,NA,AR,Argentina,T,Tucumán,007,Burruyacú,NA,NA,AR,ARG,2
+AR_T_014,ChIJH8DufRn6IpQRX0KQMynOMu0,Q1190444,NA,AR,Argentina,T,Tucumán,014,Cruz Alta,NA,NA,AR,ARG,2
+AR_T_021,ChIJHwNST97UI5QRoF703frljHg,Q1190366,NA,AR,Argentina,T,Tucumán,021,Chicligasta,NA,NA,AR,ARG,2
+AR_T_028,ChIJ_YudFgE4IpQRK_HNRWXVhLM,Q782917,NA,AR,Argentina,T,Tucumán,028,Famaillá,NA,NA,AR,ARG,2
+AR_T_035,ChIJ4abemdqFI5QRtaY8QgAUoB4,Q372700,NA,AR,Argentina,T,Tucumán,035,Graneros,NA,NA,AR,ARG,2
+AR_T_042,ChIJAyAquLDmI5QR5wTgRgRmd94,Q1190656,NA,AR,Argentina,T,Tucumán,042,Juan Bautista Alberdi,NA,NA,AR,ARG,2
+AR_T_049,ChIJ7RWQmkrxI5QR0bVJSpveeNc,Q601606,NA,AR,Argentina,T,Tucumán,049,La Cocha,NA,NA,AR,ARG,2
+AR_T_056,ChIJ2zqTQ-GpI5QRrRahQ8lyh_Y,Q575801,NA,AR,Argentina,T,Tucumán,056,Leales,NA,NA,AR,ARG,2
+AR_T_063,ChIJ9cRRcNpAIpQRSkbul6WiSfE,Q597806,NA,AR,Argentina,T,Tucumán,063,Lules,NA,NA,AR,ARG,2
+AR_T_070,ChIJd1FlWh4uIpQRNpYPYYk1bX4,Q1190848,NA,AR,Argentina,T,Tucumán,070,Monteros,NA,NA,AR,ARG,2
+AR_T_077,ChIJFfMKndTbI5QRlFUo220aWKk,Q1191028,NA,AR,Argentina,T,Tucumán,077,Río Chico,NA,NA,AR,ARG,2
+AR_T_084,ChIJv2rA8IlbIpQRA8gUaOBk6tc,Q1190337,NA,AR,Argentina,T,Tucumán,084,Capital,NA,NA,AR,ARG,2
+AR_T_091,ChIJNxJj47ykI5QRStsqFKSLsGo,Q1191190,NA,AR,Argentina,T,Tucumán,091,Simoca,NA,NA,AR,ARG,2
+AR_T_098,ChIJp3ed9vD4IZQRNN0r4DNt0U4,Q601381,NA,AR,Argentina,T,Tucumán,098,Tafí del Valle,NA,NA,AR,ARG,2
+AR_T_105,ChIJ8XCI9yJtIpQRpAF4bDQ0vRY,Q737255,NA,AR,Argentina,T,Tucumán,105,Tafí Viejo,NA,NA,AR,ARG,2
+AR_T_112,ChIJpxzyUAqcGJQRL9DjNx_hxSo,Q1191220,NA,AR,Argentina,T,Tucumán,112,Trancas,NA,NA,AR,ARG,2
+AR_T_119,ChIJV8nJu3BCIpQRv6clokbuEko,Q618008,NA,AR,Argentina,T,Tucumán,119,Yerba Buena,NA,NA,AR,ARG,2
+AR_U,ChIJR3BXosaj4r0RKKImS45F1No,Q45007,NA,AR,Argentina,U,Chubut,NA,NA,NA,NA,AR,ARG,1
+AR_U_007,ChIJD9oiv630Ar4R2ooQpmlo4Zs,Q794659,NA,AR,Argentina,U,Chubut,007,Biedma,NA,NA,AR,ARG,2
+AR_U_014,ChIJ5_9nlm_AHJYROI1-qHvL5Uo,Q662056,NA,AR,Argentina,U,Chubut,014,Cushamen,NA,NA,AR,ARG,2
+AR_U_021,ChIJ3zRRFzy65L0Rta0Ef7BhylI,Q690540,NA,AR,Argentina,U,Chubut,021,Escalante,NA,NA,AR,ARG,2
+AR_U_028,ChIJc_DgsaJ6_b0R2QBxDfj_tLY,Q368780,NA,AR,Argentina,U,Chubut,028,Florentino Ameghino,NA,NA,AR,ARG,2
+AR_U_035,ChIJvSfSBuWkHZYR6Tf8N3exSSM,Q374155,NA,AR,Argentina,U,Chubut,035,Futaleufú,NA,NA,AR,ARG,2
+AR_U_042,ChIJLd-k0kTpAL4RxbQ2tXWltsc,Q1007366,NA,AR,Argentina,U,Chubut,042,Gaiman,NA,NA,AR,ARG,2
+AR_U_070,ChIJLRuab8dx-b0RefiSaZbpKIA,Q980073,NA,AR,Argentina,U,Chubut,070,Paso de Indios,NA,NA,AR,ARG,2
+AR_U_077,ChIJJ36gx1v5A74RvJG-fkXPZTk,Q1088518,NA,AR,Argentina,U,Chubut,077,Rawson,NA,NA,AR,ARG,2
+AR_U_084,ChIJ07BWkMMo8r0RyRQo2gmWfpE,Q1088724,NA,AR,Argentina,U,Chubut,084,Río Senguer,NA,NA,AR,ARG,2
+AR_U_091,ChIJc5gbKhYG8L0R4-WlG-k2EJo,Q1088722,NA,AR,Argentina,U,Chubut,091,Sarmiento,NA,NA,AR,ARG,2
+AR_U_098,ChIJmysxeUjg9r0RHbTrXD6nD9w,Q980641,NA,AR,Argentina,U,Chubut,098,Tehuelches,NA,NA,AR,ARG,2
+AR_U_105,ChIJmUHoH7bo_5UR6Y8NlD7pS38,Q290328,NA,AR,Argentina,U,Chubut,105,Telsen,NA,NA,AR,ARG,2
+AR_V,ChIJISlD2c8iTLwRjdjwjDVU7oA,Q44832,NA,AR,Argentina,V,Tierra del Fuego,NA,NA,NA,NA,AR,ARG,1
+AR_V_007,ChIJRS0x8anYSrwR_Z3CeOvCht4,Q1913183,NA,AR,Argentina,V,Tierra del Fuego,007,Río Grande,NA,NA,AR,ARG,2
+AR_V_014,ChIJ7yFVLABkSbwR51h0N_h7OO0,Q2342358,NA,AR,Argentina,V,Tierra del Fuego,014,Ushuaia,NA,NA,AR,ARG,2
+AR_V_028,NA,Q19463769,NA,AR,Argentina,V,Tierra del Fuego,028,Antártida Argentina,NA,NA,AR,ARG,2
+AR_W,ChIJs6lQkqyLTJQRDX3jVziDc4s,Q44758,NA,AR,Argentina,W,Corrientes,NA,NA,NA,NA,AR,ARG,1
+AR_W_007,ChIJH3U8sVFNTpQRzYPlRB9zNZM,Q792464,NA,AR,Argentina,W,Corrientes,007,Bella Vista,NA,NA,AR,ARG,2
+AR_W_014,ChIJhWFXLuV_WpQRX1QqRTfQlRU,Q573042,NA,AR,Argentina,W,Corrientes,014,Berón de Astrada,NA,NA,AR,ARG,2
+AR_W_021,ChIJa9O-1XlrRZQRRga08x6fmfo,Q44211,NA,AR,Argentina,W,Corrientes,021,Capital,NA,NA,AR,ARG,2
+AR_W_028,ChIJL6mv1D3JUZQRmDXw4pKzBfU,Q868674,NA,AR,Argentina,W,Corrientes,028,Concepción,NA,NA,AR,ARG,2
+AR_W_035,ChIJSfscpaaGUpQR-hL_oTfQ1_g,Q899638,NA,AR,Argentina,W,Corrientes,035,Curuzú Cuatiá,NA,NA,AR,ARG,2
+AR_W_042,ChIJd6hoYG_yT5QRJF7-Dx0Od08,Q583893,NA,AR,Argentina,W,Corrientes,042,Empedrado,NA,NA,AR,ARG,2
+AR_W_049,ChIJFYZaq9j4TJQR_4LCFsTASbg,Q991357,NA,AR,Argentina,W,Corrientes,049,Esquina,NA,NA,AR,ARG,2
+AR_W_056,ChIJwX5QgH0-VJQRqd3zcMCXLi8,Q691062,NA,AR,Argentina,W,Corrientes,056,General Alvear,NA,NA,AR,ARG,2
+AR_W_063,ChIJXan7KttkUJQRzw924rEbbkw,Q368679,NA,AR,Argentina,W,Corrientes,063,General Paz,NA,NA,AR,ARG,2
+AR_W_070,ChIJS8DRTVE2TJQR8Ihhh0no-_c,Q372623,NA,AR,Argentina,W,Corrientes,070,Goya,NA,NA,AR,ARG,2
+AR_W_077,ChIJW8wWsXm-WpQRIH05tMXA-PM,Q774170,NA,AR,Argentina,W,Corrientes,077,Itatí,NA,NA,AR,ARG,2
+AR_W_084,ChIJmSOlg5DXVpQRBKp1xLd45-4,Q511702,NA,AR,Argentina,W,Corrientes,084,Ituzaingó,NA,NA,AR,ARG,2
+AR_W_091,ChIJeak1C6J6TpQRI9AuIZNbMks,Q764565,NA,AR,Argentina,W,Corrientes,091,Lavalle,NA,NA,AR,ARG,2
+AR_W_098,ChIJ7RfUKxk9UJQRpBOK06fUres,Q921040,NA,AR,Argentina,W,Corrientes,098,Mburucuyá,NA,NA,AR,ARG,2
+AR_W_105,ChIJv9PEl8E7UpQRZjF1BBPrVQg,Q1088713,NA,AR,Argentina,W,Corrientes,105,Mercedes,NA,NA,AR,ARG,2
+AR_W_112,ChIJHVGXfPcxrZURsDBJjOKebJI,Q584331,NA,AR,Argentina,W,Corrientes,112,Monte Caseros,NA,NA,AR,ARG,2
+AR_W_119,ChIJ46-AGSwVU5QR6FWEwGGDiIg,Q548716,NA,AR,Argentina,W,Corrientes,119,Paso de los Libres,NA,NA,AR,ARG,2
+AR_W_126,ChIJvTjHwBHGT5QR5C_dtigcHAw,Q1088710,NA,AR,Argentina,W,Corrientes,126,Saladas,NA,NA,AR,ARG,2
+AR_W_133,NA,Q374940,NA,AR,Argentina,W,Corrientes,133,San Cosme,NA,NA,AR,ARG,2
+AR_W_140,NA,Q106332,1,AR,Argentina,W,Corrientes,140,San Luis del Palmar,NA,NA,AR,ARG,2
+AR_W_147,ChIJHfUsKufwU5QRvnPoOTaRgtE,Q1063365,NA,AR,Argentina,W,Corrientes,147,San Martín,NA,NA,AR,ARG,2
+AR_W_154,ChIJDfgIcaroUJQRcZXo8isnrzs,Q1063338,NA,AR,Argentina,W,Corrientes,154,San Miguel,NA,NA,AR,ARG,2
+AR_W_161,ChIJS9ZsbwQ8TpQRS0YsAJUucIw,Q374562,NA,AR,Argentina,W,Corrientes,161,San Roque,NA,NA,AR,ARG,2
+AR_W_168,ChIJ61CgzluGVpQRkxmBnG0sRQk,Q967023,NA,AR,Argentina,W,Corrientes,168,Santo Tomé,NA,NA,AR,ARG,2
+AR_W_175,ChIJK47hymUSTZQRDpX5IRXWTjA,Q630600,NA,AR,Argentina,W,Corrientes,175,Sauce,NA,NA,AR,ARG,2
+AR_X,ChIJNcbaCaHULJQRnokOgQ8wLec,Q44759,NA,AR,Argentina,X,Córdoba,NA,NA,NA,NA,AR,ARG,1
+AR_X_007,ChIJU2LwLkeW0pURwhLYEOJ7_wE,Q665082,NA,AR,Argentina,X,Córdoba,007,Calamuchita,NA,NA,AR,ARG,2
+AR_X_014,ChIJo3_QtIOiMpQRtYt-_DpfqH8,Q858183,NA,AR,Argentina,X,Córdoba,014,Capital,NA,NA,AR,ARG,2
+AR_X_021,ChIJlfkzx2GPMpQRGNTKhhVg1Ls,Q868409,NA,AR,Argentina,X,Córdoba,021,Colón,NA,NA,AR,ARG,2
+AR_X_028,ChIJCQo1X-csLJQRAVbLYvofQNw,Q635957,NA,AR,Argentina,X,Córdoba,028,Cruz del Eje,NA,NA,AR,ARG,2
+AR_X_035,ChIJc14Wj91VxZURfbJAnDtN1Sg,Q1009165,NA,AR,Argentina,X,Córdoba,035,General Roca,NA,NA,AR,ARG,2
+AR_X_042,ChIJcSJJWug_zJURaAtWxRrDAy4,Q1009169,NA,AR,Argentina,X,Córdoba,042,General San Martín,NA,NA,AR,ARG,2
+AR_X_049,ChIJn0XJHiMJLpQRPAYmyJE4g_Y,Q775461,NA,AR,Argentina,X,Córdoba,049,Ischilín,NA,NA,AR,ARG,2
+AR_X_056,ChIJS4MhTXmKzpURKr-vQKFuzGM,Q1063397,NA,AR,Argentina,X,Córdoba,056,Juárez Celman,NA,NA,AR,ARG,2
+AR_X_063,ChIJxbHgEDptyZURTzTFKxj58bM,Q784895,NA,AR,Argentina,X,Córdoba,063,Marcos Juárez,NA,NA,AR,ARG,2
+AR_X_070,ChIJUQY1FZA4LJQRGQQJDe4UgBo,Q591241,NA,AR,Argentina,X,Córdoba,070,Minas,NA,NA,AR,ARG,2
+AR_X_077,ChIJSTJe30fuLJQR9N4SYMiHUbA,Q431234,NA,AR,Argentina,X,Córdoba,077,Pocho,NA,NA,AR,ARG,2
+AR_X_084,ChIJ-bx-TFpjz5URyJVwW4AnUoQ,Q1063416,NA,AR,Argentina,X,Córdoba,084,Presidente Roque Sáenz Peña,NA,NA,AR,ARG,2
+AR_X_091,ChIJcfidhHx2LZQRraL1izKn_-Q,Q589321,NA,AR,Argentina,X,Córdoba,091,Punilla,NA,NA,AR,ARG,2
+AR_X_098,ChIJm7Krqfj50ZURRucmh-8GNNs,Q1063409,NA,AR,Argentina,X,Córdoba,098,Río Cuarto,NA,NA,AR,ARG,2
+AR_X_105,ChIJYeznrH4FM5QRJAoC4Ndwzs4,Q1063403,NA,AR,Argentina,X,Córdoba,105,Río Primero,NA,NA,AR,ARG,2
+AR_X_112,ChIJF8hcoDhoMZQRIg2g2nkipcY,Q531018,NA,AR,Argentina,X,Córdoba,112,Río Seco,NA,NA,AR,ARG,2
+AR_X_119,ChIJ20Rx0p7RzJURV4o-98bOwjI,Q1063078,NA,AR,Argentina,X,Córdoba,119,Río Segundo,NA,NA,AR,ARG,2
+AR_X_126,ChIJ8dwwYhrdLJQRm7Rmat80y80,Q633783,NA,AR,Argentina,X,Córdoba,126,San Alberto,NA,NA,AR,ARG,2
+AR_X_133,ChIJ68o-sj8u05URLbmFFIAT7Bw,Q777079,NA,AR,Argentina,X,Córdoba,133,San Javier,NA,NA,AR,ARG,2
+AR_X_140,ChIJ9wbIeTu6NJQRlUlTD4yiTIY,Q950820,NA,AR,Argentina,X,Córdoba,140,San Justo,NA,NA,AR,ARG,2
+AR_X_147,ChIJ74w6XydXLZQRpXMfRVaMZso,Q1063086,NA,AR,Argentina,X,Córdoba,147,Santa María,NA,NA,AR,ARG,2
+AR_X_154,ChIJ-6SuJUHOMZQRsg3LDCucEUs,Q1063095,NA,AR,Argentina,X,Córdoba,154,Sobremonte,NA,NA,AR,ARG,2
+AR_X_161,ChIJM-l3vXGpzZURZR4o6MIS4Bk,Q377918,NA,AR,Argentina,X,Córdoba,161,Tercero Arriba,NA,NA,AR,ARG,2
+AR_X_168,ChIJdeVoPj1rMpQRTwxTq40edrw,Q1063056,NA,AR,Argentina,X,Córdoba,168,Totoral,NA,NA,AR,ARG,2
+AR_X_175,ChIJE9ubA0WbMZQRIbnFR2FcwDc,Q972349,NA,AR,Argentina,X,Córdoba,175,Tulumba,NA,NA,AR,ARG,2
+AR_X_182,ChIJN6MGwGtSyZURnuH0rgSphmM,Q428699,NA,AR,Argentina,X,Córdoba,182,Unión,NA,NA,AR,ARG,2
+AR_Y,ChIJhwBc5_ahBJQReU7OMLKRXoE,Q44764,NA,AR,Argentina,Y,Jujuy,NA,NA,NA,NA,AR,ARG,1
+AR_Y_007,ChIJ7TzRhpp5A5QRNapgaYsm73U,Q609628,NA,AR,Argentina,Y,Jujuy,007,Cochinoca,NA,NA,AR,ARG,2
+AR_Y_014,ChIJ4WTMwTRNGpQRQwNegQgFYn0,Q782266,NA,AR,Argentina,Y,Jujuy,014,El Carmen,NA,NA,AR,ARG,2
+AR_Y_021,ChIJIz0mMLgTG5QRymHR3coJccI,Q907577,NA,AR,Argentina,Y,Jujuy,021,Doctor Manuel Belgrano,NA,NA,AR,ARG,2
+AR_Y_028,ChIJl-q1-r3xBJQRs8803pB6ftM,Q532173,NA,AR,Argentina,Y,Jujuy,028,Humahuaca,NA,NA,AR,ARG,2
+AR_Y_035,NA,NA,NA,AR,Argentina,Y,Jujuy,035,Ledesma,NA,NA,AR,ARG,2
+AR_Y_042,ChIJOXeOT5YBG5QRVSpEVYIcfKE,Q1063359,NA,AR,Argentina,Y,Jujuy,042,Palpalá,NA,NA,AR,ARG,2
+AR_Y_049,ChIJt0Y__DnJA5QRfGI2bJvq6AM,Q1063533,NA,AR,Argentina,Y,Jujuy,049,Rinconada,NA,NA,AR,ARG,2
+AR_Y_056,ChIJSRlq4uSgG5QR8095rvVuerQ,Q512001,NA,AR,Argentina,Y,Jujuy,056,San Antonio,NA,NA,AR,ARG,2
+AR_Y_063,ChIJ-c6-AD1cGpQRG9fWDpNC9VU,Q964001,NA,AR,Argentina,Y,Jujuy,063,San Pedro,NA,NA,AR,ARG,2
+AR_Y_070,ChIJ_yCK8JGEGpQRjO-JvEwqaSA,Q1063585,NA,AR,Argentina,Y,Jujuy,070,Santa Bárbara,NA,NA,AR,ARG,2
+AR_Y_077,ChIJEdQ9nQBpAZQRDSyj9JmN57w,Q1063370,NA,AR,Argentina,Y,Jujuy,077,Santa Catalina,NA,NA,AR,ARG,2
+AR_Y_084,ChIJI2ioXoIYA5QR_Fya-dLIIhg,Q616351,NA,AR,Argentina,Y,Jujuy,084,Susques,NA,NA,AR,ARG,2
+AR_Y_094,ChIJ4yMFPW7NBJQRcB1C6TdkRiY,Q948101,NA,AR,Argentina,Y,Jujuy,094,Tilcara,NA,NA,AR,ARG,2
+AR_Y_098,ChIJFabZHlZOG5QRmEVBVykT18A,Q1063348,NA,AR,Argentina,Y,Jujuy,098,Tumbaya,NA,NA,AR,ARG,2
+AR_Y_105,ChIJpabwXoQrBZQRZQPebcnMSSU,Q1063527,NA,AR,Argentina,Y,Jujuy,105,Valle Grande,NA,NA,AR,ARG,2
+AR_Y_112,ChIJS9TWYdcbBJQRGjm53-E3-Gg,Q1063330,NA,AR,Argentina,Y,Jujuy,112,Yavi,NA,NA,AR,ARG,2
+AR_Y_126,NA,NA,NA,AR,Argentina,Y,Jujuy,126,Campana,NA,NA,AR,ARG,2
+AR_Y_270,NA,NA,NA,AR,Argentina,Y,Jujuy,270,Ezeiza,NA,NA,AR,ARG,2
+AR_Y_308,NA,NA,NA,AR,Argentina,Y,Jujuy,308,General Guido,NA,NA,AR,ARG,2
+AR_Y_408,NA,NA,NA,AR,Argentina,Y,Jujuy,408,Hurlingham,NA,NA,AR,ARG,2
+AR_Z,ChIJX1N_w_37tr0RfCPI_XcNueQ,Q44821,NA,AR,Argentina,Z,Santa Cruz,NA,NA,NA,NA,AR,ARG,1
+AR_Z_007,ChIJcZuNSmF7x70Reu7YZvJMRuI,Q772748,NA,AR,Argentina,Z,Santa Cruz,007,Corpen Aike,NA,NA,AR,ARG,2
+AR_Z_014,ChIJOZrAedZl6L0RZCBSoSxzoR4,Q1190458,NA,AR,Argentina,Z,Santa Cruz,014,Deseado,NA,NA,AR,ARG,2
+AR_Z_021,ChIJt5nIC0LOsL0RP1xsngPJ-Rc,Q761763,NA,AR,Argentina,Z,Santa Cruz,021,Güer Aike,NA,NA,AR,ARG,2
+AR_Z_028,ChIJP9NeusxqvL0RgB52YnL4o_I,Q1190713,NA,AR,Argentina,Z,Santa Cruz,028,Lago Argentino,NA,NA,AR,ARG,2
+AR_Z_035,ChIJA9ohwd5g670Rk-5mxZYAPXA,Q1190712,NA,AR,Argentina,Z,Santa Cruz,035,Lago Buenos Aires,NA,NA,AR,ARG,2
+AR_Z_042,ChIJ-WJDvlN7wb0RoiPInB0LuWk,Q1190783,NA,AR,Argentina,Z,Santa Cruz,042,Magallanes,NA,NA,AR,ARG,2
+AR_Z_049,ChIJyzxxB81rlb0R_edbrjIWeew,Q615066,NA,AR,Argentina,Z,Santa Cruz,049,Río Chico,NA,NA,AR,ARG,2
+AS,ChIJyf1IkreEpnER3UuuLZ5z7vM,Q16641,country/ASM,AS,American Samoa,NA,NA,NA,NA,NA,NA,AS,ASM,0
+AT,ChIJfyqdJZsHbUcRr8Hk3XvUEhA,Q40,country/AUT,AT,Austria,NA,NA,NA,NA,NA,NA,AT,AUT,0
+AT_1,ChIJ8dxKDsMgbEcR-ug-uLdLQpg,Q43210,ISO/AT-1,AT,Austria,1,Burgenland,NA,NA,NA,NA,AT,AUT,1
+AT_1_101,ChIJCYI64Q04bEcRWnfdP2OUcgU,Q126321,NA,AT,Austria,1,Burgenland,101,Eisenstadt,NA,NA,AT,AUT,2
+AT_1_102,ChIJ-3wISkE_bEcRaLVaDj_slJY,Q259214,NA,AT,Austria,1,Burgenland,102,Rust,NA,NA,AT,AUT,2
+AT_1_103,ChIJPaH4E0lPbEcR0jlSWowdN2I,Q261432,NA,AT,Austria,1,Burgenland,103,Eisenstadt-Umgebung,NA,NA,AT,AUT,2
+AT_1_104,ChIJCUxcuQnpbkcRG0c2Jl5j0a0,Q660312,NA,AT,Austria,1,Burgenland,104,Güssing,NA,NA,AT,AUT,2
+AT_1_105,ChIJuRM1csjjbkcRdLPeHyNbg6o,Q756277,NA,AT,Austria,1,Burgenland,105,Jennersdorf,NA,NA,AT,AUT,2
+AT_1_106,ChIJ3_3OS7wxbEcRGTfCAPgqt5A,Q748570,NA,AT,Austria,1,Burgenland,106,Mattersburg,NA,NA,AT,AUT,2
+AT_1_107,ChIJVUnz_0VpbEcRh2zl2IH5bco,Q660325,NA,AT,Austria,1,Burgenland,107,Neusiedl am See,NA,NA,AT,AUT,2
+AT_1_108,ChIJc2BJexSebkcR9qb9uxHyTEA,Q748891,nuts/AT111,AT,Austria,1,Burgenland,108,Oberpullendorf,NA,NA,AT,AUT,2
+AT_1_109,ChIJnz9Gm4z0bkcRVFFJnn3qlqI,Q660230,NA,AT,Austria,1,Burgenland,109,Oberwart,NA,NA,AT,AUT,2
+AT_2,ChIJF_WJpph0cEcRP8merT25Wtk,Q37985,ISO/AT-2,AT,Austria,2,Carinthia,NA,NA,NA,NA,AT,AUT,1
+AT_2_201,ChIJZX6PMEVzcEcRK41hjN-2fmg,Q41753,NA,AT,Austria,2,Carinthia,201,Klagenfurt Stadt,NA,NA,AT,AUT,2
+AT_2_202,ChIJN0EpezeDcEcR5PfvAGaeSa0,Q483522,NA,AT,Austria,2,Carinthia,202,Villach Stadt,NA,NA,AT,AUT,2
+AT_2_203,ChIJXxqIJLBUd0cRuP2ZHu4dsnE,Q613991,NA,AT,Austria,2,Carinthia,203,Hermagor,NA,NA,AT,AUT,2
+AT_2_204,ChIJzUWgeaUNcEcR21J1hCwt36g,Q660701,NA,AT,Austria,2,Carinthia,204,Klagenfurt Land,NA,NA,AT,AUT,2
+AT_2_205,ChIJHwxxnpdBcEcRIQS1CZPkZzQ,Q660255,NA,AT,Austria,2,Carinthia,205,Sankt Veit an der Glan,NA,NA,AT,AUT,2
+AT_2_206,ChIJFZ3rQ46KcEcR_o_zHSwUAYU,Q660293,NA,AT,Austria,2,Carinthia,206,Spittal an der Drau,NA,NA,AT,AUT,2
+AT_2_207,ChIJY3W6oPWCcEcRmMVAyUzndqU,Q660264,NA,AT,Austria,2,Carinthia,207,Villach Land,NA,NA,AT,AUT,2
+AT_2_208,ChIJmYebSVEPcEcRvxy81qAYeFQ,Q660279,NA,AT,Austria,2,Carinthia,208,Völkermarkt,NA,NA,AT,AUT,2
+AT_2_209,ChIJlUy0MgYWcEcR_mvDcnjyCbQ,Q665641,NA,AT,Austria,2,Carinthia,209,Wolfsberg,NA,NA,AT,AUT,2
+AT_2_210,ChIJSTWlzy1kcEcRgVDNQiekRYo,Q665735,NA,AT,Austria,2,Carinthia,210,Feldkirchen,NA,NA,AT,AUT,2
+AT_3,ChIJ8S5gEt2BbUcR3C5ibAmuoVU,Q42497,ISO/AT-3,AT,Austria,3,Lower Austria,NA,NA,NA,NA,AT,AUT,1
+AT_3_301,ChIJewh4XHmEckcRHAO4vHSrsAE,Q131266,NA,AT,Austria,3,Lower Austria,301,Krems an der Donau,NA,NA,AT,AUT,2
+AT_3_302,ChIJF5UKCdWFbUcRUOvwez12bpw,Q694393,NA,AT,Austria,3,Lower Austria,302,Sankt Pölten,NA,NA,AT,AUT,2
+AT_3_303,ChIJJXOYlkIwckcR-d_KPnhiiyE,Q427385,NA,AT,Austria,3,Lower Austria,303,Waidhofen an der Ybbs,NA,NA,AT,AUT,2
+AT_3_304,ChIJTw3ltPXLbUcRJzjXPKMYFps,Q131612,NA,AT,Austria,3,Lower Austria,304,Wiener Neustadt,NA,NA,AT,AUT,2
+AT_3_305,ChIJz5q61RM-ckcRdavhggvx5dM,Q694449,NA,AT,Austria,3,Lower Austria,305,Amstetten,NA,NA,AT,AUT,2
+AT_3_306,ChIJrcmKz5akbUcRgQq2HQ76Rg0,Q279874,NA,AT,Austria,3,Lower Austria,306,Baden,NA,NA,AT,AUT,2
+AT_3_307,ChIJm0xennZbbEcRQfU3HbBvnoA,Q584543,NA,AT,Austria,3,Lower Austria,307,Bruck an der Leitha,NA,NA,AT,AUT,2
+AT_3_308,ChIJ9_k-dG_9bEcR1QxMmlFGW_8,Q694442,NA,AT,Austria,3,Lower Austria,308,Gänserndorf,NA,NA,AT,AUT,2
+AT_3_309,ChIJ7Rd5NKsgc0cRgfYPWLJUYmE,Q694421,NA,AT,Austria,3,Lower Austria,309,Gmünd,NA,NA,AT,AUT,2
+AT_3_310,ChIJ42DB4_NbbUcRYRRhoDAzJ9M,Q694349,NA,AT,Austria,3,Lower Austria,310,Hollabrunn,NA,NA,AT,AUT,2
+AT_3_311,ChIJpcHrS0e7ckcRF-XOCiOvrcM,Q143167,NA,AT,Austria,3,Lower Austria,311,Horn,NA,NA,AT,AUT,2
+AT_3_312,ChIJo8DoeIYJbUcR1h2-OhVcIv4,Q694372,NA,AT,Austria,3,Lower Austria,312,Korneuburg,NA,NA,AT,AUT,2
+AT_3_313,ChIJebo2f9uQckcRI2YG5UjmSJY,Q694399,NA,AT,Austria,3,Lower Austria,313,Krems-Land,NA,NA,AT,AUT,2
+AT_3_314,ChIJTV-kc6eSbUcRa53x_clm0ns,Q694463,NA,AT,Austria,3,Lower Austria,314,Lilienfeld,NA,NA,AT,AUT,2
+AT_3_315,ChIJ1d2bBXBgckcR5r0T7SxWikk,Q261942,NA,AT,Austria,3,Lower Austria,315,Melk,NA,NA,AT,AUT,2
+AT_3_316,ChIJL26Ffys8bUcRmX3-5gNxnA8,Q257454,NA,AT,Austria,3,Lower Austria,316,Mistelbach,NA,NA,AT,AUT,2
+AT_3_317,ChIJq9Y29WWlbUcRsdLJTtH3VFk,Q254176,NA,AT,Austria,3,Lower Austria,317,Mödling,NA,NA,AT,AUT,2
+AT_3_318,ChIJBdLTN1vQbUcRrqdub690IPk,Q694386,NA,AT,Austria,3,Lower Austria,318,Neunkirchen,NA,NA,AT,AUT,2
+AT_3_319,ChIJF5UKCdWFbUcRUOvwez12bpw,Q694393,NA,AT,Austria,3,Lower Austria,319,Sankt Pölten-Land,NA,NA,AT,AUT,2
+AT_3_320,ChIJrRdFHP8MckcR2733RnwTgps,Q253068,NA,AT,Austria,3,Lower Austria,320,Scheibbs,NA,NA,AT,AUT,2
+AT_3_321,ChIJ1bl3Mp1tbUcRNAs5f9UmAnE,Q694428,NA,AT,Austria,3,Lower Austria,321,Tulln,NA,NA,AT,AUT,2
+AT_3_322,ChIJy-hqkAvPckcRHJbyR6P4Phk,Q594032,NA,AT,Austria,3,Lower Austria,322,Waidhofen an der Thaya,NA,NA,AT,AUT,2
+AT_3_323,ChIJK3pxnSzFbUcRhL3rN6Y7keI,Q694413,NA,AT,Austria,3,Lower Austria,323,Wiener Neustadt-Land,NA,NA,AT,AUT,2
+AT_3_325,ChIJpxvwFZTvckcR2iQI342GCao,Q694452,NA,AT,Austria,3,Lower Austria,325,Zwettl,NA,NA,AT,AUT,2
+AT_4,ChIJYQObWYWXc0cRiJXDA3yBSHw,Q41967,ISO/AT-4,AT,Austria,4,Upper Austria,NA,NA,NA,NA,AT,AUT,1
+AT_4_401,ChIJTYWZ-pWVc0cRxHV5VywpU3w,Q41329,NA,AT,Austria,4,Upper Austria,401,Linz,NA,NA,AT,AUT,2
+AT_4_402,ChIJ8yxcpeHFc0cRbOpKpNA3PVA,Q260320,NA,AT,Austria,4,Upper Austria,402,Steyr,NA,NA,AT,AUT,2
+AT_4_403,ChIJmX0myqHyc0cRGH7sOE_IgOk,Q178582,NA,AT,Austria,4,Upper Austria,403,Wels,NA,NA,AT,AUT,2
+AT_4_404,ChIJl6p7IQMudEcRPW28btWzlIw,Q255626,NA,AT,Austria,4,Upper Austria,404,Braunau am Inn,NA,NA,AT,AUT,2
+AT_4_405,ChIJXRUyocR2dEcRI_aXEyCUTQU,Q47289,NA,AT,Austria,4,Upper Austria,405,Eferding,NA,NA,AT,AUT,2
+AT_4_406,ChIJs2mUKYSjc0cRAnQJeJl6wbs,Q257347,NA,AT,Austria,4,Upper Austria,406,Freistadt,NA,NA,AT,AUT,2
+AT_4_407,ChIJKcVuwzvqc0cRKJFD2iqNjjk,Q253221,NA,AT,Austria,4,Upper Austria,407,Gmunden,NA,NA,AT,AUT,2
+AT_4_408,ChIJYU8VIj31c0cR2t21jhBsRTI,Q655262,NA,AT,Austria,4,Upper Austria,408,Grieskirchen,NA,NA,AT,AUT,2
+AT_4_409,ChIJf6jrEo3vc0cRhIOZt6qQilk,Q660512,NA,AT,Austria,4,Upper Austria,409,Kirchdorf an der Krems,NA,NA,AT,AUT,2
+AT_4_410,ChIJB_FmroeUc0cRhQ-aFWuDAPc,Q265632,NA,AT,Austria,4,Upper Austria,410,Linz-Land,NA,NA,AT,AUT,2
+AT_4_411,ChIJ09zPhsWtc0cReCaBxs-bY_0,Q660530,NA,AT,Austria,4,Upper Austria,411,Perg,NA,NA,AT,AUT,2
+AT_4_412,ChIJAzRbtGQUdEcR-ElCeDz6ro0,Q264704,NA,AT,Austria,4,Upper Austria,412,Ried im Innkreis,NA,NA,AT,AUT,2
+AT_4_413,ChIJM-xrUzh6dEcRkSKQizqPF3Q,Q252828,NA,AT,Austria,4,Upper Austria,413,Rohrbach,NA,NA,AT,AUT,2
+AT_4_414,ChIJY_Dy6BxydEcRvBAvw8LdWzM,Q47482,NA,AT,Austria,4,Upper Austria,414,Schärding,NA,NA,AT,AUT,2
+AT_4_415,ChIJb4sjnVihcUcR5AoUHCUOeFg,Q854074,NA,AT,Austria,4,Upper Austria,415,Steyr-Land,NA,NA,AT,AUT,2
+AT_4_416,ChIJQxLXYLOdc0cRx-f21SEn0PY,Q253585,NA,AT,Austria,4,Upper Austria,416,Urfahr-Umgebung,NA,NA,AT,AUT,2
+AT_4_417,ChIJ9aBOY4QIdEcR5meO2e9UQTg,Q267479,NA,AT,Austria,4,Upper Austria,417,Vöcklabruck,NA,NA,AT,AUT,2
+AT_4_418,ChIJ8ROJe7Dqc0cRzRylznEr2QU,Q660544,NA,AT,Austria,4,Upper Austria,418,Wels-Land,NA,NA,AT,AUT,2
+AT_5,ChIJF10lEmOQdkcR-QUwo-ARoac,Q43325,ISO/AT-5,AT,Austria,5,Salzburg,NA,NA,NA,NA,AT,AUT,1
+AT_5_501,ChIJsdQIqd2adkcRPfcqQaGD4cE,Q34713,NA,AT,Austria,5,Salzburg,501,Salzburg,NA,NA,AT,AUT,2
+AT_5_502,ChIJzZUYsXbHdkcRm1MjEeWpbtg,Q254533,NA,AT,Austria,5,Salzburg,502,Hallein,NA,NA,AT,AUT,2
+AT_5_503,ChIJ9SNJfGGYdkcRnxs4e4EIElA,Q255469,NA,AT,Austria,5,Salzburg,503,Salzburg-Umgebung,NA,NA,AT,AUT,2
+AT_5_504,ChIJ-6WCKxcncUcRrbhVGshwVr4,Q256828,NA,AT,Austria,5,Salzburg,504,Sankt Johann im Pongau,NA,NA,AT,AUT,2
+AT_5_505,ChIJeRuAHr_ccEcRLCP3-i4Ignk,Q268090,nuts/AT321,AT,Austria,5,Salzburg,505,Tamsweg,NA,NA,AT,AUT,2
+AT_5_506,ChIJuatS1Q3_dkcRprpkQ16NO90,Q257897,NA,AT,Austria,5,Salzburg,506,Zell am See,NA,NA,AT,AUT,2
+AT_6,ChIJUQItuHg1bkcRNH0i-37kBdA,Q41358,ISO/AT-6,AT,Austria,6,Styria,NA,NA,NA,NA,AT,AUT,1
+AT_6_601,ChIJu2UwF4c1bkcRm93f0tGKjv4,Q13298,NA,AT,Austria,6,Styria,601,Graz,NA,NA,AT,AUT,2
+AT_6_603,ChIJefypuTrJb0cRrm5FSs0nUOs,Q660219,NA,AT,Austria,6,Styria,603,Deutschlandsberg,NA,NA,AT,AUT,2
+AT_6_606,ChIJbSCC6Ik4bkcRyNp6lFYgU6g,Q672475,NA,AT,Austria,6,Styria,606,Graz-Umgebung,NA,NA,AT,AUT,2
+AT_6_610,ChIJFYWBXigrbkcR0En35ude6o0,Q660400,NA,AT,Austria,6,Styria,610,Leibnitz,NA,NA,AT,AUT,2
+AT_6_611,ChIJOblrCtPEcUcR2IvDoMAeD-g,Q665720,NA,AT,Austria,6,Styria,611,Leoben,NA,NA,AT,AUT,2
+AT_6_612,ChIJWQCQZp8ccUcRAnfyJWj9xRg,Q255834,nuts/AT222,AT,Austria,6,Styria,612,Liezen,NA,NA,AT,AUT,2
+AT_6_614,ChIJ_bDh3B8AcUcRpcRtG9-ew6s,Q388913,NA,AT,Austria,6,Styria,614,Murau,NA,NA,AT,AUT,2
+AT_6_616,ChIJy12yRA2ScUcRHSC6H6rgcQg,Q672537,NA,AT,Austria,6,Styria,616,Voitsberg,NA,NA,AT,AUT,2
+AT_6_617,ChIJb2A2LvBybkcR-ITC0gmBQmc,Q665571,NA,AT,Austria,6,Styria,617,Weiz,NA,NA,AT,AUT,2
+AT_6_620,ChIJz-wLH8HJcUcRUkTUJxO6hoI,Q526517,NA,AT,Austria,6,Styria,620,Murtal,NA,NA,AT,AUT,2
+AT_6_621,ChIJ6ctZV9QBbkcRNPEiENhMFe4,Q853690,NA,AT,Austria,6,Styria,621,Bruck-Mürzzuschlag,NA,NA,AT,AUT,2
+AT_6_622,ChIJM3L6R5_gbUcRk2qyvfRPv7c,Q853765,NA,AT,Austria,6,Styria,622,Hartberg-Fürstenfeld,NA,NA,AT,AUT,2
+AT_6_623,ChIJr2Go0TlUbkcRTFwZVlRXjR4,Q854043,NA,AT,Austria,6,Styria,623,Südoststeiermark,NA,NA,AT,AUT,2
+AT_7,ChIJvZXdim96d0cRT6aEn0VVfs0,Q42880,ISO/AT-7,AT,Austria,7,Tyrol,NA,NA,NA,NA,AT,AUT,1
+AT_7_701,ChIJKasjA-M9nUcR3OVAbHKfG4o,Q699582,NA,AT,Austria,7,Tyrol,701,Innsbruck-Stadt,NA,NA,AT,AUT,2
+AT_7_702,ChIJEclEVZPXnEcRxyudxNpYJ5k,Q665668,NA,AT,Austria,7,Tyrol,702,Imst,NA,NA,AT,AUT,2
+AT_7_703,ChIJKasjA-M9nUcR3OVAbHKfG4o,Q699582,NA,AT,Austria,7,Tyrol,703,Innsbruck-Land,NA,NA,AT,AUT,2
+AT_7_704,ChIJ37qu3-pLdkcRxK6rxTi_9X0,Q265649,NA,AT,Austria,7,Tyrol,704,Kitzbühel,NA,NA,AT,AUT,2
+AT_7_705,ChIJyQZ8XwUzdkcR9XT_lM04XdE,Q255141,NA,AT,Austria,7,Tyrol,705,Kufstein,NA,NA,AT,AUT,2
+AT_7_706,ChIJy6pSun_JnEcR8M_IaSeic9E,Q665605,NA,AT,Austria,7,Tyrol,706,Landeck,NA,NA,AT,AUT,2
+AT_7_707,ChIJGezeSWtpd0cRASOhhGikCmQ,Q251931,nuts/AT333,AT,Austria,7,Tyrol,707,Lienz,NA,NA,AT,AUT,2
+AT_7_708,ChIJCWa_CC_qnEcR4n4Nhjxc9kA,Q854005,nuts/AT331,AT,Austria,7,Tyrol,708,Reutte,NA,NA,AT,AUT,2
+AT_7_709,ChIJX4rwylbYd0cR_cVwOJfAwdA,Q266685,NA,AT,Austria,7,Tyrol,709,Schwaz,NA,NA,AT,AUT,2
+AT_8,ChIJRQmqIqESm0cRTZpV9Z8FT4Q,Q38981,ISO/AT-8,AT,Austria,8,Vorarlberg,NA,NA,NA,NA,AT,AUT,1
+AT_8_801,ChIJFydQPqpWm0cR3fnhgXaj7es,Q698606,NA,AT,Austria,8,Vorarlberg,801,Bludenz,NA,NA,AT,AUT,2
+AT_8_802,ChIJkSOfpchom0cRrqFLnwaoXpI,Q698621,NA,AT,Austria,8,Vorarlberg,802,Bregenz,NA,NA,AT,AUT,2
+AT_8_803,ChIJqTi5idxqm0cRWsxg5N1hioo,Q698581,NA,AT,Austria,8,Vorarlberg,803,Dornbirn,NA,NA,AT,AUT,2
+AT_8_804,ChIJTccKlYNGm0cRC-5U2WIe-CY,Q384914,NA,AT,Austria,8,Vorarlberg,804,Feldkirch,NA,NA,AT,AUT,2
+AT_9,ChIJn8o2UZ4HbUcRRluiUYrlwv0,Q1741,ISO/AT-9,AT,Austria,9,Vienna,NA,NA,NA,NA,AT,AUT,1
+AT_9_900,ChIJn8o2UZ4HbUcRRluiUYrlwv0,Q1741,nuts/AT130,AT,Austria,9,Vienna,900,Vienna,NA,NA,AT,AUT,2
+AU,ChIJ38WHZwf9KysRUhNblaFnglM,Q408,country/AUS,AU,Australia,NA,NA,NA,NA,NA,NA,AU,AUS,0
+AU_ACT,ChIJSxCboN9MFmsRA3huXDhEWOc,Q3258,NA,AU,Australia,ACT,Australian Capital Territory,NA,NA,NA,NA,AU,AUS,1
+AU_NSW,ChIJDUte93TLDWsRLZ_EIhGvgBc,Q3224,NA,AU,Australia,NSW,New South Wales,NA,NA,NA,NA,AU,AUS,1
+AU_NT,ChIJDxnz5sJyUSsRdScAAAAAAAA,Q3235,NA,AU,Australia,NT,Northern Territory,NA,NA,NA,NA,AU,AUS,1
+AU_QLD,ChIJ_dxieiTf1GsRmb4SdiLQ8vU,Q36074,NA,AU,Australia,QLD,Queensland,NA,NA,NA,NA,AU,AUS,1
+AU_SA,ChIJ88foW55Yp2oR2ND6PZl5fts,Q35715,NA,AU,Australia,SA,South Australia,NA,NA,NA,NA,AU,AUS,1
+AU_TAS,ChIJz_o0fifteqoRZEBAKd2ljyo,Q34366,NA,AU,Australia,TAS,Tasmania,NA,NA,NA,NA,AU,AUS,1
+AU_VIC,ChIJT5UYfksx1GoRNJWCvuL8Tlo,Q36687,NA,AU,Australia,VIC,Victoria,NA,NA,NA,NA,AU,AUS,1
+AU_WA,ChIJ0YTziS4qOSoRmaMAMt9KDm4,Q3206,NA,AU,Australia,WA,Western Australia,NA,NA,NA,NA,AU,AUS,1
+AW,ChIJ23da4s84hY4RL4yBiT6KavE,Q21203,country/ABW,AW,Aruba,NA,NA,NA,NA,NA,NA,AW,ABW,0
+AZ,ChIJ3x2iGtl8MEARCM2DPmtSyeY,Q227,country/AZE,AZ,Azerbaijan,NA,NA,NA,NA,NA,NA,AZ,AZE,0
+BA,ChIJ16k3xxWiSxMRDOm3QwPi920,Q225,country/BIH,BA,Bosnia and Herzegovina,NA,NA,NA,NA,NA,NA,BA,BIH,0
+BB,ChIJoxoyrvvxQ4wRKzb0jLNR7A4,Q244,country/BRB,BB,Barbados,NA,NA,NA,NA,NA,NA,BB,BRB,0
+BD,ChIJp4vhgO2qrTARa_zhxOAoLQ8,Q902,country/BGD,BD,Bangladesh,NA,NA,NA,NA,NA,NA,BD,BGD,0
+BD_A,ChIJh-Ts-wc0VTcR4p__WGnMHFU,Q459723,iso/BD-A,BD,Bangladesh,A,Barisal,NA,NA,NA,NA,BD,BGD,1
+BD_A_02,ChIJqbj1ZO2ZqjAR2atZ8wURJi4,Q808172,iso/BD-02,BD,Bangladesh,A,Barisal,02,Barguna,NA,NA,BD,BGD,2
+BD_A_06,ChIJjZgjC8s3VTcRtwkeApkmsp8,Q1763301,iso/BD-06,BD,Bangladesh,A,Barisal,06,Barisal,NA,NA,BD,BGD,2
+BD_A_07,ChIJRZx50D0kqzARlTbdU-Ag2Oc,Q855042,iso/BD-07,BD,Bangladesh,A,Barisal,07,Bhola,NA,NA,BD,BGD,2
+BD_A_25,ChIJmbCTDKGxqjARCtcJBegLa7Q,Q2093327,iso/BD-25,BD,Bangladesh,A,Barisal,25,Jhalakathi,NA,NA,BD,BGD,2
+BD_A_50,ChIJQTerMNWpqjAReWZpfoyve8M,Q609190,iso/BD-50,BD,Bangladesh,A,Barisal,50,Pirojpur,NA,NA,BD,BGD,2
+BD_A_51,ChIJdf4KjzDqqjAR1hpLMh2wX3A,Q1429761,iso/BD-51,BD,Bangladesh,A,Barisal,51,Patuakhali,NA,NA,BD,BGD,2
+BD_B,ChIJfUw6kK7YrDAR-UHUMwrCIdY,Q158087,iso/BD-B,BD,Bangladesh,B,Chittagong,NA,NA,NA,NA,BD,BGD,1
+BD_B_01,ChIJ_VgpgTKCrTARQQOhvZQtbWI,Q806273,iso/BD-01,BD,Bangladesh,B,Chittagong,01,Bandarban,NA,NA,BD,BGD,2
+BD_B_04,ChIJhZF5dKgQVDcRAGpdkvBYS68,Q897330,iso/BD-04,BD,Bangladesh,B,Chittagong,04,Brahmanbaria,NA,NA,BD,BGD,2
+BD_B_08,ChIJS34ZZjZiVDcRUetHYATYLus,Q1480778,iso/BD-08,BD,Bangladesh,B,Chittagong,08,Comilla,NA,NA,BD,BGD,2
+BD_B_09,ChIJewoAFw33VDcRECD3PRzNiLA,Q1429697,iso/BD-09,BD,Bangladesh,B,Chittagong,09,Chandpur,NA,NA,BD,BGD,2
+BD_B_10,ChIJUYDu5_vYrDARdfvTbnbAfbk,Q1074991,iso/BD-10,BD,Bangladesh,B,Chittagong,10,Chittagong,NA,NA,BD,BGD,2
+BD_B_11,ChIJ8V0tjKTDrTAR1x3tpp_3qzg,Q1122278,iso/BD-11,BD,Bangladesh,B,Chittagong,11,Cox's Bazar,NA,NA,BD,BGD,2
+BD_B_16,ChIJOS4M_yFoUzcRMTOkC9bulPA,Q1404741,iso/BD-16,BD,Bangladesh,B,Chittagong,16,Feni,NA,NA,BD,BGD,2
+BD_B_29,ChIJXYY6ezv7UjcRkfdtwrqM8Cs,Q1429685,iso/BD-29,BD,Bangladesh,B,Chittagong,29,Khagrachhari,NA,NA,BD,BGD,2
+BD_B_31,ChIJE8RGI77FVDcRXhDj34X4UnQ,Q1550252,iso/BD-31,BD,Bangladesh,B,Chittagong,31,Lakshmipur,NA,NA,BD,BGD,2
+BD_B_47,ChIJbd-lBoJUqzARVcamOiHjhZM,Q68585,iso/BD-47,BD,Bangladesh,B,Chittagong,47,Noakhali,NA,NA,BD,BGD,2
+BD_B_56,ChIJNfkiW4K6UjcR1VlYJUBEaRY,Q2121686,iso/BD-56,BD,Bangladesh,B,Chittagong,56,Rangamati,NA,NA,BD,BGD,2
+BD_C,ChIJRf0h8AO5VTcR62cTS3TcQ4o,Q330158,iso/BD-C,BD,Bangladesh,C,Dhaka,NA,NA,NA,NA,BD,BGD,1
+BD_C_13,ChIJx_GJe1i_VTcRLwQf0Y3tnbE,Q1850485,iso/BD-13,BD,Bangladesh,C,Dhaka,13,Dhaka,NA,NA,BD,BGD,2
+BD_C_15,ChIJg-YfWUQy_jkRYZ0lMXLKHQs,Q2093552,iso/BD-15,BD,Bangladesh,C,Dhaka,15,Faridpur,NA,NA,BD,BGD,2
+BD_C_17,ChIJVzZvh1Hc_zkRb1HTMtKQI0I,Q1537813,iso/BD-17,BD,Bangladesh,C,Dhaka,17,Gopalganj,NA,NA,BD,BGD,2
+BD_C_18,ChIJVZJ_yTrfVTcRXFzaJxVYM3g,Q2094101,iso/BD-18,BD,Bangladesh,C,Dhaka,18,Gazipur,NA,NA,BD,BGD,2
+BD_C_26,ChIJFSpUKn29VjcRJkLJD61CTnw,Q2344833,iso/BD-26,BD,Bangladesh,C,Dhaka,26,Kishoreganj,NA,NA,BD,BGD,2
+BD_C_33,ChIJje_JgEwg_jkRaFBXWc8dIRM,Q2024719,iso/BD-33,BD,Bangladesh,C,Dhaka,33,Manikganj,NA,NA,BD,BGD,2
+BD_C_35,ChIJzwjLRXGlVTcR6D4Wmp-Z0T4,Q1990519,iso/BD-35,BD,Bangladesh,C,Dhaka,35,Munshiganj,NA,NA,BD,BGD,2
+BD_C_36,ChIJ6ZezKLt6VTcRqUtIBWEdGbU,Q928836,iso/BD-36,BD,Bangladesh,C,Dhaka,36,Madaripur,NA,NA,BD,BGD,2
+BD_C_40,ChIJSVuJvCTKVTcRNqXDjRXSEJg,Q2208354,iso/BD-40,BD,Bangladesh,C,Dhaka,40,Narayanganj,NA,NA,BD,BGD,2
+BD_C_42,ChIJLUpgZJclVDcRqm3Lm-AK7Nk,Q2042638,iso/BD-42,BD,Bangladesh,C,Dhaka,42,Narsingdi,NA,NA,BD,BGD,2
+BD_C_53,ChIJ0Ta5ZTxD_jkRhd7FdMZRGDA,Q2348762,iso/BD-53,BD,Bangladesh,C,Dhaka,53,Rajbari,NA,NA,BD,BGD,2
+BD_C_62,ChIJB3UMcAgOVTcR30RQ7MYBTpY,Q253007,iso/BD-62,BD,Bangladesh,C,Dhaka,62,Shariatpur,NA,NA,BD,BGD,2
+BD_C_63,ChIJT5sCuuT3_TkRV2mySdKIr2c,Q952184,iso/BD-63,BD,Bangladesh,C,Dhaka,63,Tangail,NA,NA,BD,BGD,2
+BD_D,ChIJ5_-3ZHeQ_jkREbs1DmwDK7c,Q501696,iso/BD-D,BD,Bangladesh,D,Khulna,NA,NA,NA,NA,BD,BGD,1
+BD_D_05,ChIJx6zbY3MWADoRfU2fESoMkQQ,Q2344861,iso/BD-05,BD,Bangladesh,D,Khulna,05,Bagerhat,NA,NA,BD,BGD,2
+BD_D_12,ChIJa8ajxRHN_jkRe4KBayvXPwQ,Q2094570,iso/BD-12,BD,Bangladesh,D,Khulna,12,Chuadanga,NA,NA,BD,BGD,2
+BD_D_22,ChIJORzaMNUT_zkR56nSpKpzvpA,Q1862981,iso/BD-22,BD,Bangladesh,D,Khulna,22,Jessore,NA,NA,BD,BGD,2
+BD_D_23,ChIJozjIkgTc_jkRzLehEiir3vk,Q2188750,iso/BD-23,BD,Bangladesh,D,Khulna,23,Jhenaidah,NA,NA,BD,BGD,2
+BD_D_27,ChIJV9qsrm80ADoRRkZPugneol0,Q2093344,iso/BD-27,BD,Bangladesh,D,Khulna,27,Khulna,NA,NA,BD,BGD,2
+BD_D_30,ChIJ7SFqL6i8_jkR-HRofA2YQEA,Q956895,iso/BD-30,BD,Bangladesh,D,Khulna,30,Kushtia,NA,NA,BD,BGD,2
+BD_D_37,ChIJP8ltt8lV_jkRAMsqwhRrsMo,Q2039085,iso/BD-37,BD,Bangladesh,D,Khulna,37,Magura,NA,NA,BD,BGD,2
+BD_D_39,ChIJL8DBTxBK-TkRu_I8FQMjrAs,Q1474206,iso/BD-39,BD,Bangladesh,D,Khulna,39,Meherpur,NA,NA,BD,BGD,2
+BD_D_43,ChIJUdfYmNmk_zkR6vRz69PofLE,Q1550260,iso/BD-43,BD,Bangladesh,D,Khulna,43,Narail,NA,NA,BD,BGD,2
+BD_D_58,ChIJm7UAeUrAAToRBjmigszi-WA,Q1233680,iso/BD-58,BD,Bangladesh,D,Khulna,58,Satkhira,NA,NA,BD,BGD,2
+BD_E,ChIJUQxO4QxR4zkRWai2T3_wsaE,Q379382,iso/BD-E,BD,Bangladesh,E,Rajshahi,NA,NA,NA,NA,BD,BGD,1
+BD_E_03,ChIJ5YHsq2FR_DkROEd6NoEuZm4,Q2039066,iso/BD-03,BD,Bangladesh,E,Khulna,03,Bogra,NA,NA,BD,BGD,2
+BD_E_24,ChIJmdbhH7by_DkR4oTPVFKkDX8,Q2348146,iso/BD-24,BD,Bangladesh,E,Khulna,24,Joypurhat,NA,NA,BD,BGD,2
+BD_E_44,ChIJt5aS8b89_DkRMHZdsoXIk_0,Q2093361,iso/BD-44,BD,Bangladesh,E,Khulna,44,Natore,NA,NA,BD,BGD,2
+BD_E_45,ChIJfws5eHWv-zkRL4t8oeYoTd4,Q46043,iso/BD-45,BD,Bangladesh,E,Khulna,45,Chapai Nawabganj,NA,NA,BD,BGD,2
+BD_E_48,ChIJe_BX32l4-zkR_d1vE-EG5kw,Q2094277,iso/BD-48,BD,Bangladesh,E,Khulna,48,Naogaon,NA,NA,BD,BGD,2
+BD_E_49,ChIJKf4lZwmB_jkRz6jPU5rCmo8,Q1083505,iso/BD-49,BD,Bangladesh,E,Khulna,49,Pabna,NA,NA,BD,BGD,2
+BD_E_54,ChIJbcb_yIzx-zkR1oY-l5aqCiE,Q2344697,iso/BD-54,BD,Bangladesh,E,Khulna,54,Rajshahi,NA,NA,BD,BGD,2
+BD_E_59,ChIJjQCIhiLP_TkRSL0fVSxq9RY,Q2429432,iso/BD-59,BD,Bangladesh,E,Khulna,59,Sirajganj,NA,NA,BD,BGD,2
+BD_F,ChIJL0YnmnJP4zkRyR9Cdx-3iD4,Q876023,iso/BD-F,BD,Bangladesh,F,Rangpur,NA,NA,NA,NA,BD,BGD,1
+BD_F_14,ChIJxUgXQwir_DkRe437KTan-Y0,Q1985120,iso/BD-14,BD,Bangladesh,F,Khulna,14,Dinajpur,NA,NA,BD,BGD,2
+BD_F_19,ChIJq83W1eoh_TkRDvt5UkQ7Mus,Q2344595,iso/BD-19,BD,Bangladesh,F,Khulna,19,Gaibandha,NA,NA,BD,BGD,2
+BD_F_28,ChIJy_hWhWTI4jkRH7uaAXHUp_o,Q2348751,iso/BD-28,BD,Bangladesh,F,Khulna,28,Kurigram,NA,NA,BD,BGD,2
+BD_F_32,ChIJSxVslkIX4zkRTrn57oPsdtc,Q2373734,iso/BD-32,BD,Bangladesh,F,Khulna,32,Lalmonirhat,NA,NA,BD,BGD,2
+BD_F_46,ChIJQ6zsQ2Vd4zkR1B-9cq8ZxBY,Q2188627,iso/BD-46,BD,Bangladesh,F,Khulna,46,Nilphamari,NA,NA,BD,BGD,2
+BD_F_52,ChIJdy5jX1WJ5DkRTLAuQAOz6NY,Q2367822,iso/BD-52,BD,Bangladesh,F,Khulna,52,Panchagarh,NA,NA,BD,BGD,2
+BD_F_55,ChIJye9fz87N_DkR0zuTvA8zv2g,Q2344570,iso/BD-55,BD,Bangladesh,F,Khulna,55,Rangpur,NA,NA,BD,BGD,2
+BD_F_64,ChIJVfMnWF3D5DkR8XW_X7SJdzg,Q2367825,iso/BD-64,BD,Bangladesh,F,Khulna,64,Thakurgaon,NA,NA,BD,BGD,2
+BD_G,ChIJnzJw0tNUUDcRqXQ1C8Iab4Y,Q459732,iso/BD-G,BD,Bangladesh,G,Sylhet,NA,NA,NA,NA,BD,BGD,1
+BD_G_20,ChIJg2vX1alcUTcRZaL6cbjPFS8,Q1438974,iso/BD-20,BD,Bangladesh,G,Khulna,20,Habiganj,NA,NA,BD,BGD,2
+BD_G_38,ChIJwbBbN2OZUTcRZ1j8tzAwa98,Q281435,iso/BD-38,BD,Bangladesh,G,Khulna,38,Moulvibazar,NA,NA,BD,BGD,2
+BD_G_60,ChIJDQGb0aO0UTcRTK16HuskzTA,Q2093352,iso/BD-60,BD,Bangladesh,G,Khulna,60,Sylhet,NA,NA,BD,BGD,2
+BD_G_61,ChIJm9OEM7YpUTcRsBjBs9ywnkU,Q2093388,iso/BD-61,BD,Bangladesh,G,Khulna,61,Sunamganj,NA,NA,BD,BGD,2
+BD_H,ChIJucPW445NVjcRh-yRxmJZvIc,Q19594930,iso/BD-H,BD,Bangladesh,H,Mymensingh,NA,NA,NA,NA,BD,BGD,1
+BD_H_21,ChIJaVU775F7_TkR_rZey7TY6_E,Q2039306,iso/BD-21,BD,Bangladesh,H,Sylhet,21,Jamalpur,NA,NA,BD,BGD,2
+BD_H_34,ChIJ4cv2hL5PVjcRPsws1KOK3Z8,Q1429976,iso/BD-34,BD,Bangladesh,H,Sylhet,34,Mymensingh,NA,NA,BD,BGD,2
+BD_H_41,ChIJ-UvGKTHiVjcR0c2C9bnULf4,Q2344966,iso/BD-41,BD,Bangladesh,H,Sylhet,41,Netrakona,NA,NA,BD,BGD,2
+BD_H_57,ChIJzwKqI8bQVzcR0mw6USEFYaw,Q2039314,iso/BD-57,BD,Bangladesh,H,Sylhet,57,Sherpur,NA,NA,BD,BGD,2
+BE,ChIJl5fz7WR9wUcR8g_mObTy60c,Q31,country/BEL,BE,Belgium,NA,NA,NA,NA,NA,NA,BE,BEL,0
+BE_BRU,ChIJ_58PdIbEw0cRMIBML6uZAAE,Q240,nuts/BE1,BE,Belgium,BRU,Brussels,NA,NA,NA,NA,BE,BEL,1
+BE_VAN,ChIJYxqH-B5VwUcRT7U_zWa6lgg,Q1116,nuts/BE21,BE,Belgium,VAN,Antwerp,NA,NA,NA,NA,BE,BEL,1
+BE_VLG,ChIJ7diwvtdgwUcRYrEzvCLYu-M,Q1118,nuts/BE24,BE,Belgium,VLG,Flemish Brabant,NA,NA,NA,NA,BE,BEL,1
+BE_VLI,ChIJfZxmPSmTwEcRi9wBzMI5EzY,Q1095,nuts/BE22,BE,Belgium,VLI,Limburg,NA,NA,NA,NA,BE,BEL,1
+BE_VOV,ChIJi-0kywZ2w0cRsIBML6uZAAI,Q1114,nuts/BE23,BE,Belgium,VOV,East Flanders,NA,NA,NA,NA,BE,BEL,1
+BE_VWV,ChIJVXM8b7e03EcRoIBML6uZAAI,Q1113,nuts/BE25,BE,Belgium,VWV,West Flanders,NA,NA,NA,NA,BE,BEL,1
+BE_WBR,ChIJ0_zn8gF-wUcRgZgO3C88Rng,Q1122,nuts/BE31,BE,Belgium,WBR,Walloon Brabant,NA,NA,NA,NA,BE,BEL,1
+BE_WHT,ChIJXWuHtA0mwkcRkEtWu-NC1GE,Q1129,nuts/BE32,BE,Belgium,WHT,Hainaut,NA,NA,NA,NA,BE,BEL,1
+BE_WLG,ChIJQxJV245ewEcR0IBML6uZAAI,Q1127,nuts/BE33,BE,Belgium,WLG,Liège,NA,NA,NA,NA,BE,BEL,1
+BE_WLX,ChIJXemZE4cmwEcR8IBML6uZAAI,Q1126,nuts/BE34,BE,Belgium,WLX,Luxembourg,NA,NA,NA,NA,BE,BEL,1
+BE_WNA,ChIJGVmGENGUwUcRorXKNtkQZS0,Q1125,nuts/BE35,BE,Belgium,WNA,Namur,NA,NA,NA,NA,BE,BEL,1
+BF,ChIJm3Cm1SbKLQ4Rq22DRu0Kkyc,Q965,country/BFA,BF,Burkina Faso,NA,NA,NA,NA,NA,NA,BF,BFA,0
+BG,ChIJifBbyMH-qEAREEy_aRKgAAA,Q219,country/BGR,BG,Bulgaria,NA,NA,NA,NA,NA,NA,BG,BGR,0
+BG_01,ChIJsyJP1I-xqxQRMEy_aRKgAAM,Q804311,NA,BG,Bulgaria,01,Blagoevgrad,NA,NA,NA,NA,BG,BGR,1
+BG_02,ChIJXzuWWd_tpkARIEy_aRKgAAM,Q369220,NA,BG,Bulgaria,02,Burgas,NA,NA,NA,NA,BG,BGR,1
+BG_03,ChIJjz6nva-6pUARoE2_aRKgAAM,Q183487,NA,BG,Bulgaria,03,Varna,NA,NA,NA,NA,BG,BGR,1
+BG_04,ChIJOdL1n2ItqUAR0E2_aRKgAAM,Q2012621,NA,BG,Bulgaria,04,Veliko Tarnovo,NA,NA,NA,NA,BG,BGR,1
+BG_05,ChIJK2JCg81-U0cRoFy_aRKgAAM,Q2012772,NA,BG,Bulgaria,05,Vidin,NA,NA,NA,NA,BG,BGR,1
+BG_06,ChIJS6QJk1xsq0ARwE2_aRKgAAM,Q2012785,NA,BG,Bulgaria,06,Vratsa,NA,NA,NA,NA,BG,BGR,1
+BG_07,ChIJ-eJFpPwPqUAREFC_aRKgAAM,Q1007272,NA,BG,Bulgaria,07,Gabrovo,NA,NA,NA,NA,BG,BGR,1
+BG_08,ChIJP77ZdMsUpUAR8E-_aRKgAAM,Q907395,NA,BG,Bulgaria,08,Dobrich,NA,NA,NA,NA,BG,BGR,1
+BG_09,ChIJpZiQ2nZurRQRIFK_aRKgAAM,Q1104675,NA,BG,Bulgaria,09,Kardzhali,NA,NA,NA,NA,BG,BGR,1
+BG_10,ChIJj355CHmdqhQRgFG_aRKgAAM,Q1112985,NA,BG,Bulgaria,10,Kyustendil,NA,NA,NA,NA,BG,BGR,1
+BG_11,ChIJhQZNmZvaq0ARoEy_aRKgAAM,Q6587068,NA,BG,Bulgaria,11,Lovech,NA,NA,NA,NA,BG,BGR,1
+BG_12,ChIJqdn0TdzLVEcRUFO_aRKgAAM,Q2012057,NA,BG,Bulgaria,12,Montana,NA,NA,NA,NA,BG,BGR,1
+BG_13,ChIJqZPoTjuwrBQR0FO_aRKgAAM,Q2012227,NA,BG,Bulgaria,13,Pazardzhik,NA,NA,NA,NA,BG,BGR,1
+BG_14,ChIJY63uZwWzqhQR4Ey_aRKgAAM,Q2012234,NA,BG,Bulgaria,14,Pernik,NA,NA,NA,NA,BG,BGR,1
+BG_15,ChIJc1OZQH91rEAR8Ey_aRKgAAM,Q2012242,NA,BG,Bulgaria,15,Pleven,NA,NA,NA,NA,BG,BGR,1
+BG_16,ChIJ-8N2V7vRrBQRkFS_aRKgAAM,Q187874,NA,BG,Bulgaria,16,Plovdiv,NA,NA,NA,NA,BG,BGR,1
+BG_17,ChIJs2yxknOnr0ARAE2_aRKgAAM,Q2790675,NA,BG,Bulgaria,17,Razgrad,NA,NA,NA,NA,BG,BGR,1
+BG_18,ChIJU8sSnG_xrkAREE2_aRKgAAM,Q1251933,NA,BG,Bulgaria,18,Ruse,NA,NA,NA,NA,BG,BGR,1
+BG_19,ChIJBwQmIPbBr0ARQE2_aRKgAAM,Q2012423,NA,BG,Bulgaria,19,Silistra,NA,NA,NA,NA,BG,BGR,1
+BG_20,ChIJzQGsiMYgpkAR4Fm_aRKgAAM,Q113120,NA,BG,Bulgaria,20,Sliven,NA,NA,NA,NA,BG,BGR,1
+BG_21,ChIJ3zOFc4pZrBQRgFq_aRKgAAM,Q2012430,NA,BG,Bulgaria,21,Smolyan,NA,NA,NA,NA,BG,BGR,1
+BG_22,ChIJo6WgMoOGqkARcE2_aRKgAAM,Q1585725,NA,BG,Bulgaria,22,Sofia City,NA,NA,NA,NA,BG,BGR,1
+BG_23,ChIJMZWM1zN7qkARIE2_aRKgAAM,Q202904,NA,BG,Bulgaria,23,Sofia,NA,NA,NA,NA,BG,BGR,1
+BG_24,ChIJbf7TtSNqqEARgE2_aRKgAAM,Q2012583,NA,BG,Bulgaria,24,Stara Zagora,NA,NA,NA,NA,BG,BGR,1
+BG_25,ChIJVcjHxH5Dr0ARoFu_aRKgAAM,Q2012589,NA,BG,Bulgaria,25,Targovishte,NA,NA,NA,NA,BG,BGR,1
+BG_26,ChIJ71OmPXa7shQRYEy_aRKgAAM,Q182809,NA,BG,Bulgaria,26,Haskovo,NA,NA,NA,NA,BG,BGR,1
+BG_27,ChIJxwjN7Z-JpUARME2_aRKgAAM,Q184981,NA,BG,Bulgaria,27,Shumen,NA,NA,NA,NA,BG,BGR,1
+BG_28,ChIJA0kUAY6xp0ARcEy_aRKgAAM,Q220736,NA,BG,Bulgaria,28,Yambol,NA,NA,NA,NA,BG,BGR,1
+BH,ChIJEaJHak5SSD4RRhDa2-JQlC4,Q398,country/BHR,BH,Bahrain,NA,NA,NA,NA,NA,NA,BH,BHR,0
+BI,ChIJW_FUNtNEwRkRjewxVg5NI7E,Q967,country/BDI,BI,Burundi,NA,NA,NA,NA,NA,NA,BI,BDI,0
+BJ,ChIJlVZ6BCtUIxAR9S5iy_h3suw,Q962,country/BEN,BJ,Benin,NA,NA,NA,NA,NA,NA,BJ,BEN,0
+BM,ChIJpbBohp4TLYoRvLiZLMf93zw,Q23635,country/BMU,BM,Bermuda,NA,NA,NA,NA,NA,NA,BM,BMU,0
+BN,ChIJ0bm4BEuZGDIR1toJ3YA1_l0,Q921,country/BRN,BN,Brunei,NA,NA,NA,NA,NA,NA,BN,BRN,0
+BO,ChIJlaK7d4nfXpERv-0VAbvCnhw,Q750,country/BOL,BO,Bolivia,NA,NA,NA,NA,NA,NA,BO,BOL,0
+BO_B,ChIJzZvTkoHD05MRbFe-FLT_e-w,Q233169,NA,BO,Bolivia,B,Beni,NA,NA,NA,NA,BO,BOL,1
+BO_C,ChIJDzo8InN045MRZsPyOK8unjw,Q233917,NA,BO,Bolivia,C,Cochabamba,NA,NA,NA,NA,BO,BOL,1
+BO_H,ChIJKZOyWuaH95MRBpHxk51ehR0,Q235110,NA,BO,Bolivia,H,Chuquisaca,NA,NA,NA,NA,BO,BOL,1
+BO_L,ChIJlaK7d4nfXpERKLhSnzPJmSQ,Q272784,NA,BO,Bolivia,L,La Paz,NA,NA,NA,NA,BO,BOL,1
+BO_N,ChIJheWF34ABfpERd-zzIHoGxLo,Q235362,NA,BO,Bolivia,N,Pando,NA,NA,NA,NA,BO,BOL,1
+BO_O,ChIJeQXFojnBV5ERQ1tJZIM6keM,Q1061368,NA,BO,Bolivia,O,Oruro,NA,NA,NA,NA,BO,BOL,1
+BO_P,ChIJ_ZYkGnRO-ZMRTOfRLsvlcSM,Q238079,NA,BO,Bolivia,P,Potosí,NA,NA,NA,NA,BO,BOL,1
+BO_S,ChIJAbhn4SS4kpMRLO9APzZJY8g,Q235106,NA,BO,Bolivia,S,Santa Cruz,NA,NA,NA,NA,BO,BOL,1
+BO_T,ChIJf_UWywlIBpQRT9gDwuptTUs,Q233933,NA,BO,Bolivia,T,Tarija,NA,NA,NA,NA,BO,BOL,1
+BQ,ChIJt7kdj4sYIowRz7WDIdc1beE,Q27561,country/BES,BQ,Caribbean Netherlands,NA,NA,NA,NA,NA,NA,BQ,BES,0
+BR,ChIJzyjM68dZnAARYz4p8gYVWik,Q155,country/BRA,BR,Brazil,NA,NA,NA,NA,NA,NA,BR,BRA,0
+BR_AC,ChIJuQaRTqqNf5ERwQc2CMUK7CU,Q40780,iso/BR-AC,BR,Brazil,AC,Acre,NA,NA,NA,NA,BR,BRA,1
+BR_AC_120001,ChIJlb91EHYz1ZMRMwY0aDl7QvQ,Q953086,NA,BR,Brazil,AC,Acre,120001,Acrelândia,NA,NA,BR,BRA,2
+BR_AC_120005,ChIJgyZSl4ALeZERSjNsENpKOZ8,Q1754403,NA,BR,Brazil,AC,Acre,120005,Assis Brasil,NA,NA,BR,BRA,2
+BR_AC_120010,ChIJm4g9Bje3fpERnpwI2L71NRQ,Q899406,NA,BR,Brazil,AC,Acre,120010,Brasiléia,NA,NA,BR,BRA,2
+BR_AC_120013,ChIJLU_XJLk0gJERIvnKAiKLyzc,Q1754408,NA,BR,Brazil,AC,Acre,120013,Bujari,NA,NA,BR,BRA,2
+BR_AC_120017,ChIJK7DUWzm0f5ERWaZMAkZPg_k,Q1800737,NA,BR,Brazil,AC,Acre,120017,Capixaba,NA,NA,BR,BRA,2
+BR_AC_120020,ChIJT7_ApAtamJERggvNbhoaX_Y,Q941136,NA,BR,Brazil,AC,Acre,120020,Cruzeiro do Sul,NA,NA,BR,BRA,2
+BR_AC_120025,ChIJM4oUnLSwfpERYW8j6c1XCJ0,Q1755395,NA,BR,Brazil,AC,Acre,120025,Epitaciolândia,NA,NA,BR,BRA,2
+BR_AC_120030,ChIJAW1qVhfHnJER0Gcg4Fx8waU,Q1994833,NA,BR,Brazil,AC,Acre,120030,Feijó,NA,NA,BR,BRA,2
+BR_AC_120032,ChIJvbwD5sbUnZERuNF2ebJ3Vgc,Q1800793,NA,BR,Brazil,AC,Acre,120032,Jordão,NA,NA,BR,BRA,2
+BR_AC_120033,ChIJP3kJkv8vmJEREcQ_cRzyL0o,Q1772621,NA,BR,Brazil,AC,Acre,120033,Mâncio Lima,NA,NA,BR,BRA,2
+BR_AC_120034,ChIJ22Rizvr7gpERH8J2n4Iws0g,Q1772688,NA,BR,Brazil,AC,Acre,120034,Manoel Urbano,NA,NA,BR,BRA,2
+BR_AC_120035,ChIJpU0egrAon5ERGu-K2Oms07U,Q1772613,NA,BR,Brazil,AC,Acre,120035,Marechal Thaumaturgo,NA,NA,BR,BRA,2
+BR_AC_120038,ChIJz-ZLmiFi1ZMREUgZnZJvVOU,Q964075,NA,BR,Brazil,AC,Acre,120038,Plácido de Castro,NA,NA,BR,BRA,2
+BR_AC_120039,ChIJTThsiPX7mJERGr0wD_3s4mU,Q1772588,NA,BR,Brazil,AC,Acre,120039,Porto Walter,NA,NA,BR,BRA,2
+BR_AC_120040,ChIJG7dkUx9kf5ERtlPdjrhiOsc,Q171612,NA,BR,Brazil,AC,Acre,120040,Rio Branco,NA,NA,BR,BRA,2
+BR_AC_120042,ChIJT_a-bVLKmZEReIWaMsY4mdc,Q1800776,NA,BR,Brazil,AC,Acre,120042,Rodrigues Alves,NA,NA,BR,BRA,2
+BR_AC_120043,ChIJyV7uDqQynZERdOBaTDkU0N4,Q1772719,NA,BR,Brazil,AC,Acre,120043,Santa Rosa do Purus,NA,NA,BR,BRA,2
+BR_AC_120045,ChIJ98gzAObqf5ER7olXJV-G9pw,Q771763,NA,BR,Brazil,AC,Acre,120045,Senador Guiomard,NA,NA,BR,BRA,2
+BR_AC_120050,ChIJ2SQY30txgpERYH6SHSJqc7M,Q1754389,NA,BR,Brazil,AC,Acre,120050,Sena Madureira,NA,NA,BR,BRA,2
+BR_AC_120060,ChIJbzHgTlMim5EROBGjoCshr2g,Q979910,NA,BR,Brazil,AC,Acre,120060,Tarauacá,NA,NA,BR,BRA,2
+BR_AC_120070,ChIJKf-dXwbffpERNjClKlb_co4,Q1012531,NA,BR,Brazil,AC,Acre,120070,Xapuri,NA,NA,BR,BRA,2
+BR_AC_120080,ChIJl0-c0gMXgJERPQsRfbiBAYc,Q1772602,NA,BR,Brazil,AC,Acre,120080,Porto Acre,NA,NA,BR,BRA,2
+BR_AL,ChIJmw1SLyP9AAcRLfY9f-U5LX4,Q40885,iso/BR-AL,BR,Brazil,AL,Alagoas,NA,NA,NA,NA,BR,BRA,1
+BR_AL_270010,ChIJRfQBkVrgCAcR4Fj2B9_azHs,Q1808899,NA,BR,Brazil,AL,Alagoas,270010,Água Branca,NA,NA,BR,BRA,2
+BR_AL_270020,ChIJ12zgdeCYBgcRRmiC_93iNnc,Q2028005,NA,BR,Brazil,AL,Alagoas,270020,Anadia,NA,NA,BR,BRA,2
+BR_AL_270030,ChIJWd-3hwvVBQcRJKos4pkPDWA,Q626175,NA,BR,Brazil,AL,Alagoas,270030,Arapiraca,NA,NA,BR,BRA,2
+BR_AL_270040,ChIJFRiaHRDIBgcRGrWG65JUB9U,Q928274,NA,BR,Brazil,AL,Alagoas,270040,Atalaia,NA,NA,BR,BRA,2
+BR_AL_270050,ChIJGbaGFusZAQcRF10EyLrVHNA,Q1795908,NA,BR,Brazil,AL,Alagoas,270050,Barra de Santo Antônio,NA,NA,BR,BRA,2
+BR_AL_270060,ChIJ3XL81OX_AwcRt8Mh9LGP-2g,Q2027348,NA,BR,Brazil,AL,Alagoas,270060,Barra de São Miguel,NA,NA,BR,BRA,2
+BR_AL_270070,ChIJdUgek-QHBgcR-Fbsws83y-c,Q2028288,NA,BR,Brazil,AL,Alagoas,270070,Batalha,NA,NA,BR,BRA,2
+BR_AL_270080,ChIJ8QgBCwuPBgcRvt4dBlTzbso,Q2028301,NA,BR,Brazil,AL,Alagoas,270080,Belém,NA,NA,BR,BRA,2
+BR_AL_270090,ChIJG41m3I33BQcRKjZY-pa_6lM,Q1795566,NA,BR,Brazil,AL,Alagoas,270090,Belo Monte,NA,NA,BR,BRA,2
+BR_AL_270100,ChIJQUybf9WiBgcRlcdWbS3OQcU,Q1772672,NA,BR,Brazil,AL,Alagoas,270100,Boca da Mata,NA,NA,BR,BRA,2
+BR_AL_270110,ChIJIeoms-cpBwcR4SPiyVqgEmM,Q2021035,NA,BR,Brazil,AL,Alagoas,270110,Branquinha,NA,NA,BR,BRA,2
+BR_AL_270120,ChIJzywUfH4VBgcR-qPH6xEA-6w,Q1808791,NA,BR,Brazil,AL,Alagoas,270120,Cacimbinhas,NA,NA,BR,BRA,2
+BR_AL_270130,ChIJ21gtW17EBgcRPc6ZPjocAlU,Q2019063,NA,BR,Brazil,AL,Alagoas,270130,Cajueiro,NA,NA,BR,BRA,2
+BR_AL_270135,ChIJedq8rmuWAAcR728r_X3yUwI,Q2028637,NA,BR,Brazil,AL,Alagoas,270135,Campestre,NA,NA,BR,BRA,2
+BR_AL_270140,ChIJ4XIihE4nBAcRl-73ZaFeNj0,Q2028275,NA,BR,Brazil,AL,Alagoas,270140,Campo Alegre,NA,NA,BR,BRA,2
+BR_AL_270150,ChIJlbdbKh7GBQcRzJ2F2OEi_Hc,Q1814259,NA,BR,Brazil,AL,Alagoas,270150,Campo Grande,NA,NA,BR,BRA,2
+BR_AL_270160,ChIJJXldmoWMCAcREHiy5tG8tRc,Q1796020,NA,BR,Brazil,AL,Alagoas,270160,Canapi,NA,NA,BR,BRA,2
+BR_AL_270170,ChIJNTiDcFPPBgcRw-muwStQs7E,Q1955261,NA,BR,Brazil,AL,Alagoas,270170,Capela,NA,NA,BR,BRA,2
+BR_AL_270180,ChIJw2oMyUKmCAcReDl-uVyAFMc,Q1808880,NA,BR,Brazil,AL,Alagoas,270180,Carneiros,NA,NA,BR,BRA,2
+BR_AL_270190,ChIJ8Rxt-dLgBgcRwT00RYy3KV4,Q2021044,NA,BR,Brazil,AL,Alagoas,270190,Chã Preta,NA,NA,BR,BRA,2
+BR_AL_270200,ChIJJeVHuqCHBgcRUWnNKs6cjyo,Q1816142,NA,BR,Brazil,AL,Alagoas,270200,Coité do Nóia,NA,NA,BR,BRA,2
+BR_AL_270210,ChIJnb5XYh3IAAcRbId7KtG_e3w,Q1795581,NA,BR,Brazil,AL,Alagoas,270210,Colônia Leopoldina,NA,NA,BR,BRA,2
+BR_AL_270220,ChIJC-YqSIVOAQcRxhgz15Yj_2E,Q1816094,NA,BR,Brazil,AL,Alagoas,270220,Coqueiro Seco,NA,NA,BR,BRA,2
+BR_AL_270230,ChIJz1SK9n9sBAcRoJ2xvJuTYz8,Q1796426,NA,BR,Brazil,AL,Alagoas,270230,Coruripe,NA,NA,BR,BRA,2
+BR_AL_270235,ChIJ5yXt9LJwBgcRBdgfnuXU6_U,Q1795950,NA,BR,Brazil,AL,Alagoas,270235,Craíbas,NA,NA,BR,BRA,2
+BR_AL_270240,ChIJQzxipoMnCQcRYscctw92H1k,Q1808849,NA,BR,Brazil,AL,Alagoas,270240,Delmiro Gouveia,NA,NA,BR,BRA,2
+BR_AL_270250,ChIJWzHN12A9BgcRizKtIqTvyr4,Q988800,NA,BR,Brazil,AL,Alagoas,270250,Dois Riachos,NA,NA,BR,BRA,2
+BR_AL_270255,ChIJldJtxOBcBgcRR4wmXVF4ymM,Q1795573,NA,BR,Brazil,AL,Alagoas,270255,Estrela de Alagoas,NA,NA,BR,BRA,2
+BR_AL_270260,ChIJs2_sb-zNBQcR05Tf7cSrlCA,Q520936,NA,BR,Brazil,AL,Alagoas,270260,Feira Grande,NA,NA,BR,BRA,2
+BR_AL_270270,ChIJyQ84o81dBAcRdb7lrFrvS-E,Q649495,NA,BR,Brazil,AL,Alagoas,270270,Feliz Deserto,NA,NA,BR,BRA,2
+BR_AL_270280,ChIJ_2jQ8iHXAAcR2JqE_JkjuF0,Q1816177,NA,BR,Brazil,AL,Alagoas,270280,Flexeiras,NA,NA,BR,BRA,2
+BR_AL_270290,ChIJoZ2ShvzEBQcRr3rXzde9WqY,Q768122,NA,BR,Brazil,AL,Alagoas,270290,Girau do Ponciano,NA,NA,BR,BRA,2
+BR_AL_270300,ChIJZe0aFMfKAAcR7KZ454CQM9k,Q2021130,NA,BR,Brazil,AL,Alagoas,270300,Ibateguara,NA,NA,BR,BRA,2
+BR_AL_270310,ChIJpbRSam9iBgcRoVFoDdjcLF4,Q1808097,NA,BR,Brazil,AL,Alagoas,270310,Igaci,NA,NA,BR,BRA,2
+BR_AL_270320,ChIJVzdhGNeyBQcRQpoyrTAY_xM,Q594183,NA,BR,Brazil,AL,Alagoas,270320,Igreja Nova,NA,NA,BR,BRA,2
+BR_AL_270330,ChIJL35cRsHuCAcRs7oy32iaqZk,Q2021140,NA,BR,Brazil,AL,Alagoas,270330,Inhapi,NA,NA,BR,BRA,2
+BR_AL_270340,ChIJG4iV_qMABgcRt3wRXmXcFmI,Q1816248,NA,BR,Brazil,AL,Alagoas,270340,Jacaré dos Homens,NA,NA,BR,BRA,2
+BR_AL_270350,ChIJ_VmW-ceQAAcR533Om3daVt0,Q1808734,NA,BR,Brazil,AL,Alagoas,270350,Jacuípe,NA,NA,BR,BRA,2
+BR_AL_270360,ChIJNUnoyIj2AAcR6kQD49UxjSs,Q1808087,NA,BR,Brazil,AL,Alagoas,270360,Japaratinga,NA,NA,BR,BRA,2
+BR_AL_270370,ChIJ8-zO5K4LBgcRFd5c0l43w50,Q1815918,NA,BR,Brazil,AL,Alagoas,270370,Jaramataia,NA,NA,BR,BRA,2
+BR_AL_270375,ChIJ490q490OBAcRXVNmMu4O1WE,Q1808524,NA,BR,Brazil,AL,Alagoas,270375,Jequiá da Praia,NA,NA,BR,BRA,2
+BR_AL_270380,ChIJJbCt00vFAAcR7owrJFt-wBw,Q2027123,NA,BR,Brazil,AL,Alagoas,270380,Joaquim Gomes,NA,NA,BR,BRA,2
+BR_AL_270390,ChIJqT7Hmym-AAcRtKXMwafsIP8,Q2020978,NA,BR,Brazil,AL,Alagoas,270390,Jundiá,NA,NA,BR,BRA,2
+BR_AL_270400,ChIJj5vwhtkvBAcRD9Fzozd_SYw,Q1808328,NA,BR,Brazil,AL,Alagoas,270400,Junqueiro,NA,NA,BR,BRA,2
+BR_AL_270410,ChIJPVmi7_vQBQcRm_foGrTiOpQ,Q1795976,NA,BR,Brazil,AL,Alagoas,270410,Lagoa da Canoa,NA,NA,BR,BRA,2
+BR_AL_270420,ChIJxaNJHBWCBgcR1ePMULYSnmI,Q961349,NA,BR,Brazil,AL,Alagoas,270420,Limoeiro de Anadia,NA,NA,BR,BRA,2
+BR_AL_270430,ChIJSYho1vxGAQcRU3bgQ1tyLO4,Q168888,NA,BR,Brazil,AL,Alagoas,270430,Maceió,NA,NA,BR,BRA,2
+BR_AL_270440,ChIJh8euu44SBgcRdvGT5T3B0SA,Q1808271,NA,BR,Brazil,AL,Alagoas,270440,Major Izidoro,NA,NA,BR,BRA,2
+BR_AL_270450,ChIJqYA13KyKAAcRzdN6gkzEIXg,Q971736,NA,BR,Brazil,AL,Alagoas,270450,Maragogi,NA,NA,BR,BRA,2
+BR_AL_270460,ChIJhaDjj_qcCAcRYdNlOBvZEbY,Q1814508,NA,BR,Brazil,AL,Alagoas,270460,Maravilha,NA,NA,BR,BRA,2
+BR_AL_270470,ChIJO6BhUiZTAQcRpWweBgh2LbA,Q985275,NA,BR,Brazil,AL,Alagoas,270470,Marechal Deodoro,NA,NA,BR,BRA,2
+BR_AL_270480,ChIJtVfwlVeWBgcRkCgKlUhBp3M,Q2021217,NA,BR,Brazil,AL,Alagoas,270480,Maribondo,NA,NA,BR,BRA,2
+BR_AL_270490,ChIJ3bWV-zSTBgcRnPXGvrof1pY,Q2028214,NA,BR,Brazil,AL,Alagoas,270490,Mar Vermelho,NA,NA,BR,BRA,2
+BR_AL_270500,ChIJWR8pgXTxCAcRu8v4Glnv4R4,Q2027641,NA,BR,Brazil,AL,Alagoas,270500,Mata Grande,NA,NA,BR,BRA,2
+BR_AL_270510,ChIJU1iAb0DdAAcRlNml06XWp9E,Q2013614,NA,BR,Brazil,AL,Alagoas,270510,Matriz de Camaragibe,NA,NA,BR,BRA,2
+BR_AL_270520,ChIJhYIHE5wuAQcRSptZjqPseHw,Q2028160,NA,BR,Brazil,AL,Alagoas,270520,Messias,NA,NA,BR,BRA,2
+BR_AL_270530,ChIJ4e_5fSlEBgcRyM9f5sNJsb8,Q767029,NA,BR,Brazil,AL,Alagoas,270530,Minador do Negrão,NA,NA,BR,BRA,2
+BR_AL_270540,ChIJEd-U8XQBBgcRRFFcFpNooJU,Q2013634,NA,BR,Brazil,AL,Alagoas,270540,Monteirópolis,NA,NA,BR,BRA,2
+BR_AL_270550,ChIJ_4uxY1zTBgcR19WQKWpQzU4,Q1795628,NA,BR,Brazil,AL,Alagoas,270550,Murici,NA,NA,BR,BRA,2
+BR_AL_270560,ChIJI0lx3zm_AAcRavuz2iDKPtM,Q1816167,NA,BR,Brazil,AL,Alagoas,270560,Novo Lino,NA,NA,BR,BRA,2
+BR_AL_270570,ChIJL8QbKSioCAcRVueXIXFnNPI,Q1815966,NA,BR,Brazil,AL,Alagoas,270570,Olho d'Água das Flores,NA,NA,BR,BRA,2
+BR_AL_270580,ChIJ2fCfGq3aCAcRUtsCvNgWhM0,Q1808294,NA,BR,Brazil,AL,Alagoas,270580,Olho d'Água do Casado,NA,NA,BR,BRA,2
+BR_AL_270590,ChIJwSLanf24BQcRrpooPMF_6Y4,Q1795548,NA,BR,Brazil,AL,Alagoas,270590,Olho d'Água Grande,NA,NA,BR,BRA,2
+BR_AL_270600,ChIJfW45w0obBgcRoeSC79I4G2E,Q950712,NA,BR,Brazil,AL,Alagoas,270600,Olivença,NA,NA,BR,BRA,2
+BR_AL_270610,ChIJgbUm3qaDCAcRWmsB45y2kA4,Q2355814,NA,BR,Brazil,AL,Alagoas,270610,Ouro Branco,NA,NA,BR,BRA,2
+BR_AL_270620,ChIJvYAhJ3pVDwcR3z9iSo58570,Q511396,NA,BR,Brazil,AL,Alagoas,270620,Palestina,NA,NA,BR,BRA,2
+BR_AL_270630,ChIJcbzye8NeBgcRtLUuCiyytB4,Q948268,NA,BR,Brazil,AL,Alagoas,270630,Palmeira dos Índios,NA,NA,BR,BRA,2
+BR_AL_270640,ChIJOWnUlGJSDwcRnBuU2u0fPfY,Q2027100,NA,BR,Brazil,AL,Alagoas,270640,Pão de Açúcar,NA,NA,BR,BRA,2
+BR_AL_270642,ChIJg9q77rgfCQcRqj6eEeW29Z0,Q1795935,NA,BR,Brazil,AL,Alagoas,270642,Pariconha,NA,NA,BR,BRA,2
+BR_AL_270644,ChIJn_-pqzEWAQcRECzche0x220,Q1795979,NA,BR,Brazil,AL,Alagoas,270644,Paripueira,NA,NA,BR,BRA,2
+BR_AL_270650,ChIJB3BA6_nhAAcRCH12lzmp-A0,Q1772652,NA,BR,Brazil,AL,Alagoas,270650,Passo de Camaragibe,NA,NA,BR,BRA,2
+BR_AL_270660,ChIJ87xXO2nuBgcRZo-03vEeq-A,Q1800877,NA,BR,Brazil,AL,Alagoas,270660,Paulo Jacinto,NA,NA,BR,BRA,2
+BR_AL_270670,ChIJD59_quxUBAcRm7ggPXe_H64,Q1772658,NA,BR,Brazil,AL,Alagoas,270670,Penedo,NA,NA,BR,BRA,2
+BR_AL_270680,ChIJeWrSUq_3BAcR8G6qw5duMZY,Q1772595,NA,BR,Brazil,AL,Alagoas,270680,Piaçabuçu,NA,NA,BR,BRA,2
+BR_AL_270690,ChIJx3BAmjixBgcRQutvYUeDYqE,Q2013557,NA,BR,Brazil,AL,Alagoas,270690,Pilar,NA,NA,BR,BRA,2
+BR_AL_270700,ChIJO3Mk8sjqBgcROt0PecBjxX8,Q1800867,NA,BR,Brazil,AL,Alagoas,270700,Pindoba,NA,NA,BR,BRA,2
+BR_AL_270710,ChIJY4CWRhEzDwcRu1JoodHFVoA,Q1998967,NA,BR,Brazil,AL,Alagoas,270710,Piranhas,NA,NA,BR,BRA,2
+BR_AL_270720,ChIJse6195ggBgcRLFBt0YYblfM,Q1795960,NA,BR,Brazil,AL,Alagoas,270720,Poço das Trincheiras,NA,NA,BR,BRA,2
+BR_AL_270730,ChIJJ3tVlZftAAcRe01JCLE8200,Q1772636,NA,BR,Brazil,AL,Alagoas,270730,Porto Calvo,NA,NA,BR,BRA,2
+BR_AL_270740,ChIJGSjlqkTlAAcRbsPAJtLzN6g,Q1796131,NA,BR,Brazil,AL,Alagoas,270740,Porto de Pedras,NA,NA,BR,BRA,2
+BR_AL_270750,ChIJxQm3qeOkBQcRwXGTHCm4zGc,Q22036573,NA,BR,Brazil,AL,Alagoas,270750,Porto Real do Colégio,NA,NA,BR,BRA,2
+BR_AL_270760,ChIJ1beLCX_6BgcRMgfvrh52xHg,Q1772591,NA,BR,Brazil,AL,Alagoas,270760,Quebrangulo,NA,NA,BR,BRA,2
+BR_AL_270770,ChIJAThPyDw0AQcRZ3Jb1SP59XY,Q530211,NA,BR,Brazil,AL,Alagoas,270770,Rio Largo,NA,NA,BR,BRA,2
+BR_AL_270780,ChIJ8S2cTcABBAcR2bTgfXLJS7I,Q2015625,NA,BR,Brazil,AL,Alagoas,270780,Roteiro,NA,NA,BR,BRA,2
+BR_AL_270790,ChIJL-CflVBJAQcROkCezlmL3mo,Q1816274,NA,BR,Brazil,AL,Alagoas,270790,Santa Luzia do Norte,NA,NA,BR,BRA,2
+BR_AL_270800,ChIJf8zqj9YhBgcRPrEdl28pTIs,Q2021116,NA,BR,Brazil,AL,Alagoas,270800,Santana do Ipanema,NA,NA,BR,BRA,2
+BR_AL_270810,ChIJQxRLJmchBwcRDSaxQJxO8ck,Q1808118,NA,BR,Brazil,AL,Alagoas,270810,Santana do Mundaú,NA,NA,BR,BRA,2
+BR_AL_270820,ChIJrUzTk_a8BQcRTtXkx67HdRw,Q22035039,NA,BR,Brazil,AL,Alagoas,270820,São Brás,NA,NA,BR,BRA,2
+BR_AL_270830,ChIJkXT4UsUwBwcRdi4crwGrLwQ,Q1808170,NA,BR,Brazil,AL,Alagoas,270830,São José da Laje,NA,NA,BR,BRA,2
+BR_AL_270840,ChIJU2q7hKesCAcRm_17bXKt-Vs,Q1808190,NA,BR,Brazil,AL,Alagoas,270840,São José da Tapera,NA,NA,BR,BRA,2
+BR_AL_270850,ChIJY7b2jHHfAAcRZU9uxzj3l54,Q1808105,NA,BR,Brazil,AL,Alagoas,270850,São Luís do Quitunde,NA,NA,BR,BRA,2
+BR_AL_270860,ChIJlVElSmEdBAcRIsjBLexG7qs,Q1816037,NA,BR,Brazil,AL,Alagoas,270860,São Miguel dos Campos,NA,NA,BR,BRA,2
+BR_AL_270870,ChIJuZJE0jv9AAcRhHfmFQxU2dw,Q740975,NA,BR,Brazil,AL,Alagoas,270870,São Miguel dos Milagres,NA,NA,BR,BRA,2
+BR_AL_270880,ChIJUU3kTUoyBAcR8GIhGt3zNY0,Q2014339,NA,BR,Brazil,AL,Alagoas,270880,São Sebastião,NA,NA,BR,BRA,2
+BR_AL_270890,ChIJV5W3rppJAQcRSZ7GQM1GpOQ,Q1795925,NA,BR,Brazil,AL,Alagoas,270890,Satuba,NA,NA,BR,BRA,2
+BR_AL_270895,ChIJkzOYiQ29CAcRqJKTwUEsK8w,Q1795898,NA,BR,Brazil,AL,Alagoas,270895,Senador Rui Palmeira,NA,NA,BR,BRA,2
+BR_AL_270900,ChIJbSRJzeuRBgcRlEPBOyidZs8,Q1772722,NA,BR,Brazil,AL,Alagoas,270900,Tanque d'Arca,NA,NA,BR,BRA,2
+BR_AL_270910,ChIJhyW8RkmEBgcRI8zMXkaq-w4,Q22061199,NA,BR,Brazil,AL,Alagoas,270910,Taquarana,NA,NA,BR,BRA,2
+BR_AL_270915,ChIJj5ekU6AkBAcR4YLvSGAxRhI,Q1795888,NA,BR,Brazil,AL,Alagoas,270915,Teotônio Vilela,NA,NA,BR,BRA,2
+BR_AL_270920,ChIJh0uhBw_rBQcRc_jUfFHFrIk,Q1772703,NA,BR,Brazil,AL,Alagoas,270920,Traipu,NA,NA,BR,BRA,2
+BR_AL_270930,ChIJm3JfSxUpBwcR2PtBVFiXj9s,Q22063263,NA,BR,Brazil,AL,Alagoas,270930,União dos Palmares,NA,NA,BR,BRA,2
+BR_AL_270940,ChIJLaEQYuzCBgcRiod1dsp7tQU,Q22063262,NA,BR,Brazil,AL,Alagoas,270940,Viçosa,NA,NA,BR,BRA,2
+BR_AL_MCZ,ChIJSYho1vxGAQcRU3bgQ1tyLO4,Q168888,NA,BR,Brazil,AL,Alagoas,NA,NA,MCZ,Maceió,BR,BRA,3
+BR_AM,ChIJ0W4di1w_GJIR-i48a_ZqbRc,Q40040,iso/BR-AM,BR,Brazil,AM,Amazonas,NA,NA,NA,NA,BR,BRA,1
+BR_AM_130002,ChIJnyy-z5g8GpIRMI95VVIidHk,Q1808573,NA,BR,Brazil,AM,Amazonas,130002,Alvarães,NA,NA,BR,BRA,2
+BR_AM_130006,ChIJGfpPlPiG9pERww5yS7gtkIY,Q1772609,NA,BR,Brazil,AM,Amazonas,130006,Amaturá,NA,NA,BR,BRA,2
+BR_AM_130008,ChIJYRQFfXa9FJIRVfuyZ3DByF0,Q974915,NA,BR,Brazil,AM,Amazonas,130008,Anamã,NA,NA,BR,BRA,2
+BR_AM_130010,ChIJe1Ob5TvcFJIRpSequNHkhXU,Q931090,NA,BR,Brazil,AM,Amazonas,130010,Anori,NA,NA,BR,BRA,2
+BR_AM_130014,ChIJCWY65YDNSJIRBmXlBTpZIHo,Q1112525,NA,BR,Brazil,AM,Amazonas,130014,Apuí,NA,NA,BR,BRA,2
+BR_AM_130020,ChIJ81pICRh2lJERPhn12LQ0SYs,Q1793319,NA,BR,Brazil,AM,Amazonas,130020,Atalaia do Norte,NA,NA,BR,BRA,2
+BR_AM_130030,ChIJPXg3cvSeaZIRkRBINU4uL68,Q1772695,NA,BR,Brazil,AM,Amazonas,130030,Autazes,NA,NA,BR,BRA,2
+BR_AM_130040,ChIJd9S8u9VQCZIRkMq_BG0v1YM,Q807939,NA,BR,Brazil,AM,Amazonas,130040,Barcelos Municipality,NA,NA,BR,BRA,2
+BR_AM_130050,ChIJxed9rZFxZJIR3J5Y1UWKcsI,Q1772565,NA,BR,Brazil,AM,Amazonas,130050,Barreirinha,NA,NA,BR,BRA,2
+BR_AM_130060,ChIJcRcnJUHr8pER7YFg6P14FH4,Q1767926,NA,BR,Brazil,AM,Amazonas,130060,Benjamin Constant,NA,NA,BR,BRA,2
+BR_AM_130063,ChIJ6dhmBwArFZIRa4cdJyHVIqk,Q584172,NA,BR,Brazil,AM,Amazonas,130063,Beruri,NA,NA,BR,BRA,2
+BR_AM_130068,ChIJLfJihZczZJIRVNUwNEQuYMY,Q940548,NA,BR,Brazil,AM,Amazonas,130068,Boa Vista do Ramos,NA,NA,BR,BRA,2
+BR_AM_130070,ChIJ68dikK2ggJERu6nZaNPic14,Q1793334,NA,BR,Brazil,AM,Amazonas,130070,Boca do Acre,NA,NA,BR,BRA,2
+BR_AM_130080,ChIJpeEpQLkJQpIRMLZ1EEtmW9A,Q2089660,NA,BR,Brazil,AM,Amazonas,130080,Borba,NA,NA,BR,BRA,2
+BR_AM_130083,ChIJecxX2j9Wa5IRsulESBd_Yis,Q945469,NA,BR,Brazil,AM,Amazonas,130083,Caapiranga,NA,NA,BR,BRA,2
+BR_AM_130090,ChIJoeS730Q6MJIRjJxm_InaT7Q,Q1807050,NA,BR,Brazil,AM,Amazonas,130090,Canutama,NA,NA,BR,BRA,2
+BR_AM_130100,ChIJi7OKV_E7IJIRKCrfyN-XHJw,Q1794236,NA,BR,Brazil,AM,Amazonas,130100,Carauari,NA,NA,BR,BRA,2
+BR_AM_130110,ChIJRdTpJGKxa5IRrsxcC8fmua0,Q1751325,NA,BR,Brazil,AM,Amazonas,130110,Careiro,NA,NA,BR,BRA,2
+BR_AM_130115,ChIJo2WCE7EBbJIRublIV2vy6tc,Q1807045,NA,BR,Brazil,AM,Amazonas,130115,Careiro da Várzea,NA,NA,BR,BRA,2
+BR_AM_130120,ChIJ4xom88FoFpIR0tDSXMTLzPs,Q645204,NA,BR,Brazil,AM,Amazonas,130120,Coari,NA,NA,BR,BRA,2
+BR_AM_130130,ChIJez8v5lr_FJIRsSpYJkyK3l8,Q1762074,NA,BR,Brazil,AM,Amazonas,130130,Codajás,NA,NA,BR,BRA,2
+BR_AM_130140,ChIJwaUQiUNNjpEROyjJajE1KXQ,Q1646910,NA,BR,Brazil,AM,Amazonas,130140,Eirunepé,NA,NA,BR,BRA,2
+BR_AM_130150,ChIJU9de9RJnhZERB1_FL74veE0,Q1750090,NA,BR,Brazil,AM,Amazonas,130150,Envira,NA,NA,BR,BRA,2
+BR_AM_130160,ChIJpZT7up2iHJIRXXYppUUYaBE,Q1793768,NA,BR,Brazil,AM,Amazonas,130160,Fonte Boa,NA,NA,BR,BRA,2
+BR_AM_130165,ChIJwQfMmGzRmZER65I5IQcLyc8,Q1808440,NA,BR,Brazil,AM,Amazonas,130165,Guajará,NA,NA,BR,BRA,2
+BR_AM_130170,ChIJZ2Rqg-_ZMJIRh2_HMMgvYrY,Q1025760,NA,BR,Brazil,AM,Amazonas,130170,Humaitá,NA,NA,BR,BRA,2
+BR_AM_130180,ChIJNSb272u4kJERRekfQrlr8x4,Q1794374,NA,BR,Brazil,AM,Amazonas,130180,Ipixuna,NA,NA,BR,BRA,2
+BR_AM_130185,ChIJG6NauR72a5IRhJMUKcg1Nnc,Q1761947,NA,BR,Brazil,AM,Amazonas,130185,Iranduba,NA,NA,BR,BRA,2
+BR_AM_130190,ChIJtcjfJys0b5IRYopfymXrQq8,Q1750426,NA,BR,Brazil,AM,Amazonas,130190,Itacoatiara,NA,NA,BR,BRA,2
+BR_AM_130195,ChIJb9f9y1oPiZERlZo3Kmii9_g,Q1102558,NA,BR,Brazil,AM,Amazonas,130195,Itamarati,NA,NA,BR,BRA,2
+BR_AM_130200,ChIJ4-mY5iGbb5IRi5QjP6p9uVk,Q1808448,NA,BR,Brazil,AM,Amazonas,130200,Itapiranga,NA,NA,BR,BRA,2
+BR_AM_130210,ChIJYbW5SAADA5IRYHhmo_bTlPY,Q1757955,NA,BR,Brazil,AM,Amazonas,130210,Japurá,NA,NA,BR,BRA,2
+BR_AM_130220,ChIJG88LzxSmHpIR96CVCrNmPLA,Q1008285,NA,BR,Brazil,AM,Amazonas,130220,Juruá,NA,NA,BR,BRA,2

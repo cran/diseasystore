@@ -12,7 +12,7 @@
 
 
 
-<title>diseasystore: Google Health COVID-19 Open Data</title>
+<title>diseasystore: ECDC Respiratory Viruses Weekly</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -336,83 +336,84 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<h1 class="title toc-ignore">diseasystore: Google Health COVID-19 Open
-Data</h1>
+<h1 class="title toc-ignore">diseasystore: ECDC Respiratory Viruses
+Weekly</h1>
 
 
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(diseasystore)</span></code></pre></div>
-<p>The Google COVID-19 data repository is a comprehensive open
-repository of COVID-19 data.</p>
+<p>The Respiratory viruses weekly repository contains weekly summaries
+of the <a href="https://erviss.org/">erviss</a> data for Influenza-Like
+Illness (ILI) and Acute Respiratory Infection (ARI).</p>
 <p>This vignette shows how to use (some of) this data through the
 <code>diseasystore</code> package.</p>
-<p>First, it is a good idea to copy the relevant Google COVID-19 data
-files locally and store that location as an option for the package.
-<code>DiseasystoreGoogleCovid19</code> uses only the age-stratified
-metrics for COVID-19, so only a subset of the repository is needed to
-download.</p>
+<p>First, it is a good idea to clone the repository locally and store
+that location as an option for the package.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># First we set the path we want to use as an option</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="st">&quot;diseasystore.DiseasystoreGoogleCovid19.source_conn&quot;</span> <span class="ot">=</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="st">&quot;diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn&quot;</span> <span class="ot">=</span></span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>    <span class="fu">file.path</span>(<span class="st">&quot;local&quot;</span>, <span class="st">&quot;path&quot;</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>)</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co"># Ensure folder exists</span></span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>source_conn <span class="ot">&lt;-</span> <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreGoogleCovid19&quot;</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>source_conn <span class="ot">&lt;-</span> <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreEcdcRespiratoryViruses&quot;</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(source_conn)) {</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  <span class="fu">dir.create</span>(source_conn, <span class="at">recursive =</span> <span class="cn">TRUE</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>}</span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Define the Google files to download</span></span>
-<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>google_files <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;by-age.csv&quot;</span>, <span class="st">&quot;demographics.csv&quot;</span>, <span class="st">&quot;index.csv&quot;</span>, <span class="st">&quot;weather.csv&quot;</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
-<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co"># Download each file and compress them to reduce storage</span></span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>purrr<span class="sc">::</span><span class="fu">walk</span>(google_files, <span class="sc">~</span> {</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">diseasyoption</span>(<span class="st">&quot;remote_conn&quot;</span>, <span class="st">&quot;DiseasystoreGoogleCovid19&quot;</span>), .)</span>
-<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  destfile <span class="ot">&lt;-</span> <span class="fu">file.path</span>(</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreGoogleCovid19&quot;</span>),</span>
-<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    .</span>
-<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>  )</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(destfile)) {</span>
-<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>    <span class="fu">download.file</span>(url, destfile)</span>
-<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>  }</span>
-<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>})</span></code></pre></div>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co"># Clone the repository</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="fu">system2</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>  <span class="st">&quot;git&quot;</span>,</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>  <span class="at">args =</span> <span class="fu">c</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>    <span class="fu">paste</span>(<span class="st">&quot;-C&quot;</span>, source_conn),</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>    <span class="st">&quot;clone https://github.com/EU-ECDC/Respiratory_viruses_weekly_data&quot;</span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>  ),</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  <span class="at">stdout =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>)</span></code></pre></div>
 <p>The <code>diseasystores</code> require a database to store its
 features in. These should be configured before use and can be stored in
 the packages options.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># We define target_conn as a function that opens a DBIconnection to the DB</span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>target_conn <span class="ot">&lt;-</span> \() DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>())</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">options</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="st">&quot;diseasystore.DiseasystoreGoogleCovid19.target_conn&quot;</span> <span class="ot">=</span> target_conn</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="st">&quot;diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn&quot;</span> <span class="ot">=</span> target_conn</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>)</span></code></pre></div>
-<p>Once the files are downloaded and the target DB is configured, we can
-initialize the <code>diseasystore</code> that uses the Google COVID-19
-data.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ds <span class="ot">&lt;-</span> DiseasystoreGoogleCovid19<span class="sc">$</span><span class="fu">new</span>()</span></code></pre></div>
+<p>Once the files are downloaded and the target database is configured,
+we can initialize the <code>diseasystore</code> that uses the ECDC
+Respiratory Viruses Weekly data.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ds <span class="ot">&lt;-</span> DiseasystoreEcdcRespiratoryViruses<span class="sc">$</span><span class="fu">new</span>()</span></code></pre></div>
 <p>Once configured such, we can use the feature store directly to get
 data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># We can see all the available features in the feature store</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;n_population&quot;    &quot;age_group&quot;       &quot;country_id&quot;      &quot;country&quot;        </span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;region_id&quot;       &quot;region&quot;          &quot;subregion_id&quot;    &quot;subregion&quot;      </span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;n_hospital&quot;      &quot;n_deaths&quot;        &quot;n_positive&quot;      &quot;n_icu&quot;          </span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; [13] &quot;n_ventilator&quot;    &quot;min_temperature&quot; &quot;max_temperature&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># And then retrieve a feature from the feature store</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="at">feature =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-06-01&quot;</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_012&gt; [?? x 5]</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; # Database: sqlite 3.45.0 []</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA      18262       18263</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 2 AR           0                   NA      18263       18264</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 3 AR           0                   NA      18264       18265</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 4 AR           0                   NA      18265       18266</span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; 5 AR           0                   NA      18266       18267</span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;iliari_rates&quot;   &quot;infection_type&quot; &quot;age_group&quot;</span></span></code></pre></div>
+<p>If you have locally cloned the repository, you may consider pulling
+data from the repository manually and disabling automatic pulls.
+Otherwise, the <code>diseasystore</code> will check for updates every
+time you request a feature.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Manually update the repository</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">system2</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="st">&quot;git&quot;</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">args =</span> <span class="fu">paste</span>(<span class="st">&quot;-C&quot;</span>, <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreEcdcRespiratoryViruses&quot;</span>)),</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">stdout =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co"># Disable automatic pulls</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">options</span>(<span class="st">&quot;diseasystore.DiseasystoreEcdcRespiratoryViruses.pull&quot;</span> <span class="ot">=</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># And then retrieve a feature from the feature store</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="at">feature =</span> <span class="st">&quot;iliari_rates&quot;</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-01-01&quot;</span>),</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-03-01&quot;</span>))</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_006&gt; [?? x 6]</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; # Database: sqlite 3.45.0 []</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;   key_location age_group infection_type  rate valid_from valid_until</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; 1 Austria      &lt;NA&gt;      ILI            2072.      19387       19394</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; 2 Austria      &lt;NA&gt;      ILI            2140.      19380       19387</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; 3 Austria      &lt;NA&gt;      ILI            2160.      19394       19401</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; 4 Austria      &lt;NA&gt;      ILI            2411.      19373       19380</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; 5 Austria      &lt;NA&gt;      ILI            2469.      19401       19408</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 
 
 

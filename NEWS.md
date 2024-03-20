@@ -1,3 +1,25 @@
+# diseasystore 0.2.0
+
+## New Features:
+
+* `DiseasystoreEcdcRespiratoryViruses`: A feature store that uses the ECDC Respiratory viruses weekly repository (#124).
+
+* With the release of `{SCDB}` v0.4, we now support more database backends:
+
+  * SQLite with attached schemas (#121).
+
+  * Microsoft SQL Server (#128).
+
+  * PostgreSQL (#128).
+
+  * DuckDB (#127).
+
+* `test_diseasystore()` is added to provide a standardised method for testing new diseasystores (#123).
+
+## Minor Improvements and Fixes:
+
+* `diseasyoption()` now allows a default option to be set with the `.default` argument (#122).
+
 # diseasystore 0.1.1
 
 ## Fixes:

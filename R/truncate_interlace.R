@@ -94,22 +94,30 @@ truncate_interlace <- function(primary, secondary = NULL) {
       # First we find keys that are common with current secondary table and the primary table
       common_keys <- intersect(primary_keys, colnames(.x)[startsWith(colnames(.x), "key_")])
 
-      if (length(common_keys) == 0) stop("No common keys found to interlace by!")
+      if (length(common_keys) == 0) {
+        stop("No common keys found to interlace by!")
+      }
 
       # We then join the tables by these keys and truncate the secondary table to validity range of the primary
       dplyr::left_join(x = primary, y = .x, suffix = c("", ".y"), by = common_keys) |>
-        dplyr::filter((.data$valid_from  < .data$valid_until.y) |   # Keep secondary records
-                        is.na(.data$valid_until.y),                 # that is within validity
-                      (.data$valid_until > .data$valid_from.y)  |   # of the primary data.
-                        is.na(.data$valid_until) |
-                        is.na(.data$valid_until.y)) |>
-        dplyr::mutate("valid_from"  = pmax(.data$valid_from,  .data$valid_from.y,  na.rm = TRUE),
-                      "valid_until" = pmin(.data$valid_until, .data$valid_until.y, na.rm = TRUE)) |>
+        dplyr::filter( # Keep secondary records that is within validity of the primary data.
+          (.data$valid_from  < .data$valid_until.y) | is.na(.data$valid_until.y),
+          (.data$valid_until > .data$valid_from.y)  | is.na(.data$valid_until)
+        ) |>
+        dplyr::mutate(
+          "valid_from"  = ifelse(.data$valid_from  >= .data$valid_from.y,  .data$valid_from,  .data$valid_from.y),      # nolint: ifelse_censor_linter
+          "valid_until" = ifelse(.data$valid_until <= .data$valid_until.y, .data$valid_until, .data$valid_until.y)      # nolint: ifelse_censor_linter
+        ) |>
         dplyr::select(-tidyselect::ends_with(".y"))
     })
 
   # With the secondary data truncated, we can interlace and return
-  out <- SCDB::interlace_sql(secondary_truncated, by = purrr::pluck(primary_keys, 1))
+  if (packageVersion("SCDB") <= "0.3") {
+    interlace <- SCDB::interlace_sql
+  } else {
+    interlace <- utils::getFromNamespace("interlace", "SCDB")
+  }
+  out <- interlace(secondary_truncated, by = purrr::pluck(primary_keys, 1))
 
   return(out)
 }

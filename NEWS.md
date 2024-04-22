@@ -1,3 +1,7 @@
+# diseasystore 0.2.1
+
+* Support for `{SCDB}` v0.3 is removed.
+
 # diseasystore 0.2.0
 
 ## New Features:

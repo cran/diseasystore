@@ -1,6 +1,6 @@
 Package: diseasystore
 Title: Feature Stores for the 'diseasy' Framework
-Version: 0.2.0
+Version: 0.2.1
 Authors@R: 
     c(person("Rasmus Skytte", "Randl\u00F8v", , "rske@ssi.dk", role = c("aut", "cre"),
              comment = c(ORCID = "0000-0002-5860-3838")),
@@ -23,10 +23,10 @@ License: GPL (>= 3)
 Encoding: UTF-8
 RoxygenNote: 7.3.1
 Language: en-GB
-Imports: checkmate, DBI, dbplyr, dplyr, glue, ISOweek, lintr,
-        lubridate, purrr, readr, rlang, R6, SCDB (>= 0.3.0), stringr,
+Imports: checkmate, DBI, dbplyr, dplyr, glue, ISOweek, jsonlite,
+        lubridate, purrr, readr, rlang, R6, SCDB (>= 0.4.0), stringr,
         tidyr, tidyselect, zoo
-Suggests: devtools, duckdb, curl, jsonlite, knitr, odbc, rmarkdown,
+Suggests: devtools, duckdb, curl, knitr, lintr, odbc, rmarkdown,
         RSQLite, RPostgres, testthat (>= 3.0.0), tibble, spelling,
         withr
 VignetteBuilder: knitr
@@ -35,7 +35,7 @@ URL: https://github.com/ssi-dk/diseasystore,
 BugReports: https://github.com/ssi-dk/diseasystore/issues
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-03-20 11:28:23 UTC; B246705
+Packaged: 2024-04-22 13:58:42 UTC; B246705
 Author: Rasmus Skytte Randløv [aut, cre]
     (<https://orcid.org/0000-0002-5860-3838>),
   Marcus Munch Grünewald [ctb] (<https://orcid.org/0009-0006-8090-406X>),
@@ -47,4 +47,4 @@ Author: Rasmus Skytte Randløv [aut, cre]
   Statens Serum Institut, SSI [cph, fnd]
 Maintainer: Rasmus Skytte Randløv <rske@ssi.dk>
 Repository: CRAN
-Date/Publication: 2024-03-20 11:50:05 UTC
+Date/Publication: 2024-04-22 14:22:36 UTC

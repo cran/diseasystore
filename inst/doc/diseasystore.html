@@ -346,7 +346,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>To see the available <code>diseasystores</code> on your system, you
 can use the <code>available_diseasystores()</code> function.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">available_diseasystores</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;DiseasystoreEcdcRespiratoryViruses&quot; &quot;DiseasystoreGoogleCovid19&quot;</span></span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;DiseasystoreEcdcRespiratoryViruses&quot; &quot;DiseasystoreGoogleCovid19&quot;         </span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt; [3] &quot;DiseasystoreSimulist&quot;</span></span></code></pre></div>
 <p>This function looks for <code>diseasystores</code> on the current
 search path. By default, this will show the <code>diseasystores</code>
 bundled with the base package. If you have <a href="extending-diseasystore.html">extended</a>
@@ -356,10 +357,10 @@ the package to your search path will allow it to show up as
 available.</p>
 <p>Note: <code>diseasystores</code> are found if they are defined within
 packages named <code>diseasystore*</code> and are of the class
-<code>DiseasystoreBase</code>.</p>
+<code>?DiseasystoreBase</code>.</p>
 <p>Each of these <code>diseasystores</code> may have their own vignette
 that further details their content, use and/or tips and tricks. This is
-for example the case with <a href="diseasystore-google-covid-19.html"><code>DiseasystoreGoogleCovid19</code></a>.</p>
+for example the case with <code>?DiseasystoreGoogleCovid19</code>.</p>
 </div>
 <div id="using-a-diseasystore" class="section level1">
 <h1>Using a diseasystore</h1>
@@ -369,13 +370,13 @@ data bases to store the computed features in. Each
 <code>diseasystore</code> may require individual configuration as listed
 in its documentation or accompanying vignette.</p>
 <p>For this Quick start, we will configure a
-<code>DiseasystoreGoogleCovid19</code> to use a local
-<code>SQLite</code> data base Ideally, we want to use a faster, more
+<code>?DiseasystoreGoogleCovid19</code> to use a local
+<code>{duckdb}</code> data base Ideally, we want to use a faster, more
 capable, data base to store the features in. The
-<code>diseasystores</code> uses <code>SCDB</code> in the back end and
-can use any data base back end supported by <code>SCDB</code>.</p>
+<code>diseasystores</code> uses <code>{SCDB}</code> in the back end and
+can use any data base back end supported by <code>{SCDB}</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>ds <span class="ot">&lt;-</span> DiseasystoreGoogleCovid19<span class="sc">$</span><span class="fu">new</span>(</span>
-<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">target_conn =</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>()),</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">target_conn =</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>()),</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-01&quot;</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-15&quot;</span>)</span>
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>)</span></code></pre></div>
@@ -394,15 +395,15 @@ interval simpler.</p>
 <code>start_date</code> and <code>end_date</code> we specified during
 creation of <code>ds</code>):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;`dbplyr_FrtBjrCm7u`&gt; [?? x 5]</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # Database: sqlite 3.46.0 []</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_lwgKnzgPt6&gt; [?? x 5]</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA      18322       18323</span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2 AR           0                   NA      18330       18331</span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3 AR           0                    0      18324       18325</span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4 AR           0                    1      18323       18324</span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5 AR           0                    1      18327       18328</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1 AR           2                    1 2020-03-01 2020-03-02 </span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3 AR           6                    0 2020-03-01 2020-03-02 </span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4 AR           2                    2 2020-03-03 2020-03-04 </span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5 AR           4                    3 2020-03-07 2020-03-08 </span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 <p>Notice that features have associated “key_*” and “valid_from/until”
 columns. These are used for one of the primary selling points of
@@ -412,15 +413,15 @@ columns. These are used for one of the primary selling points of
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-01&quot;</span>),</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-02&quot;</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;`dbplyr_511lAfaY2s`&gt; [?? x 5]</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Database: sqlite 3.46.0 []</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_zI20mZ09GP&gt; [?? x 5]</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA      18322       18323</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 AR           0                    1      18323       18324</span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 AR           1                    0      18323       18324</span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 AR           1                    1      18322       18323</span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 AR           2                    1      18322       18323</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 AR           2                    1 2020-03-01 2020-03-02 </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 AR           6                    0 2020-03-01 2020-03-02 </span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 AR           3                    0 2020-03-02 2020-03-03 </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 AR           6                    1 2020-03-02 2020-03-03 </span></span>
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 </div>
 <div id="dynamically-expanded" class="section level1">
@@ -458,24 +459,33 @@ built-in automatic aggregation.</p>
 <p>We saw above that the features come with additional associated
 “key_*” and “valid_from/until” columns.</p>
 <p>This additional information is used to do automatic aggregation
-through the <code>$key_join_features()</code> method (see <a href="extending-diseasystore.html">extending-diseasystore</a> for more
-details).</p>
+through the <code>?DieasystoreBase$key_join_features()</code> method
+(see <a href="extending-diseasystore.html">extending-diseasystore</a>
+for more details).</p>
 <p>To use this method, you need to provide the <code>observable</code>
 that you want to aggregate and the <code>stratification</code> you want
 to apply to the aggregation.</p>
+<p>To see which features are considered “observables” and which are
+considered “stratifications” you can use the included methods:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>ds<span class="sc">$</span>available_observables</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;n_population&quot;    &quot;n_hospital&quot;      &quot;n_deaths&quot;        &quot;n_positive&quot;     </span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; [5] &quot;n_icu&quot;           &quot;n_ventilator&quot;    &quot;min_temperature&quot; &quot;max_temperature&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>ds<span class="sc">$</span>available_stratifications</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;age_group&quot;    &quot;country_id&quot;   &quot;country&quot;      &quot;region_id&quot;    &quot;region&quot;      </span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; [6] &quot;subregion_id&quot; &quot;subregion&quot;</span></span></code></pre></div>
 <p>Lets start with an simple example where we request no stratification
 (<code>NULL</code>):</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>                     <span class="at">stratification =</span> <span class="cn">NULL</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 2</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#&gt;   date       n_hospital</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;          &lt;dbl&gt;</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01          3</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02          6</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03          5</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04         12</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05          8</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                     <span class="at">stratification =</span> <span class="cn">NULL</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 2</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt;   date       n_hospital</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;          &lt;dbl&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01          3</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02          6</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03          5</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04         12</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05          8</span></span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
 <p>This gives us the same feature information as
 <code>ds$get_feature(&quot;n_hospital&quot;)</code> but simplified to give the
 observable per day (in this case, the number of people
@@ -483,31 +493,31 @@ hospitalised).</p>
 <p>To specify a level of <code>stratification</code>, we need to supply
 a list of <code>quosures</code> (see
 <code>help(&quot;topic-quosure&quot;, package = &quot;rlang&quot;)</code>).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id))</span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 3</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#&gt;   date       country_id n_hospital</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR                  3</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR                  6</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR                  5</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR                 12</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR                  8</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id))</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 3</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt;   date       country_id n_hospital</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR                  3</span></span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR                  6</span></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR                  5</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR                 12</span></span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR                  8</span></span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
 <p>The <code>stratification</code> argument is very flexible, so we can
 supply any valid R expression:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id,</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>                                                  <span class="at">old =</span> age_group <span class="sc">==</span> <span class="st">&quot;90+&quot;</span>))</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 4</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt;   date       country_id   old n_hospital</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;      &lt;int&gt;      &lt;dbl&gt;</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR             0         27</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR             0         54</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR             0         45</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR             0        108</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR             0         72</span></span>
-<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a><span class="co">#&gt; # ℹ 25 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id,</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                                                  <span class="at">old =</span> age_group <span class="sc">==</span> <span class="st">&quot;90+&quot;</span>))</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 4</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;   date       country_id old   n_hospital</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;      &lt;lgl&gt;      &lt;dbl&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR         TRUE           3</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR         TRUE           6</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR         TRUE           5</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR         TRUE          12</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR         TRUE           8</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; # ℹ 25 more rows</span></span></code></pre></div>
 </div>
 <div id="dropping-computed-features" class="section level1">
 <h1>Dropping computed features</h1>
@@ -518,160 +528,109 @@ function.</p>
 <code>diseasystore</code> schema. A <code>pattern</code> argument to
 match tables by and a <code>schema</code> argument to specify the schema
 to delete from<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn)</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co">#&gt;    schema                              table</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; 1    main       ds.google_covid_19_age_group</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt; 2    main           ds.google_covid_19_index</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt; 3    main        ds.google_covid_19_hospital</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 4    main                           ds.locks</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 5    main                            ds.logs</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 6    temp                ds_validities_17400</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 7    temp                  dbplyr_SSpXjAGfwr</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 8    temp                     SCDB_17400_040</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; 9    temp                     SCDB_17400_036</span></span>
-<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a><span class="co">#&gt; 10   temp                  dbplyr_GtRJTuBYT9</span></span>
-<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co">#&gt; 11   temp                  dbplyr_SQFYQXK5BY</span></span>
-<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a><span class="co">#&gt; 12   temp ds_google_covid_19_age_group_17400</span></span>
-<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a><span class="co">#&gt; 13   temp                  dbplyr_RdVKfUH6qN</span></span>
-<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co">#&gt; 14   temp          ds_all_combinations_17400</span></span>
-<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a><span class="co">#&gt; 15   temp                  dbplyr_sSMF2ujf3P</span></span>
-<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a><span class="co">#&gt; 16   temp                  dbplyr_bca9DxGjG8</span></span>
-<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a><span class="co">#&gt; 17   temp                     SCDB_17400_041</span></span>
-<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a><span class="co">#&gt; 18   temp                  dbplyr_phKSxFcywP</span></span>
-<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co">#&gt; 19   temp                     SCDB_17400_032</span></span>
-<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="co">#&gt; 20   temp                     SCDB_17400_028</span></span>
-<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a><span class="co">#&gt; 21   temp                     SCDB_17400_025</span></span>
-<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co">#&gt; 22   temp                  dbplyr_511lAfaY2s</span></span>
-<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="co">#&gt; 23   temp               ds_study_dates_17400</span></span>
-<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a><span class="co">#&gt; 24   temp                  dbplyr_FrtBjrCm7u</span></span>
-<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a><span class="co">#&gt; 25   temp                  dbplyr_GKzjmx4LWB</span></span>
-<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a><span class="co">#&gt; 26   temp                     SCDB_17400_033</span></span>
-<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co">#&gt; 27   temp                  dbplyr_eD5tjxFsFI</span></span>
-<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="co">#&gt; 28   temp                     SCDB_17400_024</span></span>
-<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a><span class="co">#&gt; 29   temp                  dbplyr_Lqqx8MtXGl</span></span>
-<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a><span class="co">#&gt; 30   temp     ds_google_covid_19_index_17400</span></span>
-<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a><span class="co">#&gt; 31   temp                     SCDB_17400_017</span></span>
-<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co">#&gt; 32   temp  ds_google_covid_19_hospital_17400</span></span>
-<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="co">#&gt; 33   temp                  dbplyr_UpL0EiARt2</span></span>
-<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a><span class="co">#&gt; 34   temp                     SCDB_17400_020</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">drop_diseasystore</span>(<span class="at">conn =</span> ds<span class="sc">$</span>target_conn)</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn)</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt;    schema                              table</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt; 1    temp                ds_validities_17400</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt; 2    temp                  dbplyr_SSpXjAGfwr</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 3    temp                     SCDB_17400_040</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 4    temp                     SCDB_17400_036</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 5    temp                  dbplyr_GtRJTuBYT9</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 6    temp                  dbplyr_SQFYQXK5BY</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 7    temp ds_google_covid_19_age_group_17400</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; 8    temp                  dbplyr_RdVKfUH6qN</span></span>
-<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a><span class="co">#&gt; 9    temp          ds_all_combinations_17400</span></span>
-<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a><span class="co">#&gt; 10   temp                  dbplyr_sSMF2ujf3P</span></span>
-<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a><span class="co">#&gt; 11   temp                  dbplyr_bca9DxGjG8</span></span>
-<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="co">#&gt; 12   temp                     SCDB_17400_041</span></span>
-<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a><span class="co">#&gt; 13   temp                  dbplyr_phKSxFcywP</span></span>
-<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a><span class="co">#&gt; 14   temp                     SCDB_17400_032</span></span>
-<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a><span class="co">#&gt; 15   temp                     SCDB_17400_028</span></span>
-<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a><span class="co">#&gt; 16   temp                     SCDB_17400_025</span></span>
-<span id="cb11-21"><a href="#cb11-21" tabindex="-1"></a><span class="co">#&gt; 17   temp                  dbplyr_511lAfaY2s</span></span>
-<span id="cb11-22"><a href="#cb11-22" tabindex="-1"></a><span class="co">#&gt; 18   temp               ds_study_dates_17400</span></span>
-<span id="cb11-23"><a href="#cb11-23" tabindex="-1"></a><span class="co">#&gt; 19   temp                  dbplyr_FrtBjrCm7u</span></span>
-<span id="cb11-24"><a href="#cb11-24" tabindex="-1"></a><span class="co">#&gt; 20   temp                  dbplyr_GKzjmx4LWB</span></span>
-<span id="cb11-25"><a href="#cb11-25" tabindex="-1"></a><span class="co">#&gt; 21   temp                     SCDB_17400_033</span></span>
-<span id="cb11-26"><a href="#cb11-26" tabindex="-1"></a><span class="co">#&gt; 22   temp                  dbplyr_eD5tjxFsFI</span></span>
-<span id="cb11-27"><a href="#cb11-27" tabindex="-1"></a><span class="co">#&gt; 23   temp                     SCDB_17400_024</span></span>
-<span id="cb11-28"><a href="#cb11-28" tabindex="-1"></a><span class="co">#&gt; 24   temp                  dbplyr_Lqqx8MtXGl</span></span>
-<span id="cb11-29"><a href="#cb11-29" tabindex="-1"></a><span class="co">#&gt; 25   temp     ds_google_covid_19_index_17400</span></span>
-<span id="cb11-30"><a href="#cb11-30" tabindex="-1"></a><span class="co">#&gt; 26   temp                     SCDB_17400_017</span></span>
-<span id="cb11-31"><a href="#cb11-31" tabindex="-1"></a><span class="co">#&gt; 27   temp  ds_google_covid_19_hospital_17400</span></span>
-<span id="cb11-32"><a href="#cb11-32" tabindex="-1"></a><span class="co">#&gt; 28   temp                  dbplyr_UpL0EiARt2</span></span>
-<span id="cb11-33"><a href="#cb11-33" tabindex="-1"></a><span class="co">#&gt; 29   temp                     SCDB_17400_020</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt;   catalog schema                        table</span></span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt; 1  memory   main ds.google_covid_19_age_group</span></span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; 2  memory   main  ds.google_covid_19_hospital</span></span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; 3  memory   main     ds.google_covid_19_index</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; 4  memory   main                     ds.locks</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; 5  memory   main                      ds.logs</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">drop_diseasystore</span>(<span class="at">conn =</span> ds<span class="sc">$</span>target_conn)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; [1] catalog schema  table  </span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
 </div>
 <div id="diseasystore-options" class="section level1">
 <h1>diseasystore options</h1>
 <p><code>diseasystores</code> have a number of options available to make
 configuration easier. These options all start with “diseasystore.”.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">options</span>()[purrr<span class="sc">::</span><span class="fu">keep</span>(<span class="fu">names</span>(<span class="fu">options</span>()), <span class="sc">~</span> <span class="fu">startsWith</span>(., <span class="st">&quot;diseasystore&quot;</span>))]</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.pull</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.remote_conn</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://api.github.com/repos/EU-ECDC/Respiratory_viruses_weekly_data&quot;</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn</span></span>
-<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://api.github.com/repos/EU-ECDC/Respiratory_viruses_weekly_data&quot;</span></span>
-<span id="cb12-10"><a href="#cb12-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-11"><a href="#cb12-11" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn</span></span>
-<span id="cb12-12"><a href="#cb12-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-13"><a href="#cb12-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-14"><a href="#cb12-14" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.target_schema</span></span>
-<span id="cb12-15"><a href="#cb12-15" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-16"><a href="#cb12-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-17"><a href="#cb12-17" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.n_max</span></span>
-<span id="cb12-18"><a href="#cb12-18" tabindex="-1"></a><span class="co">#&gt; [1] 1000</span></span>
-<span id="cb12-19"><a href="#cb12-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-20"><a href="#cb12-20" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.remote_conn</span></span>
-<span id="cb12-21"><a href="#cb12-21" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span>
-<span id="cb12-22"><a href="#cb12-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-23"><a href="#cb12-23" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.source_conn</span></span>
-<span id="cb12-24"><a href="#cb12-24" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span>
-<span id="cb12-25"><a href="#cb12-25" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-26"><a href="#cb12-26" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.target_conn</span></span>
-<span id="cb12-27"><a href="#cb12-27" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-28"><a href="#cb12-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-29"><a href="#cb12-29" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.target_schema</span></span>
-<span id="cb12-30"><a href="#cb12-30" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-31"><a href="#cb12-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-32"><a href="#cb12-32" tabindex="-1"></a><span class="co">#&gt; $diseasystore.lock_wait_increment</span></span>
-<span id="cb12-33"><a href="#cb12-33" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span>
-<span id="cb12-34"><a href="#cb12-34" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-35"><a href="#cb12-35" tabindex="-1"></a><span class="co">#&gt; $diseasystore.lock_wait_max</span></span>
-<span id="cb12-36"><a href="#cb12-36" tabindex="-1"></a><span class="co">#&gt; [1] 1800</span></span>
-<span id="cb12-37"><a href="#cb12-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-38"><a href="#cb12-38" tabindex="-1"></a><span class="co">#&gt; $diseasystore.source_conn</span></span>
-<span id="cb12-39"><a href="#cb12-39" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-40"><a href="#cb12-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-41"><a href="#cb12-41" tabindex="-1"></a><span class="co">#&gt; $diseasystore.target_conn</span></span>
-<span id="cb12-42"><a href="#cb12-42" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
-<span id="cb12-43"><a href="#cb12-43" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-44"><a href="#cb12-44" tabindex="-1"></a><span class="co">#&gt; $diseasystore.target_schema</span></span>
-<span id="cb12-45"><a href="#cb12-45" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ds&quot;</span></span>
-<span id="cb12-46"><a href="#cb12-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-47"><a href="#cb12-47" tabindex="-1"></a><span class="co">#&gt; $diseasystore.verbose</span></span>
-<span id="cb12-48"><a href="#cb12-48" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
-<p>Notice that several options are set as empty strings (““). These are
-treated as <code>NULL</code> by <code>diseasystore</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>To see all options related to <code>diseasystore</code>, we can use
+the <code>diseasyoption()</code> function without arguments.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">diseasyoption</span>()</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.pull</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.remote_conn</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://api.github.com/repos/EU-ECDC/Respiratory_viruses_weekly_data&quot;</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://api.github.com/repos/EU-ECDC/Respiratory_viruses_weekly_data&quot;</span></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn</span></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreEcdcRespiratoryViruses.target_schema</span></span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.n_max</span></span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a><span class="co">#&gt; [1] 1000</span></span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.remote_conn</span></span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.source_conn</span></span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-26"><a href="#cb14-26" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.target_conn</span></span>
+<span id="cb14-27"><a href="#cb14-27" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-28"><a href="#cb14-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-29"><a href="#cb14-29" tabindex="-1"></a><span class="co">#&gt; $diseasystore.DiseasystoreGoogleCovid19.target_schema</span></span>
+<span id="cb14-30"><a href="#cb14-30" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-31"><a href="#cb14-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-32"><a href="#cb14-32" tabindex="-1"></a><span class="co">#&gt; $diseasystore.lock_wait_increment</span></span>
+<span id="cb14-33"><a href="#cb14-33" tabindex="-1"></a><span class="co">#&gt; [1] 15</span></span>
+<span id="cb14-34"><a href="#cb14-34" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-35"><a href="#cb14-35" tabindex="-1"></a><span class="co">#&gt; $diseasystore.lock_wait_max</span></span>
+<span id="cb14-36"><a href="#cb14-36" tabindex="-1"></a><span class="co">#&gt; [1] 1800</span></span>
+<span id="cb14-37"><a href="#cb14-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-38"><a href="#cb14-38" tabindex="-1"></a><span class="co">#&gt; $diseasystore.source_conn</span></span>
+<span id="cb14-39"><a href="#cb14-39" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-40"><a href="#cb14-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-41"><a href="#cb14-41" tabindex="-1"></a><span class="co">#&gt; $diseasystore.target_conn</span></span>
+<span id="cb14-42"><a href="#cb14-42" tabindex="-1"></a><span class="co">#&gt; [1] &quot;&quot;</span></span>
+<span id="cb14-43"><a href="#cb14-43" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-44"><a href="#cb14-44" tabindex="-1"></a><span class="co">#&gt; $diseasystore.target_schema</span></span>
+<span id="cb14-45"><a href="#cb14-45" tabindex="-1"></a><span class="co">#&gt; [1] &quot;ds&quot;</span></span>
+<span id="cb14-46"><a href="#cb14-46" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb14-47"><a href="#cb14-47" tabindex="-1"></a><span class="co">#&gt; $diseasystore.verbose</span></span>
+<span id="cb14-48"><a href="#cb14-48" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>This returns all options related to <code>diseasystore</code> and its
+sister package <code>{diseasy}</code>.</p>
+<p>If you want the options for a specific <code>package</code>, you can
+use the <code>namespace</code> argument. Notice that several options are
+set as empty strings (““). These are treated as <code>NULL</code> by
+<code>diseasystore</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
 <p>Importantly, the options are <em>scoped</em>. Consider the above
 options for “source_conn”: Looking at the list of options we find
 “diseasystore.source_conn” and
 “diseasystore.DiseasystoreGoogleCovid19.source_conn”. The former is a
 general setting while the latter is specific setting for
-<code>DiseasystoreGoogleCovid19</code>. The general setting is used as
+<code>?DiseasystoreGoogleCovid19</code>. The general setting is used as
 fallback if no specific setting is found.</p>
 <p>This allows you to set a general configuration to use and to
 overwrite it for specific cases.</p>
 <p>To get the option related to a scope, we can use the
 <code>diseasyoption()</code> function.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreGoogleCovid19&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreGoogleCovid19&quot;</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;https://storage.googleapis.com/covid19-open-data/v3/&quot;</span></span></code></pre></div>
 <p>As we saw in the options, a <code>source_conn</code> option was
-defined specifically for <code>DiseasystoreGoogleCovid19</code>.</p>
+defined specifically for <code>?DiseasystoreGoogleCovid19</code>.</p>
 <p>If we try the same for the hypothetical
 <code>DiseasystoreDiseaseY</code>, we see that no value is defined as we
 have not yet configured the fallback value.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>If we change our general setting for <code>source_conn</code> and
 retry, we see that we get the fallback value.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">options</span>(<span class="st">&quot;diseasystore.source_conn&quot;</span> <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&quot;local&quot;</span>, <span class="st">&quot;path&quot;</span>))</span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>)</span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;local/path&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">options</span>(<span class="st">&quot;diseasystore.source_conn&quot;</span> <span class="ot">=</span> <span class="fu">file.path</span>(<span class="st">&quot;local&quot;</span>, <span class="st">&quot;path&quot;</span>))</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;local/path&quot;</span></span></code></pre></div>
 <p>Finally, we can use the <code>.default</code> argument as a final
 fallback value in case no option is set for either general or specific
 case.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;non_existent&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>, <span class="at">.default =</span> <span class="st">&quot;final fallback&quot;</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;final fallback&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;non_existent&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>, <span class="at">.default =</span> <span class="st">&quot;final fallback&quot;</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;final fallback&quot;</span></span></code></pre></div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />

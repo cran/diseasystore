@@ -241,6 +241,10 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <p>This vignette gives you the knowledge you need to create your own
 <code>diseasystore</code>.</p>
+<p>Once you have familiarised yourself with the concepts, you can
+consult the <code>vignette(&quot;extending-diseasystore-example&quot;)</code>,
+where we go through how a individual-level <code>diseasystore</code> can
+be implemented.</p>
 <div id="the-diseasy-data-model" class="section level1">
 <h1>The diseasy data model</h1>
 <p>To begin, we go through the data model used within the
@@ -271,14 +275,14 @@ table<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
 <div id="from_ts-and-until_ts" class="section level3">
 <h3><code>from_ts</code> and <code>until_ts</code></h3>
 <p><code>diseasystore</code> uses <code>{SCDB}</code> in the background
-to store the computed features. <code>SCDB</code> implements the second
-temporal dimension which indicates when a record was present in the
-data. This information is encoded in the columns <code>from_ts</code>
-and <code>until_ts</code>. Normally, you don’t see these columns when
-working with <code>diseasystore</code> since they are masked by
-<code>SCDB</code>. However, if you inspect the tables created in the
-database by diseasystore, you will find they are present. For our
-purposes, it is sufficient to know that these column gives a
+to store the computed features. <code>{SCDB}</code> implements the
+second temporal dimension which indicates when a record was present in
+the data. This information is encoded in the columns
+<code>from_ts</code> and <code>until_ts</code>. Normally, you don’t see
+these columns when working with <code>diseasystore</code> since they are
+masked by <code>{SCDB}</code>. However, if you inspect the tables
+created in the database by diseasystore, you will find they are present.
+For our purposes, it is sufficient to know that these column gives a
 time-versioned data base where we can extract previous versions through
 the <code>slice_ts</code> argument. By supplying any time <code>τ</code>
 as <code>slice_ts</code>, we get the data as they were available on that
@@ -303,12 +307,18 @@ machine learning and is any individual piece of information.</p>
 <p>We subdivide features into two categories: “observables” and
 “stratifications”. On most levels, these are indistinguishable, but
 their purposes differ and hence we need to handle them individually.</p>
+<p>To see the available features of a <code>diseasystore</code>, you can
+use the <code>?DiseasystoreBase$available_features()</code> method.</p>
 <div id="observables" class="section level3">
 <h3>Observables</h3>
-<p>In <code>diseasystore</code> any feature whose name either starts
-with “n_” or ends with “_temperature” are treated as “observables”. From
-a modelling perspective, these observables are typically the metrics you
+<p>In <code>diseasystore</code> any feature whose name starts with “n_”
+is treated as “observables” (by default). For specific
+<code>diseasystores</code>, the naming convention may differ. From a
+modelling perspective, these observables are typically the metrics you
 want to model or take as inputs to inform your model.</p>
+<p>To see the available observables in a <code>diseasystore</code>, you
+can use the <code>?DiseasystoreBase$available_observables()</code>
+method.</p>
 </div>
 <div id="stratifications" class="section level3">
 <h3>Stratifications</h3>
@@ -319,6 +329,9 @@ features).</p>
 <p>A prominent example for most disease models would be a stratification
 feature like “age_group”, since most diseases show a strong dependency
 on the age of the affected individuals.</p>
+<p>To see the available observables in a <code>diseasystore</code>, you
+can use the <code>?DiseasystoreBase$available_stratifications()</code>
+method.</p>
 </div>
 <div id="naming-convention" class="section level3">
 <h3>Naming convention</h3>
@@ -334,14 +347,15 @@ analyses and disease models to new <code>diseasystores</code>.</p>
 <h1>Creating FeatureHandlers</h1>
 <p>To facilitate the automatic coupling and aggregation of features, we
 use the <code>?FeatureHandler</code> class. Each feature<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> in the
-<code>diseasystore</code> has an associated <code>FeatureHandler</code>
+<code>diseasystore</code> has an associated <code>?FeatureHandler</code>
 which implements the computation, retrieval and aggregation of the
 feature.</p>
 <div id="computing-features" class="section level2">
 <h2>Computing features</h2>
-<p>The <code>FeatureHandler</code> defines a <code>compute</code>
-function which must be on the form:</p>
-<pre><code>compute = function(start_date, end_date, slice_ts, source_conn)</code></pre>
+<p>The <code>?FeatureHandler</code> defines a
+<code>?FeatureHandler$compute()</code> function which must be on the
+form:</p>
+<pre><code>compute = function(start_date, end_date, slice_ts, source_conn, ...)</code></pre>
 <p>The arguments <code>start_date</code> and <code>end_date</code>
 indicates the period for which features should be computed. The
 <code>diseasystores</code> are <a href="diseasystore.html#dynamically-expanded">dynamically expanded</a>,
@@ -356,15 +370,27 @@ date, features corresponding to this date should be computed.</p>
 FeatureHandler indicating where the source data needed to compute the
 features is stored (e.g. a database connection or directory).</p>
 <p>Note that multiple features can be computed by a single
-<code>FeatureHandler</code>. For example, you may decide that it is more
-convenient for compute multiple different features simultaneously
+<code>?FeatureHandler</code>. For example, you may decide that it is
+more convenient for compute multiple different features simultaneously
 (e.g. a hospitalisation and the classification of said hospitalisation
 or a test and the associated test result).</p>
+<p>When <code>?FeatureHandler$compute()</code> is called by the
+<code>diseasystore</code>, it also passes a reference to itself as
+<code>ds</code> via the <code>...</code> argument. This means that if
+the implementation of <code>?FeatureHandler$compute()</code> needs
+access to other features to compute the given feature, the compute
+function can pick up the <code>ds</code> reference adding it to the
+function signature:</p>
+<pre><code>compute = function(start_date, end_date, slice_ts, source_conn, ds, ...)</code></pre>
+<p>And then use
+<code>ds$get_feature(&lt;feature&gt;, start_date = start_date, end_date = end_date, slice_ts = slice_ts)</code>
+to retrieve the necessary features for the computation.</p>
 </div>
 <div id="retrieving-features" class="section level2">
 <h2>Retrieving features</h2>
-<p>The <code>FeatureHandler</code> defines a <code>$get()</code>
-function which must be in the form:</p>
+<p>The <code>?FeatureHandler</code> defines a
+<code>?FeatureHandler$get()</code> function which must be in the
+form:</p>
 <pre><code>get = function(target_table, slice_ts, target_conn)</code></pre>
 <p>Typically, you do not need to specify this function since the default
 (a variant of <code>SCDB::get_table()</code>) always works.</p>
@@ -376,7 +402,7 @@ above, <code>slice_ts</code> is the time-keeping variable.</p>
 </div>
 <div id="aggregators" class="section level2">
 <h2>Aggregators</h2>
-<p>The <code>FeatureHandler</code> defines a <code>key_join</code>
+<p>The <code>?FeatureHandler</code> defines a <code>key_join</code>
 function which must be on the form:</p>
 <pre><code>key_join = function(.data, feature)</code></pre>
 <p>In most cases, you should be able to use the bundled
@@ -399,9 +425,12 @@ argument.</p>
 <div id="putting-it-all-together" class="section level2">
 <h2>Putting it all together</h2>
 <p>By now, you should know the basics of creating your own
-<code>FeatureHandlers</code>. To see some <code>FeatureHandlers</code>
-in action, you can consult a few of those bundled with the
-<code>diseasystore</code> package.</p>
+<code>?FeatureHandler</code>s.</p>
+<p>For a detailed walkthrough on creating a <code>diseasystore</code>,
+see the <code>vignette(&quot;extending-diseasystore-example&quot;)</code>.</p>
+<p>To see some other <code>?FeatureHandler</code>s in action, you can
+consult a few of those bundled with the <code>diseasystore</code>
+package.</p>
 <p>For example:</p>
 <ul>
 <li><p><a href="https://github.com/ssi-dk/diseasystore/blob/ceedbe1/R/DiseasystoreGoogleCovid19.R#L161">DiseasystoreGoogleCovid19:
@@ -414,7 +443,7 @@ min temperature</a></p></li>
 <div id="creating-a-diseasystore" class="section level1">
 <h1>Creating a <code>diseasystore</code></h1>
 <p>With the knowledge of how to build custom
-<code>FeatureHandlers</code>, we turn our attention to the remaining
+<code>?FeatureHandlers</code>, we turn our attention to the remaining
 parts of the <code>diseasystore</code>’s anatomy.</p>
 <p>The <code>diseasystores</code> are <a href="https://r6.r-lib.org/index.html">R6 classes</a> which is a
 implementation of object-oriented (OO) programming. To those unfamiliar
@@ -429,26 +458,31 @@ elsewhere<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>.</p>
 <div id="ds_map" class="section level2">
 <h2>ds_map</h2>
 <p>The <code>ds_map</code> field of the <code>diseasystore</code> tells
-the <code>diseasystore</code> which <code>FeatureHandler</code> is
+the <code>diseasystore</code> which <code>?FeatureHandler</code> is
 responsible for each feature, thus allowing the
 <code>diseasystore</code> to retrieve the features specified in the
 <code>observable</code> and <code>stratification</code> arguments of
-calls to <code>$get_feature()</code>.</p>
+calls to <code>?DiseasystoreBase$get_feature()</code>.</p>
 <p>In other words, it maps the names of features to their corresponding
-<code>FeatureHandlers</code>.</p>
-<p>As we saw above, a <code>FeatureHandler</code> may compute more than
+<code>?FeatureHandlers</code>.</p>
+<p>As we saw above, a <code>?FeatureHandler</code> may compute more than
 a single feature. Each feature should be mapped to the
-<code>FeatureHandler</code> here or else the <code>diseasystore</code>
+<code>?FeatureHandler</code> here or else the <code>diseasystore</code>
 will not be able to automatically interact with it.</p>
-<p>By convention, the name of the <code>FeatureHandler</code> should be
+<p>By convention, the name of the <code>?FeatureHandler</code> should be
 snake_case and contain a <code>diseasystore</code> specific prefix
-(e.g. for <code>DiseasystoreGoogleCovid19</code>, all
-<code>FeatureHandlers</code> are named “google_covid_19_<feature>”).</p>
+(e.g. for <code>?DiseasystoreGoogleCovid19</code>, all
+<code>?FeatureHandlers</code> are named
+“google_covid_19_<feature>”).</p>
 <p>These names are used as the table names when storing the features in
 the database, and the prefix helps structure the database
 accordingly.</p>
 <p>This latter part becomes important when <a href="diseasystore.html#dropping-computed-features">clean up</a> for the
 data base needs to be performed.</p>
+<p>By default, any feature whose name starts with “n_” is treated as an
+observable feature. To override this behaviour, you can specify the
+regex pattern <code>$observables_regex</code> to match the names of the
+observable features in your case.</p>
 </div>
 <div id="key-join-filter" class="section level2">
 <h2>Key join filter</h2>
@@ -459,13 +493,13 @@ that the data includes aggregations at different levels, nested within
 the data.</p>
 <p>For example, the Google COVID-19 data repository contains information
 on both country-level and region-level in the same data files. When the
-user of <code>DiseasystoreGoogleCovid19</code> asks to get a feature
+user of <code>?DiseasystoreGoogleCovid19</code> asks to get a feature
 stratified by, for example, “country_id”, we need to filter out the data
 aggregated at the region level.</p>
-<p>This is the purpose of <code>$key_join_filter()</code>. It takes as
-input the requested stratifications and filters the data accordingly
-after the features have been joined inside the
-<code>diseasystore</code>.</p>
+<p>This is the purpose of
+<code>?DiseastoreBase$key_join_filter()</code>. It takes as input the
+requested stratifications and filters the data accordingly after the
+features have been joined inside the <code>diseasystore</code>.</p>
 <p>For an example, you can consult <a href="https://github.com/ssi-dk/diseasystore/blob/ceedbe1/R/DiseasystoreGoogleCovid19.R#L75">DiseasystoreGoogleCovid19:
 key_join_filter</a></p>
 </div>
@@ -474,13 +508,41 @@ key_join_filter</a></p>
 <p>The <code>diseasystore</code> package includes the function
 <code>test_diseasystore()</code> to test the <code>diseasystores</code>.
 You can see how to call the testing suite in action with
-<code>DiseasystoreGoogleCovid19</code> as an example <a href="https://github.com/ssi-dk/diseasystore/blob/main/tests/testthat/test-DiseasystoreGoogleCovid19.R">here</a>.</p>
+<code>?DiseasystoreGoogleCovid19</code> as an example <a href="https://github.com/ssi-dk/diseasystore/blob/main/tests/testthat/test-DiseasystoreGoogleCovid19.R">here</a>.</p>
+</div>
+<div id="exposing-the-period-of-data-availability" class="section level2">
+<h2>Exposing the period of data availability</h2>
+<p>To allow the <code>diseasystores</code> to be used programmatically,
+we expose the period of data availability for each
+<code>diseasystore</code>. These are defined in the
+<code>$.min_start_date</code> and <code>$.max_end_date</code> private
+fields of the <code>diseasystore</code>.</p>
+</div>
+<div id="limiting-support-for-some-database-backends" class="section level2">
+<h2>Limiting support for some database backends</h2>
+<p>In some cases, the <code>diseasystores</code> may not be compatible
+with all database backends. For example, the bundled
+<code>DiseasystoreSimulist</code> (see
+<code>vignette(&quot;extending-diseasystore-example&quot;)</code>) is not
+compatible with SQLite due to lack of date support.</p>
+<p>In this case, we add a check to the <code>initialize</code> method of
+the <code>diseasystore</code> to ensure that the database backend is
+compatible with the <code>diseasystore</code>.</p>
+<pre><code>  initialize = function(...) {
+    super$initialize(...)
+
+    # We do not support SQLite for this diseasystore since it has poor support
+    # for date operations
+    checkmate::assert_disjunct(class(self$target_conn), &quot;SQLiteConnection&quot;)
+
+    ...
+  }</code></pre>
 </div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
-<li id="fn1"><p>The <code>SCDB</code> package places
+<li id="fn1"><p>The <code>{SCDB}</code> package places
 <code>checksum</code>, <code>from_ts</code>, and <code>until_ts</code>
 as the last columns. But <code>valid_from</code> and
 <code>valid_until</code> should be the last columns in the output passed
@@ -488,7 +550,7 @@ to <code>SCDB</code>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
 <li id="fn2"><p>In practice, this means that the names of features
 should be in <code>snake_case</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 <li id="fn3"><p>Or “coupled” set of features as we will soon see.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
-<li id="fn4"><p>By the <code>DiseasystoreBase</code> class.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>By the <code>?DiseasystoreBase</code> class.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 

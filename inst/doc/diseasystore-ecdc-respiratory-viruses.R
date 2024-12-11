@@ -20,8 +20,8 @@ if (rlang::is_installed("withr")) {
   )
 }
 
-# We have a "hard" dependency for RSQLite to render parts of this vignette
-suggests_available <- rlang::is_installed("RSQLite")
+# We have a "hard" dependency for duckdb to render parts of this vignette
+suggests_available <- rlang::is_installed("duckdb")
 not_on_cran <- interactive() || identical(Sys.getenv("NOT_CRAN"), "true") || identical(Sys.getenv("CI"), "true")
 
 ## ----download_data, eval = FALSE----------------------------------------------
@@ -85,13 +85,13 @@ if (purrr::some(test_file, ~ !checkmate::test_file_exists(file.path(local_conn, 
 
 ## ----configure_diseasystore, eval = FALSE-------------------------------------
 #  # We define target_conn as a function that opens a DBIconnection to the DB
-#  target_conn <- \() DBI::dbConnect(RSQLite::SQLite())
+#  target_conn <- \() DBI::dbConnect(duckdb::duckdb())
 #  options(
 #    "diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn
 #  )
 
 ## ----configure_diseasystore_hidden, include = FALSE, eval = not_on_cran && suggests_available && data_available----
-target_conn <- \() DBI::dbConnect(RSQLite::SQLite())
+target_conn <- \() DBI::dbConnect(duckdb::duckdb())
 if (rlang::is_installed("withr")) {
   withr::local_options("diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn)
 } else {

@@ -42,6 +42,7 @@ DiseasystoreBase <- R6::R6Class(                                                
       checkmate::assert_date(end_date, null.ok = TRUE,   add = coll)
       checkmate::assert(
         checkmate::check_date(slice_ts),
+        checkmate::check_posixct(slice_ts),
         checkmate::check_character(slice_ts, pattern = r"{^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?}", null.ok = TRUE),
         add = coll
       )
@@ -110,6 +111,12 @@ DiseasystoreBase <- R6::R6Class(                                                
                            end_date   = self %.% end_date,
                            slice_ts   = self %.% slice_ts) {
 
+      coll <- checkmate::makeAssertCollection()
+      checkmate::assert_date(start_date, lower = self$min_start_date, add = coll)
+      checkmate::assert_date(end_date,   upper = self$max_end_date, add = coll)
+      checkmate::reportAssertions(coll)
+
+
       # Load the available features
       ds_map <- self %.% ds_map
 
@@ -120,6 +127,7 @@ DiseasystoreBase <- R6::R6Class(                                                
       checkmate::assert_date(end_date,   any.missing = FALSE, add = coll)
       checkmate::assert(
         checkmate::check_date(slice_ts),
+        checkmate::check_posixct(slice_ts),
         checkmate::check_character(slice_ts, pattern = r"{^\d{4}-\d{2}-\d{2}(?: \d{2}:\d{2}:\d{2})?}", null.ok = TRUE),
         add = coll
       )
@@ -150,10 +158,10 @@ DiseasystoreBase <- R6::R6Class(                                                
         # Add a LOCK to the diseasystore
         wait_time <- 0 # seconds
         while (!isTRUE(SCDB::lock_table(self %.% target_conn, target_table, self %.% target_schema))) {
-          Sys.sleep(diseasyoption("lock_wait_increment"))
-          wait_time <- wait_time + diseasyoption("lock_wait_increment")
-          if (wait_time > diseasyoption("lock_wait_max")) {
-            stop(glue::glue("Lock not released within {diseasyoption('lock_wait_max')/60} minutes. Giving up."))
+          Sys.sleep(diseasyoption("lock_wait_increment", self))
+          wait_time <- wait_time + diseasyoption("lock_wait_increment", self)
+          if (wait_time > diseasyoption("lock_wait_max", self)) {
+            stop(glue::glue("Lock not released within {diseasyoption('lock_wait_max', self)/60} minutes. Giving up."))
           }
         }
 
@@ -175,15 +183,18 @@ DiseasystoreBase <- R6::R6Class(                                                
         purrr::pwalk(ds_missing_ranges, \(start_date, end_date) {
 
           # Compute the feature for the date range
+          # Pass a reference to this diseasystore instance in case the `FeatureHandler` needs other features to compute
           ds_feature <- do.call(what = purrr::pluck(private, feature_loader) %.% compute,
                                 args = list(start_date = start_date, end_date = end_date,
-                                            slice_ts = slice_ts, source_conn = self %.% source_conn))
+                                            slice_ts = slice_ts, source_conn = self %.% source_conn,
+                                            ds = self))
 
           # Check it table is copied to target DB
           if (!inherits(ds_feature, "tbl_dbi") || !identical(self %.% source_conn, self %.% target_conn)) {
             ds_feature <- ds_feature |>
               dplyr::copy_to(self %.% target_conn, df = _,
-                             name = paste("ds", feature_loader, Sys.getpid(), sep = "_"), overwrite = TRUE)
+                             name = paste("ds", feature_loader, Sys.getpid(), sep = "_"))
+            SCDB::defer_db_cleanup(ds_feature)
           }
 
           # Add the existing computed data for given slice_ts
@@ -248,7 +259,8 @@ DiseasystoreBase <- R6::R6Class(                                                
       # We need to slice to the period of interest.
       # to ensure proper conversion of variables, we first copy the limits over and then do an inner_join
       validities <- data.frame(valid_from = start_date, valid_until = end_date) |>
-        dplyr::copy_to(self %.% target_conn, df = _, name = paste0("ds_validities_", Sys.getpid()), overwrite = TRUE)
+        dplyr::copy_to(self %.% target_conn, df = _, name = paste0("ds_validities_", Sys.getpid()))
+      SCDB::defer_db_cleanup(validities)
 
       out <- dplyr::inner_join(out, validities,
                                sql_on = '"LHS"."valid_from" <= "RHS"."valid_until" AND
@@ -265,26 +277,22 @@ DiseasystoreBase <- R6::R6Class(                                                
     #'   that contains keys to witch the secondary features (defined by `stratification`) can be joined.
     #' @param observable (`character`)\cr
     #'   The name of a feature defined in the feature store
-    #' @param stratification (`list`(`quosures`))\cr
+    #' @param stratification (`list`(`quosures`) or `NULL`)\cr
     #'   Expressions in `stratification` are evaluated to find appropriate features.
     #'   These are then joined to the observable feature before `stratification` is performed.
+    #'
+    #'   If `NULL` (default) no stratification is performed.
     #' @param start_date `r rd_start_date()`
     #' @param end_date `r rd_end_date()`
     #' @return
     #'   A tbl_dbi with the requested joined features for the study period.
     #' @importFrom dbplyr window_order
-    key_join_features = function(observable, stratification,
+    key_join_features = function(observable, stratification = NULL,
                                  start_date = self %.% start_date,
                                  end_date   = self %.% end_date) {
 
-      # Validate input
-      available_observables  <- self$available_features |>
-        purrr::keep(~ startsWith(., "n_") | endsWith(., "_temperature"))
-      available_stratifications <- self$available_features |>
-        purrr::discard(~ startsWith(., "n_") | endsWith(., "_temperature"))
-
       coll <- checkmate::makeAssertCollection()
-      checkmate::assert_choice(observable, available_observables, add = coll)
+      checkmate::assert_choice(observable, self$available_observables, add = coll)
       checkmate::assert(
         checkmate::check_list(stratification, types = "character", null.ok = TRUE),
         checkmate::check_multi_class(stratification, c("character", "quosure", "quosures"), null.ok = TRUE),
@@ -299,63 +307,8 @@ DiseasystoreBase <- R6::R6Class(                                                
 
       # We start by copying the study_dates to the conn to ensure SQLite compatibility
       study_dates <- data.frame(valid_from = start_date, valid_until = base::as.Date(end_date + lubridate::days(1))) |>
-        dplyr::copy_to(self %.% target_conn, df = _, name = paste0("ds_study_dates_", Sys.getpid()), overwrite = TRUE)
-
-      # Determine which features are affected by a stratification
-      if (!is.null(stratification)) {
-
-        # Create regex detection for features
-        ds_map_regex <- paste0(r"{(?<=^|\W)}", names(ds_map), r"{(?=$|\W)}")
-
-        # Perform detection of features in the stratification
-        stratification_features <- purrr::map(stratification, rlang::as_label) |>
-          purrr::map(\(label) {
-            purrr::map(ds_map_regex, ~ stringr::str_extract(label, .x)) |>
-              purrr::discard(is.na)
-          }) |>
-          unlist() |>
-          unique()
-
-        # Report if stratification not found
-        if (is.null(stratification_features)) {
-          err <- glue::glue("Stratification variable not found. ",
-                            "Available stratification variables are: ",
-                            "{toString(available_stratifications)}")
-          stop(err)
-        }
-
-        stratification_names <- purrr::map(stratification, rlang::as_label)
-        stratification_names <- purrr::map2_chr(stratification_names,
-                                                names(stratification_names),
-                                                ~ ifelse(.y == "", .x, .y)) |>
-          unname()
-
-        # Check stratification features are not observables
-        stopifnot("Stratification features cannot be observables" =
-                    purrr::none(stratification_names, ~ . %in% available_observables))
-
-        # Fetch requested stratification features from the feature store
-        stratification_data <- stratification_features |>
-          unique() |>
-          purrr::map(~ {
-            # Fetch the requested stratification feature from the feature store and truncate to the start
-            #  and end dates to simplify the interlaced output
-            self$get_feature(.x, start_date, end_date) |>
-              dplyr::cross_join(study_dates, suffix = c("", ".d")) |>
-              dplyr::mutate(
-                "valid_from" = ifelse(.data$valid_from >= .data$valid_from.d, .data$valid_from, .data$valid_from.d),    # nolint: ifelse_censor_linter
-                "valid_until" = dplyr::coalesce(
-                  ifelse(.data$valid_until <= .data$valid_until.d, .data$valid_until, .data$valid_until.d),             # nolint: ifelse_censor_linter
-                  .data$valid_until.d
-                )
-              ) |>
-              dplyr::select(!ends_with(".d"))
-          })
-      } else {
-        stratification_features <- NULL
-        stratification_names <- NULL
-        stratification_data <- NULL
-      }
+        dplyr::copy_to(self %.% target_conn, df = _, name = paste0("ds_study_dates_", Sys.getpid()))
+      SCDB::defer_db_cleanup(study_dates)
 
       # Fetch the requested observable from the feature store and truncate to the start and end dates
       # to simplify the interlaced output
@@ -374,21 +327,84 @@ DiseasystoreBase <- R6::R6Class(                                                
       observable_keys  <- colnames(dplyr::select(observable_data, tidyselect::starts_with("key_")))
 
       # Give warning if stratification features are already in the observables data
-      existing_stratification <- intersect(colnames(observable_data), stratification_features)
+      # First we identify the computations being done in the stratifications, only stratifications that compute a new
+      # entity can lead to unexpected behaviour. If the user just request a already existing stratification, there will
+      # be no ambiguities.
+      new_stratifications <- stratification |>
+        purrr::map(rlang::as_label) |>
+        names() |>
+        purrr::discard(~ . == "")
+
+      # .. and then we look for overlap with existing stratifications
+      existing_stratification <- intersect(colnames(observable_data), new_stratifications)
       if (length(existing_stratification) > 0) {
         warning("Observable already stratified by: ", toString(existing_stratification), ". ",
                 "Output might be inconsistent with expectation.")
       }
 
-      # Map stratification_data to observable_keys (if not already)
-      if (!is.null(stratification_data)) {
-        stratification_keys <- purrr::map(stratification_data,
-                                          ~ colnames(dplyr::select(., tidyselect::starts_with("key_"))))
 
-        stratification_data <- stratification_data |>
-          purrr::map_if(!purrr::map_lgl(stratification_keys, ~ any(observable_keys %in% .)),
-                        ~ .)
+      # Determine which features are affected by a stratification
+      if (!is.null(stratification)) {
+
+        # Create regex detection for features
+        ds_map_regex <- paste0(r"{(?<=^|\W)}", names(ds_map), r"{(?=$|\W)}")
+
+        # Perform detection of features in the stratification
+        stratification_features <- stratification |>
+          purrr::map(~ rlang::quo_text(., width = 500L)) |> # Convert expr to string we can parse
+          purrr::map(\(label) {
+            purrr::map(ds_map_regex, ~ stringr::str_extract(label, .x)) |>
+              purrr::discard(is.na)
+          }) |>
+          unlist() |>
+          unique()
+
+        # Report if stratification not found
+        if (is.null(stratification_features)) {
+          err <- glue::glue("Stratification variable not found. ",
+                            "Available stratification variables are: ",
+                            "{toString(self$available_stratifications)}")
+          stop(err)
+        }
+
+        # Determine the name of the columns created by the stratifications
+        stratification_names <- stratification |>
+          purrr::map(rlang::as_label) |>
+          purrr::imap_chr(~ ifelse(.y == "", .x, .y)) |>
+          unname()
+
+        # Check stratification names do not collide with any of the observables
+        stopifnot("Stratification features cannot be observables" =
+                    purrr::none(stratification_names, ~ . %in% self$available_observables))
+
+        # Fetch requested stratification features from the feature store
+        stratification_data <- stratification_features |>
+          purrr::discard(~ . %in% colnames(observable_data)) |> # Skip those already in the observable data
+          unique() |>
+          purrr::map(~ {
+            # Fetch the requested stratification feature from the feature store and truncate to the start
+            #  and end dates to simplify the interlaced output
+            self$get_feature(.x, start_date, end_date) |>
+              dplyr::cross_join(study_dates, suffix = c("", ".d")) |>
+              dplyr::mutate(
+                "valid_from" = ifelse(.data$valid_from >= .data$valid_from.d, .data$valid_from, .data$valid_from.d),    # nolint: ifelse_censor_linter
+                "valid_until" = dplyr::coalesce(
+                  ifelse(.data$valid_until <= .data$valid_until.d, .data$valid_until, .data$valid_until.d),             # nolint: ifelse_censor_linter
+                  .data$valid_until.d
+                )
+              ) |>
+              dplyr::select(!ends_with(".d"))
+          })
+
+        # Check if no stratification data was pulled
+        if (length(stratification_data) == 0) stratification_data <- NULL
+
+      } else {
+        stratification_features <- NULL
+        stratification_names <- NULL
+        stratification_data <- NULL
       }
+
 
       # Merge and prepare for counting
       out <- truncate_interlace(observable_data, stratification_data) |>
@@ -409,17 +425,17 @@ DiseasystoreBase <- R6::R6Class(                                                
       # Add the new valid counts
       t_add <- out |>
         dplyr::group_by(!!!stratification) |>
-        dplyr::group_by(date = valid_from, .add = TRUE) |>
+        dplyr::group_by("date" = .data$valid_from, .add = TRUE) |>
         key_join_aggregator(observable) |>
-        dplyr::rename(n_add = n) |>
+        dplyr::rename("n_add" = "n") |>
         dplyr::compute()
 
       # Add the new invalid counts
       t_remove <- out |>
         dplyr::group_by(!!!stratification) |>
-        dplyr::group_by(date = valid_until, .add = TRUE) |>
+        dplyr::group_by("date" = .data$valid_until, .add = TRUE) |>
         key_join_aggregator(observable) |>
-        dplyr::rename(n_remove = n) |>
+        dplyr::rename("n_remove" = "n") |>
         dplyr::compute()
 
       # Get all combinations to merge onto
@@ -438,7 +454,8 @@ DiseasystoreBase <- R6::R6Class(                                                
         if (is.null(stratification)) {
           all_combinations <- all_combinations |>
             dplyr::copy_to(self %.% target_conn, df = _,
-                           name = paste0("ds_all_combinations_", Sys.getpid()), overwrite = TRUE)
+                           name = paste0("ds_all_combinations_", Sys.getpid()))
+          SCDB::defer_db_cleanup(all_combinations)
         }
       }
 
@@ -446,17 +463,17 @@ DiseasystoreBase <- R6::R6Class(                                                
       data <- t_add |>
         dplyr::right_join(all_combinations, by = c("date", stratification_names), na_matches = "na") |>
         dplyr::left_join(t_remove,  by = c("date", stratification_names), na_matches = "na") |>
-        tidyr::replace_na(list(n_add = 0, n_remove = 0)) |>
+        tidyr::replace_na(list("n_add" = 0, "n_remove" = 0)) |>
         dplyr::group_by(dplyr::across(tidyselect::all_of(stratification_names))) |>
         dbplyr::window_order(date) |>
-        dplyr::mutate(date, !!observable := cumsum(n_add) - cumsum(n_remove)) |>
+        dplyr::mutate(!!observable := cumsum(.data$n_add) - cumsum(.data$n_remove)) |>
         dplyr::ungroup() |>
-        dplyr::select(date, all_of(stratification_names), !!observable) |>
+        dplyr::select("date", all_of(stratification_names), !!observable) |>
         dplyr::collect()
 
       # Ensure date is of type Date
       data <- data |>
-        dplyr::mutate(date = as.Date(date))
+        dplyr::mutate("date" = as.Date(.data$date))
 
 
       # Clean up
@@ -494,6 +511,24 @@ DiseasystoreBase <- R6::R6Class(                                                
       .f = active_binding,
       name = "available_features",
       expr = return(names(self$ds_map))
+    ),
+
+
+    #' @field available_observables (`character`)\cr
+    #'   A list of available observables in the feature store. Read only.
+    available_observables = purrr::partial(
+      .f = active_binding,
+      name = "available_observables",
+      expr = return(purrr::keep(self$available_features, ~ stringr::str_detect(., private$.observables_regex)))
+    ),
+
+
+    #' @field available_stratifications (`character`)\cr
+    #'   A list of available stratifications in the feature store. Read only.
+    available_stratifications = purrr::partial(
+      .f = active_binding,
+      name = "available_stratifications",
+      expr = return(purrr::discard(self$available_features, ~ stringr::str_detect(., private$.observables_regex)))
     ),
 
 
@@ -552,6 +587,22 @@ DiseasystoreBase <- R6::R6Class(                                                
     ),
 
 
+    #' @field min_start_date `r rd_start_date("field", minimum = TRUE)`
+    min_start_date = purrr::partial(
+      .f = active_binding,
+      name = "min_start_date",
+      expr = return(private$.min_start_date)
+    ),
+
+
+    #' @field max_end_date `r rd_end_date("field", maximum = TRUE)`
+    max_end_date = purrr::partial(
+      .f = active_binding,
+      name = "max_end_date",
+      expr = return(private$.max_end_date)
+    ),
+
+
     #' @field slice_ts `r rd_slice_ts("field")`
     slice_ts = purrr::partial(
       .f = active_binding,
@@ -569,12 +620,14 @@ DiseasystoreBase <- R6::R6Class(                                                
 
     .start_date = NULL,
     .end_date   = NULL,
+    .min_start_date = NULL,
+    .max_end_date   = NULL,
     .slice_ts   = lubridate::today(),
 
     .ds_map     = NULL, # Must be implemented in child classes
     ds_key_map  = NULL, # Must be implemented in child classes
 
-
+    .observables_regex = r"{^n_(?=\w)}",
 
     verbose = TRUE,
 
@@ -598,9 +651,12 @@ DiseasystoreBase <- R6::R6Class(                                                
         self %.% target_conn,
         SCDB::id(paste(self %.% target_schema, "logs", sep = "."), self %.% target_conn)
       ) |>
+        dplyr::filter(.data$date == !!SCDB::db_timestamp(slice_ts, self %.% target_conn)) |>
         dplyr::collect() |>
-        tidyr::unite("target_table", "schema", "table", sep = ".", na.rm = TRUE) |>
-        dplyr::filter(.data$target_table == !!as.character(target_table), .data$date == !!slice_ts)
+        tidyr::unite("target_table", tidyselect::any_of(c("catalog", "schema", "table")), sep = ".", na.rm = TRUE) |>
+        dplyr::filter(
+          .data$target_table == !!as.character(target_table)
+        )
 
       # If no logs are found, we need to compute on the entire range
       if (nrow(logs) == 0) {
@@ -615,7 +671,11 @@ DiseasystoreBase <- R6::R6Class(                                                
 
       # Find updates that overlap with requested range
       logs <- logs |>
-        dplyr::filter(ds_start_date <= end_date, start_date <= ds_end_date, success == TRUE)                            # nolint: redundant_equals_linter. required for dbplyr translations
+        dplyr::filter(
+          .data$ds_start_date <= {{ end_date }},
+          {{ start_date }} <= .data$ds_end_date,
+          .data$success == TRUE                                                                                         # nolint: redundant_equals_linter. Required for dbplyr translations
+        )
 
       # Determine the dates covered on this slice_ts
       if (nrow(logs) > 0) {

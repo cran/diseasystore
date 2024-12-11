@@ -6,7 +6,7 @@
 \usage{
 drop_diseasystore(
   pattern = NULL,
-  schema = diseasyoption("target_schema"),
+  schema = diseasyoption("target_schema", namespace = "diseasystore"),
   conn = SCDB::get_connection()
 )
 }
@@ -17,7 +17,7 @@ Pattern to match the tables by}
 \item{schema}{(\code{character(1)})\cr
 Schema the diseasystore uses to store data in}
 
-\item{conn}{(\code{DBIConnection})\cr A database connection}
+\item{conn}{(\code{DBIConnection})\cr A database connection.}
 }
 \value{
 NULL (called for side effects)

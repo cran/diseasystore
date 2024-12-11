@@ -18,8 +18,8 @@ if (rlang::is_installed("withr")) {
                   "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000)
 }
 
-# We have a "hard" dependency for RSQLite to render parts of this vignette
-suggests_available <- rlang::is_installed("RSQLite")
+# We have a "hard" dependency for duckdb to render parts of this vignette
+suggests_available <- rlang::is_installed("duckdb")
 not_on_cran <- interactive() || as.logical(Sys.getenv("NOT_CRAN", unset = "false"))
 
 ## ----available_diseasystores--------------------------------------------------
@@ -51,14 +51,14 @@ if (purrr::some(google_files, ~ !checkmate::test_file_exists(file.path(local_con
   data_available <- TRUE
 }
 
-ds <- DiseasystoreGoogleCovid19$new(target_conn = DBI::dbConnect(RSQLite::SQLite()),
+ds <- DiseasystoreGoogleCovid19$new(target_conn = DBI::dbConnect(duckdb::duckdb()),
                                     source_conn = local_conn,
                                     start_date = as.Date("2020-03-01"),
                                     end_date = as.Date("2020-03-15"))
 
 ## ----google_setup, eval = FALSE, eval = not_on_cran && suggests_available && data_available----
 ds <- DiseasystoreGoogleCovid19$new(
-  target_conn = DBI::dbConnect(RSQLite::SQLite()),
+  target_conn = DBI::dbConnect(duckdb::duckdb()),
   start_date = as.Date("2020-03-01"),
   end_date = as.Date("2020-03-15")
 )
@@ -74,6 +74,12 @@ ds$get_feature("n_hospital",
                start_date = as.Date("2020-03-01"),
                end_date = as.Date("2020-03-02"))
 
+## ----available_observables, eval = not_on_cran && suggests_available && data_available----
+ds$available_observables
+
+## ----available_stratifications, eval = not_on_cran && suggests_available && data_available----
+ds$available_stratifications
+
 ## ----google_key_join_features_example_1, eval = not_on_cran && suggests_available && data_available----
 ds$key_join_features(observable = "n_hospital",
                      stratification = NULL)
@@ -88,15 +94,15 @@ ds$key_join_features(observable = "n_hospital",
                                                   old = age_group == "90+"))
 
 ## ----drop_diseasystore_example_1, eval = not_on_cran && suggests_available && data_available----
-SCDB::get_tables(ds$target_conn)
+SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
 
 ## ----drop_diseasystore_example_2, eval = not_on_cran && suggests_available && data_available----
 drop_diseasystore(conn = ds$target_conn)
 
-SCDB::get_tables(ds$target_conn)
+SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
 
 ## ----diseasyoption_list-------------------------------------------------------
-options()[purrr::keep(names(options()), ~ startsWith(., "diseasystore"))]
+diseasyoption()
 
 ## ----diseasyoption_example_1--------------------------------------------------
 diseasyoption("source_conn", class = "DiseasystoreGoogleCovid19")

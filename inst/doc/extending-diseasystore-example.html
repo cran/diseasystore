@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Extending diseasystore - simulist example</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Extending diseasystore - simulist
+example</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(diseasystore)</span></code></pre></div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>If you haven’t already, please consult the
+<code>vignette(&quot;extending-diseasystore&quot;)</code> which explains the
+concepts of the <code>diseasystore</code>s in detail.</p>
+<p>In this example, we go through how to create a
+<code>diseasystore</code> that implements individual level data. For
+this purpose, we use a synthetic data set that we have generated using
+the <code>{simulist}</code> package. This data set is a synthetic line
+list from a disease outbreak.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>simulist_data</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 11,330 × 9</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="co">#&gt;      id case_type sex   birth        age date_onset date_admission</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt;   &lt;int&gt; &lt;chr&gt;     &lt;chr&gt; &lt;date&gt;     &lt;int&gt; &lt;date&gt;     &lt;date&gt;        </span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt; 1     1 confirmed m     1951-12-17    68 2019-12-01 2019-12-05    </span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 2     2 confirmed f     1962-12-15    57 2019-12-03 NA            </span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; 3     3 suspected m     1967-12-14    52 2019-12-04 2019-12-11    </span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; 4     4 suspected m     2005-12-10    14 2019-12-11 2019-12-15    </span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt; 5     6 probable  f     1929-12-28    90 2019-12-12 2019-12-17    </span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt; # ℹ 11,325 more rows</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 2 more variables: date_discharge &lt;date&gt;, date_death &lt;date&gt;</span></span></code></pre></div>
+<p>Given such a data set, the aim is to create a
+<code>diseasystore</code> that can be used to retrieve features from
+this data set.</p>
+</div>
+<div id="feature-identification" class="section level1">
+<h1>Feature identification</h1>
+<p>To do this, we need to identify the “features” that we want to store
+in the <code>diseasystore</code>. In the data, there are some
+demographic features such as “sex” and “age” and there are disease
+specific features such as “date_onset”, “date_admission”, et cetera.</p>
+<p>In this example we will implement the following features:</p>
+<ul>
+<li>Demographic features
+<ul>
+<li><code>birth</code> - The birth date of the individuals</li>
+<li><code>age</code> - The (time-dependent) age of the individuals</li>
+<li><code>sex</code> - The sex of the individuals</li>
+</ul></li>
+<li>Disease features
+<ul>
+<li><code>n_positive</code> - The positive tests performed on the
+individuals</li>
+<li><code>n_admission</code> - The time of admission among the
+individuals</li>
+<li><code>n_hospital</code> - The time of hospitalisation among the
+individuals</li>
+</ul></li>
+</ul>
+<p>Notice that the naming of the features differ by the prefix
+<code>n_</code> versus no prefix. This dichotomy separates
+“stratifications” from “observables”. Either is considered a “feature”
+in the diseasystore, but the type of data (stratification
+vs. observable) is used when we join the data in
+<code>?DiseasystoreBase$key_join_features()</code>. However, there are
+no differences in the implementation of the features — only in the
+naming.</p>
+<p>This way of naming features follows the default convention of
+<code>diseasystore</code>. However, we are free to overwrite with a
+different naming convention if we want to. For example, say we also had
+a feature the maximum and minimum temperature. we may want name the
+features with the suffix <code>_temperature</code> instead (since we are
+not dealing with the “number” of something). In that case, we would need
+to update the <code>$.observables_regex</code> field to read<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>  ...</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>    <span class="at">.observables_regex =</span> r<span class="st">&quot;{^n_(?=\w)|_temperature$}&quot;</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>    ...</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>  )</span></code></pre></div>
+<p>With the features identified, we begin by assigning a
+<code>?FeatureHandler</code> to each feature, and design the map between
+the feature names and the responsible <code>?FeatureHandler</code>s:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>DiseasystoreSimulist <span class="ot">&lt;-</span> R6<span class="sc">::</span><span class="fu">R6Class</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>  <span class="at">classname =</span> <span class="st">&quot;DiseasystoreSimulist&quot;</span>,</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="at">inherit =</span> DiseasystoreBase,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>  ...</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>  <span class="at">private =</span> <span class="fu">list</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>    <span class="at">.ds_map =</span> <span class="fu">list</span>(</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>      <span class="st">&quot;birth&quot;</span>       <span class="ot">=</span> <span class="st">&quot;simulist_birth&quot;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>      <span class="st">&quot;sex&quot;</span>         <span class="ot">=</span> <span class="st">&quot;simulist_sex&quot;</span>,</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>      <span class="st">&quot;age&quot;</span>         <span class="ot">=</span> <span class="st">&quot;simulist_age&quot;</span>,</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>      <span class="st">&quot;n_positive&quot;</span>  <span class="ot">=</span> <span class="st">&quot;simulist_positive&quot;</span>,</span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>      <span class="st">&quot;n_admission&quot;</span> <span class="ot">=</span> <span class="st">&quot;simulist_admission&quot;</span>,</span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>      <span class="st">&quot;n_hospital&quot;</span>  <span class="ot">=</span> <span class="st">&quot;simulist_hospital&quot;</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>    ),</span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>    <span class="at">.label =</span> <span class="st">&quot;Simulist Synthetic Data&quot;</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>  ...</span>
+<span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>  )</span>
+<span id="cb4-20"><a href="#cb4-20" tabindex="-1"></a>)</span></code></pre></div>
+<p>Notice that the names for the <code>?FeatureHandlers</code> have the
+prefix “simulist_”. The features are stored in the data base using these
+names, so we include the prefix to avoid any potential conflicts with
+other features in the database. For example, the hospitalisation in
+<code>?DiseasystoreGoogleCovid19</code> are stored in a table called
+“google_covid_19_hospital”. Had both <code>diseasystores</code> omitted
+the prefixes, they would both attempt to write to the same “hospital”
+table in the database.</p>
+</div>
+<div id="feature-implementation" class="section level1">
+<h1>Feature implementation</h1>
+<p>With the features identified, it is time to implement them in the
+<code>diseasystore</code>.</p>
+<p>That is, we need to construct the <code>?FeatureHandlers</code> for
+each feature.</p>
+<div id="the-birth-featurehandler" class="section level2">
+<h2>The <code>birth</code> <code>FeatureHandler</code></h2>
+<p>We start by implementing the <code>birth</code> feature.</p>
+<p>For this example, we will show first the code that implements the
+<code>?FeatureHandler</code> and then describe the code in detail.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  ...</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="co"># The &quot;birth&quot; feature contains the birth dates of the individuals and is used later</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="co"># to compute the age of the individuals at any given time.</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>  <span class="at">simulist_birth =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ...) {</span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a>      out <span class="ot">&lt;-</span> simulist_data <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>          <span class="st">&quot;key_pnr&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>id,</span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>          <span class="st">&quot;birth&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>birth,</span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a>          <span class="st">&quot;valid_from&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>birth,</span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a>          <span class="st">&quot;valid_until&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>date_death <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a>          {{ start_date }} <span class="sc">&lt;</span> .data<span class="sc">$</span>valid_until,</span>
+<span id="cb5-18"><a href="#cb5-18" tabindex="-1"></a>          .data<span class="sc">$</span>valid_from <span class="sc">&lt;=</span> {{ end_date }}</span>
+<span id="cb5-19"><a href="#cb5-19" tabindex="-1"></a>        )</span>
+<span id="cb5-20"><a href="#cb5-20" tabindex="-1"></a></span>
+<span id="cb5-21"><a href="#cb5-21" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb5-22"><a href="#cb5-22" tabindex="-1"></a>    },</span>
+<span id="cb5-23"><a href="#cb5-23" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb5-24"><a href="#cb5-24" tabindex="-1"></a>  ),</span>
+<span id="cb5-25"><a href="#cb5-25" tabindex="-1"></a></span>
+<span id="cb5-26"><a href="#cb5-26" tabindex="-1"></a>  ...</span>
+<span id="cb5-27"><a href="#cb5-27" tabindex="-1"></a>)</span></code></pre></div>
+<p>Notice that we create a new instance of <code>?FeatureHandler</code>
+and assign it to the <code>simulist_birth</code> field in the private
+list.</p>
+<p>Lets focus on the <code>?FeatureHandler</code> we create: Here, we
+need to define how the feature is computed (that is, we implement the
+<code>?FeatureHandler$compute()</code> function).</p>
+<p>The signature of this function is fixed, and must take the arguments
+<code>start_date</code>, <code>end_date</code>, <code>slice_ts</code>,
+<code>source_conn</code>, but can then take additional arguments in
+<code>...</code>.</p>
+<p>The <code>birth</code> feature is a simple feature that we can
+extract directly from the underlying data set:
+<code>simulist_data</code>.</p>
+<p>In addition to the feature values themselves (the values stored in
+the <code>birth</code> column) we need to include keying data that tells
+<code>diseasystore</code> what other features this feature can be joined
+to. Since we are working with individual level data, we can use a
+personal identification number, “pnr”, as the key. The simulist data
+already contains a unique ID for each individual, so we use this as the
+personal identification number.</p>
+<p>In addition, we need to specify the time period that the feature
+covers. In this case, a birth date is assigned at birth, so we use this
+as the <code>valid_from</code> date. For the expiration date of the
+information, we could either use <code>NA</code>, since the birth date
+is always valid, or we could use the date of death, if the individual
+has died. In this implementation we use the latter, since this allows
+for an easier implementation of the age of the individuals later on.</p>
+<p>Notice that <code>valid_until</code> is set as the date after death.
+The validity period of the features in <code>diseasystore</code> is the
+interval <span class="math inline">\(t \in \left[\textrm{valid_from},
+\textrm{valid_until}\right)\)</span>.</p>
+<p>After computing the feature, we filter to ensure that the data is
+returned only for the requested time period.</p>
+<p>Finally, we also specify how the feature can be summarised. That is,
+we need to specify the type of <code>key_join</code> the feature should
+use.</p>
+<p>To illustrate how to determine the type of <code>key_join</code>, we
+imagine that we want to determine the number of people who are born on
+each date. Given our data set, we could perform the following operations
+to summarize the data:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>simulist_data <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(lubridate<span class="sc">::</span><span class="fu">year</span>(.data<span class="sc">$</span>birth))</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 91 × 2</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt;   `lubridate::year(.data$birth)`     n</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt;                            &lt;dbl&gt; &lt;int&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; 1                           1929    96</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; 2                           1930   131</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 3                           1931   131</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 4                           1932   119</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 5                           1933   115</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 86 more rows</span></span></code></pre></div>
+<p>That is, our feature has a record for each individual, and to
+summarise the feature, we need to <code>count</code> the individuals
+within each group. This is different from semi-aggregated data where we
+would <code>sum</code> the values within each group (see
+<code>?aggregators</code> for available aggregators).</p>
+</div>
+<div id="the-sex-featurehandler" class="section level2">
+<h2>The <code>sex</code> <code>FeatureHandler</code></h2>
+<p>We continue by implementing the <code>sex</code> feature.</p>
+<p>Like the <code>birth</code> feature, this is a simple feature that we
+can mostly extract directly from the data set:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  ...</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="co"># The &quot;sex&quot; feature simply stores the sex from the simulist data</span></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">simulist_sex =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ds, ...) {</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>      out <span class="ot">&lt;-</span> simulist_data <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">right_join</span>( <span class="co"># Join with birth data to validity period</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>          ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;birth&quot;</span>, start_date, end_date, slice_ts),</span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;id&quot;</span> <span class="ot">=</span> <span class="st">&quot;key_pnr&quot;</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>          <span class="at">copy =</span> <span class="cn">TRUE</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a>          <span class="st">&quot;key_pnr&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>id,</span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a>          <span class="st">&quot;sex&quot;</span> <span class="ot">=</span> dplyr<span class="sc">::</span><span class="fu">if_else</span>(.data<span class="sc">$</span>sex <span class="sc">==</span> <span class="st">&quot;m&quot;</span>, <span class="st">&quot;Male&quot;</span>, <span class="st">&quot;Female&quot;</span>),</span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a>          .data<span class="sc">$</span>valid_from, .data<span class="sc">$</span>valid_until <span class="co"># Use values from birth feature</span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a>        )</span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a></span>
+<span id="cb7-20"><a href="#cb7-20" tabindex="-1"></a>      <span class="co"># No need to filter to ensure the data is only for the requested time period.</span></span>
+<span id="cb7-21"><a href="#cb7-21" tabindex="-1"></a>      <span class="co"># Since we right join with the birth feature, the validity period is already filtered.</span></span>
+<span id="cb7-22"><a href="#cb7-22" tabindex="-1"></a></span>
+<span id="cb7-23"><a href="#cb7-23" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb7-24"><a href="#cb7-24" tabindex="-1"></a>    },</span>
+<span id="cb7-25"><a href="#cb7-25" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb7-26"><a href="#cb7-26" tabindex="-1"></a>  ),</span>
+<span id="cb7-27"><a href="#cb7-27" tabindex="-1"></a></span>
+<span id="cb7-28"><a href="#cb7-28" tabindex="-1"></a>  ...</span>
+<span id="cb7-29"><a href="#cb7-29" tabindex="-1"></a>)</span></code></pre></div>
+<p>Notice that we again create a new instance of
+<code>?FeatureHandler</code> and assign it to the
+<code>simulist_sex</code> field in the private list.</p>
+<p>The computation of the feature is mostly straightforward, but we
+would like to use the validity period computed in the <code>birth</code>
+feature (the same logic applies for the validity period of the “sex”
+information as the “birth” information)</p>
+<p>Therefore, we immediately see a difference in the function signature
+of the <code>?FeatureHandler$compute()</code> function, where we include
+the <code>ds</code> argument which, like the others, are passed to the
+feature handler by <code>diseasystore</code> when we compute features.
+This argument holds a reference to the <code>diseasystore</code> we are
+building, so we can use it to retrieve other features (in this case, the
+<code>birth</code> feature).</p>
+<p>Once we have the <code>birth</code> feature, we combine it with the
+<code>simulist_data</code> and extract a human-readable label for the
+<code>sex</code>.</p>
+</div>
+<div id="the-age-featurehandler" class="section level2">
+<h2>The <code>age</code> <code>FeatureHandler</code></h2>
+<p>The <code>age</code> feature is a bit more complex than the previous
+features, as it is a time-dependent feature.</p>
+<p>Lets first look at the code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  ...</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="co"># The &quot;age&quot; feature computes the age of the individuals throughout the study period</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="at">simulist_age =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ds, ...) {</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>      <span class="co"># Using birth date, compute the age at the start of the study period</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>      age <span class="ot">&lt;-</span> ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;birth&quot;</span>, start_date, end_date, slice_ts) <span class="sc">|&gt;</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>          <span class="at">age_at_start =</span> <span class="fu">as.integer</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>            <span class="sc">!!</span><span class="fu">age_on_date</span>(<span class="st">&quot;birth&quot;</span>, start_date, <span class="at">conn =</span> ds <span class="sc">%.%</span> target_conn)</span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>          )</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">compute</span>()</span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>      <span class="co"># Now, compute the next birthdays of the individual</span></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a>      <span class="co"># (as many as we need to cover the study period)</span></span>
+<span id="cb8-19"><a href="#cb8-19" tabindex="-1"></a>      <span class="co"># and compute the age of the individuals throughout the study period with their</span></span>
+<span id="cb8-20"><a href="#cb8-20" tabindex="-1"></a>      <span class="co"># birthdays denoting the starts and ends of the validity periods.</span></span>
+<span id="cb8-21"><a href="#cb8-21" tabindex="-1"></a>      out <span class="ot">&lt;-</span> purrr<span class="sc">::</span><span class="fu">map</span>(</span>
+<span id="cb8-22"><a href="#cb8-22" tabindex="-1"></a>        <span class="fu">seq.int</span>(</span>
+<span id="cb8-23"><a href="#cb8-23" tabindex="-1"></a>          <span class="at">from =</span> <span class="dv">0</span>,</span>
+<span id="cb8-24"><a href="#cb8-24" tabindex="-1"></a>          <span class="at">to =</span> <span class="fu">ceiling</span>(lubridate<span class="sc">::</span><span class="fu">interval</span>(start_date, end_date) <span class="sc">/</span> lubridate<span class="sc">::</span><span class="fu">years</span>(<span class="dv">1</span>))</span>
+<span id="cb8-25"><a href="#cb8-25" tabindex="-1"></a>        ),</span>
+<span id="cb8-26"><a href="#cb8-26" tabindex="-1"></a>        <span class="sc">~</span> age <span class="sc">|&gt;</span></span>
+<span id="cb8-27"><a href="#cb8-27" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb8-28"><a href="#cb8-28" tabindex="-1"></a>            <span class="co"># The age for this iteration of the age computation loop</span></span>
+<span id="cb8-29"><a href="#cb8-29" tabindex="-1"></a>            <span class="st">&quot;age&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>age_at_start <span class="sc">+</span> .x</span>
+<span id="cb8-30"><a href="#cb8-30" tabindex="-1"></a>          ) <span class="sc">|&gt;</span></span>
+<span id="cb8-31"><a href="#cb8-31" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">mutate</span>( <span class="co"># Split to make the &quot;age&quot; column available for the next mutate</span></span>
+<span id="cb8-32"><a href="#cb8-32" tabindex="-1"></a>            <span class="co"># Compute the birthday for the age</span></span>
+<span id="cb8-33"><a href="#cb8-33" tabindex="-1"></a>            <span class="st">&quot;birthday&quot;</span> <span class="ot">=</span> <span class="sc">!!</span><span class="fu">add_years</span>(<span class="st">&quot;birth&quot;</span>, <span class="st">&quot;age&quot;</span>, <span class="at">conn =</span> ds <span class="sc">%.%</span> target_conn)</span>
+<span id="cb8-34"><a href="#cb8-34" tabindex="-1"></a>          ) <span class="sc">|&gt;</span></span>
+<span id="cb8-35"><a href="#cb8-35" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">mutate</span>( <span class="co"># Again, split to make &quot;birthday&quot; available for the next mutate</span></span>
+<span id="cb8-36"><a href="#cb8-36" tabindex="-1"></a>            <span class="co"># And when that age is not valid</span></span>
+<span id="cb8-37"><a href="#cb8-37" tabindex="-1"></a>            <span class="st">&quot;next_birthday&quot;</span> <span class="ot">=</span> <span class="sc">!!</span><span class="fu">add_years</span>(<span class="st">&quot;birthday&quot;</span>, <span class="dv">1</span>, <span class="at">conn =</span> ds <span class="sc">%.%</span> target_conn)</span>
+<span id="cb8-38"><a href="#cb8-38" tabindex="-1"></a>          ) <span class="sc">|&gt;</span></span>
+<span id="cb8-39"><a href="#cb8-39" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">filter</span>( <span class="co"># Remove the birthdays that fall outside of the study period</span></span>
+<span id="cb8-40"><a href="#cb8-40" tabindex="-1"></a>            .data<span class="sc">$</span>birthday <span class="sc">&lt;=</span> {{ end_date }},</span>
+<span id="cb8-41"><a href="#cb8-41" tabindex="-1"></a>            .data<span class="sc">$</span>birthday <span class="sc">&lt;</span> .data<span class="sc">$</span>valid_until <span class="sc">|</span> <span class="fu">is.na</span>(.data<span class="sc">$</span>valid_until)</span>
+<span id="cb8-42"><a href="#cb8-42" tabindex="-1"></a>          ) <span class="sc">|&gt;</span></span>
+<span id="cb8-43"><a href="#cb8-43" tabindex="-1"></a>          dplyr<span class="sc">::</span><span class="fu">transmute</span>( <span class="co"># We assign the birth dates as the validity periods</span></span>
+<span id="cb8-44"><a href="#cb8-44" tabindex="-1"></a>            <span class="st">&quot;key_pnr&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>key_pnr,</span>
+<span id="cb8-45"><a href="#cb8-45" tabindex="-1"></a>            <span class="st">&quot;age&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>age,</span>
+<span id="cb8-46"><a href="#cb8-46" tabindex="-1"></a>            <span class="st">&quot;valid_from&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>birthday,</span>
+<span id="cb8-47"><a href="#cb8-47" tabindex="-1"></a>            <span class="st">&quot;valid_until&quot;</span> <span class="ot">=</span> <span class="fu">pmin</span>(</span>
+<span id="cb8-48"><a href="#cb8-48" tabindex="-1"></a>              .data<span class="sc">$</span>valid_until,</span>
+<span id="cb8-49"><a href="#cb8-49" tabindex="-1"></a>              .data<span class="sc">$</span>next_birthday,</span>
+<span id="cb8-50"><a href="#cb8-50" tabindex="-1"></a>              <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-51"><a href="#cb8-51" tabindex="-1"></a>            )</span>
+<span id="cb8-52"><a href="#cb8-52" tabindex="-1"></a>          )</span>
+<span id="cb8-53"><a href="#cb8-53" tabindex="-1"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb8-54"><a href="#cb8-54" tabindex="-1"></a>        purrr<span class="sc">::</span><span class="fu">reduce</span>(dplyr<span class="sc">::</span>union_all) <span class="co"># Collapse to a single dataset</span></span>
+<span id="cb8-55"><a href="#cb8-55" tabindex="-1"></a></span>
+<span id="cb8-56"><a href="#cb8-56" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb8-57"><a href="#cb8-57" tabindex="-1"></a>    },</span>
+<span id="cb8-58"><a href="#cb8-58" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb8-59"><a href="#cb8-59" tabindex="-1"></a>  ),</span>
+<span id="cb8-60"><a href="#cb8-60" tabindex="-1"></a></span>
+<span id="cb8-61"><a href="#cb8-61" tabindex="-1"></a>  ...</span>
+<span id="cb8-62"><a href="#cb8-62" tabindex="-1"></a>)</span></code></pre></div>
+<p>As with the <code>sex</code> feature, this feature also depends on
+the <code>birth</code> feature, so we include the <code>ds</code>
+argument in the function signature of
+<code>?FeatureHandler$compute()</code>.</p>
+<p>Since the age is time-dependent, we need to compute the age of the
+individuals at the start of the study period (i.e. the period requested
+by the user), and compute their age throughout the study period.</p>
+<p>The age at the start of the study period is computed directly by from
+the birth date of the individuals using the age helper function
+<code>age_on_date()</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Once the age at start is known, we determine the length of the study
+period (in years) and compute the birthdays of the individuals
+throughout the period<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>. Each birthday has an associated age and a
+validity period which runs from the birthday to the next birthday.
+Notice that we sometimes compute birthdays that fall outside of the
+study period, which we filter out before combining to a single data set
+with <code>dplyr::union_all()</code>.</p>
+<p>In all, we end with a data set containing the time-dependent age of
+the individuals throughout the study period.</p>
+</div>
+<div id="the-n_positive-featurehandler" class="section level2">
+<h2>The <code>n_positive</code> <code>FeatureHandler</code></h2>
+<p>The <code>n_positive</code> feature is a simple feature that we can
+extract directly from the data set with a little filtering:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  ...</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>  <span class="co"># The &quot;n_positive&quot; feature contains the positive tests taken by the individuals</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>  <span class="at">simulist_positive =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ...) {</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>      out <span class="ot">&lt;-</span> simulist_data <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(.data<span class="sc">$</span>case_type <span class="sc">==</span> <span class="st">&quot;confirmed&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a>          <span class="st">&quot;key_pnr&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>id,</span>
+<span id="cb9-12"><a href="#cb9-12" tabindex="-1"></a>          <span class="st">&quot;valid_from&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>date_onset,</span>
+<span id="cb9-13"><a href="#cb9-13" tabindex="-1"></a>          <span class="st">&quot;valid_until&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>valid_from <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb9-14"><a href="#cb9-14" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb9-15"><a href="#cb9-15" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb9-16"><a href="#cb9-16" tabindex="-1"></a>          {{ start_date }} <span class="sc">&lt;</span> .data<span class="sc">$</span>valid_until,</span>
+<span id="cb9-17"><a href="#cb9-17" tabindex="-1"></a>          .data<span class="sc">$</span>valid_from <span class="sc">&lt;=</span> {{ end_date }}</span>
+<span id="cb9-18"><a href="#cb9-18" tabindex="-1"></a>        )</span>
+<span id="cb9-19"><a href="#cb9-19" tabindex="-1"></a></span>
+<span id="cb9-20"><a href="#cb9-20" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb9-21"><a href="#cb9-21" tabindex="-1"></a>    },</span>
+<span id="cb9-22"><a href="#cb9-22" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb9-23"><a href="#cb9-23" tabindex="-1"></a>  ),</span>
+<span id="cb9-24"><a href="#cb9-24" tabindex="-1"></a></span>
+<span id="cb9-25"><a href="#cb9-25" tabindex="-1"></a>  ...</span>
+<span id="cb9-26"><a href="#cb9-26" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="the-n_hospital-featurehandler" class="section level2">
+<h2>The <code>n_hospital</code> <code>FeatureHandler</code></h2>
+<p>Like the <code>n_positive</code> feature, the <code>n_hospital</code>
+is straightforward to implement:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  ...</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="co"># The &quot;n_hospital&quot; feature contains the hospitalizations of the individuals</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>  <span class="at">simulist_hospital =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ds, ...) {</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a></span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>      out <span class="ot">&lt;-</span> simulist_data <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>          .data<span class="sc">$</span>case_type <span class="sc">==</span> <span class="st">&quot;confirmed&quot;</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>          <span class="sc">!</span><span class="fu">is.na</span>(.data<span class="sc">$</span>date_admission)</span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">transmute</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>          <span class="st">&quot;key_pnr&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>id,</span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a>          <span class="st">&quot;valid_from&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>date_admission,</span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a>          <span class="st">&quot;valid_until&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>date_discharge <span class="sc">+</span> lubridate<span class="sc">::</span><span class="fu">days</span>(<span class="dv">1</span>)</span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>        ) <span class="sc">|&gt;</span></span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>          {{ start_date }} <span class="sc">&lt;</span> .data<span class="sc">$</span>valid_until,</span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a>          .data<span class="sc">$</span>valid_from <span class="sc">&lt;=</span> {{ end_date }}</span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a>        )</span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a></span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a>    },</span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>  ),</span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a></span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a>  ...</span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+<div id="the-n_admission-featurehandler" class="section level2">
+<h2>The <code>n_admission</code> <code>FeatureHandler</code></h2>
+<p>For the <code>n_admission</code> feature, we use the already computed
+<code>n_hospital</code> feature to compute the admissions. We could have
+computed directly from the simulist data, but since this features is
+really just a transformation of the <code>n_hospital</code> feature, we
+use the <code>n_hospital</code> feature to compute the admissions.</p>
+<p>Since we modify the <code>valid_until</code> field, we need to filter
+again to ensure that the data is only for the requested time period.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>private <span class="ot">=</span> <span class="fu">list</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>  ...</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>  <span class="co"># The &quot;n_admission&quot; feature contains the admissions of the individuals</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="co"># We here use the &quot;n_hospital&quot; feature to compute the admissions since the admission</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>  <span class="co"># is an entry for the first date of hospitalisation</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>  <span class="at">simulist_admission =</span> FeatureHandler<span class="sc">$</span><span class="fu">new</span>(</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>    <span class="at">compute =</span> <span class="cf">function</span>(start_date, end_date, slice_ts, source_conn, ds, ...) {</span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>      out <span class="ot">&lt;-</span> ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>, start_date, end_date, slice_ts) <span class="sc">|&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="st">&quot;valid_until&quot;</span> <span class="ot">=</span> .data<span class="sc">$</span>valid_from <span class="sc">+</span> <span class="dv">1</span><span class="dt">L</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a>        dplyr<span class="sc">::</span><span class="fu">filter</span>({{ start_date }} <span class="sc">&lt;</span> .data<span class="sc">$</span>valid_until) <span class="co"># valid_from filtered in n_hospital</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>      <span class="fu">return</span>(out)</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>    },</span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a>    <span class="at">key_join =</span> key_join_count</span>
+<span id="cb11-17"><a href="#cb11-17" tabindex="-1"></a>  )</span>
+<span id="cb11-18"><a href="#cb11-18" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" tabindex="-1"></a>  ...</span>
+<span id="cb11-20"><a href="#cb11-20" tabindex="-1"></a>)</span></code></pre></div>
+</div>
+</div>
+<div id="the-final-product" class="section level1">
+<h1>The final product</h1>
+<p>We are finally ready to see the <code>diseasystore</code> in
+action.</p>
+<div id="configuring-the-diseasystore" class="section level2">
+<h2>Configuring the <code>diseasystore</code></h2>
+<p>All <code>diseasystores</code> require a database to store its
+features in. For convenience, we here set the <code>target_conn</code>
+option<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>
+for all <code>diseasystores</code>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># We define target_conn as a function that opens a DBIconnection to the DB</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>target_conn <span class="ot">&lt;-</span> \() DBI<span class="sc">::</span><span class="fu">dbConnect</span>(duckdb<span class="sc">::</span><span class="fu">duckdb</span>())</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="fu">options</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>  <span class="st">&quot;diseasystore.target_conn&quot;</span> <span class="ot">=</span> target_conn</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a>)</span></code></pre></div>
+<p>With the <code>target_conn</code> option set, we can easily create a
+new instance of the <code>diseasystore</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>ds <span class="ot">&lt;-</span> diseasystore<span class="sc">::</span>DiseasystoreSimulist<span class="sc">$</span><span class="fu">new</span>()</span></code></pre></div>
+</div>
+<div id="retrieving-features" class="section level2">
+<h2>Retrieving features</h2>
+<p>We can see that the features we implemented are available:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;birth&quot;       &quot;age&quot;         &quot;sex&quot;         &quot;n_positive&quot;  &quot;n_admission&quot;</span></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="co">#&gt; [6] &quot;n_hospital&quot;</span></span></code></pre></div>
+<p>And we can retrieve the individual features</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a>  <span class="at">feature =</span> <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>  <span class="at">start_date =</span> ds<span class="sc">$</span>min_start_date,</span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="at">end_date =</span> ds<span class="sc">$</span>max_end_date</span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_YtJJkyoDNn&gt; [?? x 4]</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co">#&gt;   key_pnr sex    valid_from valid_until</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;  &lt;date&gt;     &lt;date&gt;     </span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="co">#&gt; 1       1 Male   1951-12-17 2019-12-09 </span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a><span class="co">#&gt; 2      40 Female 1931-12-11 2020-01-12 </span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a><span class="co">#&gt; 3      69 Male   1945-11-21 2020-01-18 </span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a><span class="co">#&gt; 4      82 Female 2001-10-19 2020-01-24 </span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a><span class="co">#&gt; 5      99 Male   1948-10-21 2020-01-30 </span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="at">feature =</span> <span class="st">&quot;n_positive&quot;</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="at">start_date =</span> ds<span class="sc">$</span>min_start_date,</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="at">end_date =</span> ds<span class="sc">$</span>max_end_date</span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>)</span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_3GhEwVYDoQ&gt; [?? x 3]</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a><span class="co">#&gt;   key_pnr valid_from valid_until</span></span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="co">#&gt;     &lt;int&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a><span class="co">#&gt; 1      20 2019-12-21 2019-12-22 </span></span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a><span class="co">#&gt; 2      39 2019-12-25 2019-12-26 </span></span>
+<span id="cb16-12"><a href="#cb16-12" tabindex="-1"></a><span class="co">#&gt; 3      67 2020-01-05 2020-01-06 </span></span>
+<span id="cb16-13"><a href="#cb16-13" tabindex="-1"></a><span class="co">#&gt; 4      80 2020-01-02 2020-01-03 </span></span>
+<span id="cb16-14"><a href="#cb16-14" tabindex="-1"></a><span class="co">#&gt; 5     101 2020-01-03 2020-01-04 </span></span>
+<span id="cb16-15"><a href="#cb16-15" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+</div>
+<div id="combining-features" class="section level2">
+<h2>Combining features</h2>
+<p>Since we have individual level data, we can combine the features
+arbitrarily using any stratification that we want. This stratification
+can by any expression using the features in the
+<code>diseasystore</code>. Since we are working expressions, we need to
+pass the expressions as “quosures” using <code>rlang::quos()</code>.</p>
+<p>These expressions have very few limits. As long as they are
+translatable by <code>{dbplyr}</code> to SQL, they can be used.</p>
+<p>Lets look at some examples:</p>
+<div id="no-stratification" class="section level3">
+<h3>No stratification</h3>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="co"># Get the number of positive tests by age group and sex</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> ds<span class="sc">$</span><span class="fu">key_join_features</span>(</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="at">observable =</span> <span class="st">&quot;n_positive&quot;</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="at">stratification =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="at">start_date =</span> ds<span class="sc">$</span>min_start_date,</span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">end_date =</span> ds<span class="sc">$</span>max_end_date</span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>)</span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="fu">print</span>(data1)</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a><span class="co">#&gt; # A tibble: 152 × 2</span></span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a><span class="co">#&gt;   date       n_positive</span></span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;          &lt;dbl&gt;</span></span>
+<span id="cb17-13"><a href="#cb17-13" tabindex="-1"></a><span class="co">#&gt; 1 2019-12-01          1</span></span>
+<span id="cb17-14"><a href="#cb17-14" tabindex="-1"></a><span class="co">#&gt; 2 2019-12-02          0</span></span>
+<span id="cb17-15"><a href="#cb17-15" tabindex="-1"></a><span class="co">#&gt; 3 2019-12-03          1</span></span>
+<span id="cb17-16"><a href="#cb17-16" tabindex="-1"></a><span class="co">#&gt; 4 2019-12-04          0</span></span>
+<span id="cb17-17"><a href="#cb17-17" tabindex="-1"></a><span class="co">#&gt; 5 2019-12-05          0</span></span>
+<span id="cb17-18"><a href="#cb17-18" tabindex="-1"></a><span class="co">#&gt; # ℹ 147 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data1, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n_positive)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="data:image/png;base64,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" alt="The number of positive tests over time in the example data." /></p>
+</div>
+<div id="stratifying-by-a-custom-age-group" class="section level3">
+<h3>Stratifying by a custom age group</h3>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># Get the number of positive tests by age group and sex</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>data2 <span class="ot">&lt;-</span> ds<span class="sc">$</span><span class="fu">key_join_features</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>  <span class="at">observable =</span> <span class="st">&quot;n_positive&quot;</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>  <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(</span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a>    <span class="at">age_group =</span> <span class="fu">cut</span>(</span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>      age,</span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>      <span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>, <span class="dv">30</span>, <span class="cn">Inf</span>),</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a>      <span class="at">labels =</span> <span class="sc">!!</span><span class="fu">age_labels</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">15</span>, <span class="dv">30</span>)),</span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a>      <span class="at">right =</span> <span class="cn">FALSE</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>    ),</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a>    sex</span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a>  ),</span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a>  <span class="at">start_date =</span> ds<span class="sc">$</span>min_start_date,</span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>  <span class="at">end_date =</span> ds<span class="sc">$</span>max_end_date</span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>)</span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="fu">print</span>(data2)</span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="co">#&gt; # A tibble: 912 × 4</span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="co">#&gt;   date       age_group sex   n_positive</span></span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;</span></span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a><span class="co">#&gt; 1 2019-12-01 30+       Male           1</span></span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a><span class="co">#&gt; 2 2019-12-02 30+       Male           0</span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a><span class="co">#&gt; 3 2019-12-03 30+       Male           0</span></span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a><span class="co">#&gt; 4 2019-12-04 30+       Male           0</span></span>
+<span id="cb19-25"><a href="#cb19-25" tabindex="-1"></a><span class="co">#&gt; 5 2019-12-05 30+       Male           0</span></span>
+<span id="cb19-26"><a href="#cb19-26" tabindex="-1"></a><span class="co">#&gt; # ℹ 907 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data2, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n_positive, <span class="at">color =</span> age_group)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">facet_wrap</span>(<span class="sc">~</span> sex)</span></code></pre></div>
+<p><img src="data:image/png;base64,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" alt="The number of positive tests over time per age group and sex in the example data." /></p>
+</div>
+<div id="stratifying-by-generation" class="section level3">
+<h3>Stratifying by generation</h3>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Get the number of admissions by generation</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>data3 <span class="ot">&lt;-</span> ds<span class="sc">$</span><span class="fu">key_join_features</span>(</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a>  <span class="at">observable =</span> <span class="st">&quot;n_admission&quot;</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>  <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(</span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a>    <span class="at">generation =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(</span>
+<span id="cb21-6"><a href="#cb21-6" tabindex="-1"></a>      lubridate<span class="sc">::</span><span class="fu">year</span>(birth) <span class="sc">&lt;</span> <span class="dv">1946</span> <span class="sc">~</span> <span class="st">&quot;Silent or older&quot;</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" tabindex="-1"></a>      lubridate<span class="sc">::</span><span class="fu">year</span>(birth) <span class="sc">&lt;</span> <span class="dv">1965</span> <span class="sc">~</span> <span class="st">&quot;Boomer&quot;</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" tabindex="-1"></a>      lubridate<span class="sc">::</span><span class="fu">year</span>(birth) <span class="sc">&lt;</span> <span class="dv">1981</span> <span class="sc">~</span> <span class="st">&quot;GenX&quot;</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" tabindex="-1"></a>      lubridate<span class="sc">::</span><span class="fu">year</span>(birth) <span class="sc">&lt;</span> <span class="dv">1997</span> <span class="sc">~</span> <span class="st">&quot;Millenial&quot;</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" tabindex="-1"></a>      <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">&quot;GenZ&quot;</span></span>
+<span id="cb21-11"><a href="#cb21-11" tabindex="-1"></a>    )</span>
+<span id="cb21-12"><a href="#cb21-12" tabindex="-1"></a>  ),</span>
+<span id="cb21-13"><a href="#cb21-13" tabindex="-1"></a>  <span class="at">start_date =</span> ds<span class="sc">$</span>min_start_date,</span>
+<span id="cb21-14"><a href="#cb21-14" tabindex="-1"></a>  <span class="at">end_date =</span> ds<span class="sc">$</span>max_end_date</span>
+<span id="cb21-15"><a href="#cb21-15" tabindex="-1"></a>)</span>
+<span id="cb21-16"><a href="#cb21-16" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" tabindex="-1"></a><span class="fu">print</span>(data3)</span>
+<span id="cb21-18"><a href="#cb21-18" tabindex="-1"></a><span class="co">#&gt; # A tibble: 760 × 3</span></span>
+<span id="cb21-19"><a href="#cb21-19" tabindex="-1"></a><span class="co">#&gt;   date       generation n_admission</span></span>
+<span id="cb21-20"><a href="#cb21-20" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;            &lt;dbl&gt;</span></span>
+<span id="cb21-21"><a href="#cb21-21" tabindex="-1"></a><span class="co">#&gt; 1 2019-12-01 Millenial            0</span></span>
+<span id="cb21-22"><a href="#cb21-22" tabindex="-1"></a><span class="co">#&gt; 2 2019-12-02 Millenial            0</span></span>
+<span id="cb21-23"><a href="#cb21-23" tabindex="-1"></a><span class="co">#&gt; 3 2019-12-03 Millenial            0</span></span>
+<span id="cb21-24"><a href="#cb21-24" tabindex="-1"></a><span class="co">#&gt; 4 2019-12-04 Millenial            0</span></span>
+<span id="cb21-25"><a href="#cb21-25" tabindex="-1"></a><span class="co">#&gt; 5 2019-12-05 Millenial            0</span></span>
+<span id="cb21-26"><a href="#cb21-26" tabindex="-1"></a><span class="co">#&gt; # ℹ 755 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>ggplot2<span class="sc">::</span><span class="fu">ggplot</span>(data3, ggplot2<span class="sc">::</span><span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> n_admission, <span class="at">color =</span> generation)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>  ggplot2<span class="sc">::</span><span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="data:image/png;base64,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" alt="The number of positive tests over time per age group in the example data." /></p>
+</div>
+</div>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>This is also the implementation in
+<code>?DiseasystoreGoogleCovid19</code>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Notice that we don’t use <code>{lubridate}</code> or
+syntax such as <code>birth_date + 365</code>. As you may recall from the
+primer <code>vignette(&quot;extending-diseasystore&quot;)</code>, features are
+stored in data bases, not as R objects. Therefore, the operations we
+perform must be translatable to SQL via <code>{dbplyr}</code> and date
+arithmetic are not currently translatable consistently.
+<code>diseasystore</code> therefore provides some helper functions for
+the type of date-related arithmetic that is common in feature
+computation. These are available for the data base back ends supported
+by <code>diseasystore</code>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Notice that we split the <code>dplyr::mutate()</code>
+calls into several calls since SQL translation works differently from
+“normal” <code>{dplyr}</code> behaviour. Normally in
+<code>{dplyr}</code>, the variable created earlier in one
+<code>dplyr::mutate()</code> call is available immediately after, but
+this is not the case in SQL syntax. Therefore, we split the
+<code>dplyr::mutate()</code> calls which generates nested sub-queries
+which makes the variables available in subsequent calls.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>The <code>vignette(&quot;diseasystore&quot;)</code> explains the
+options system in more detail.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -395,15 +395,15 @@ interval simpler.</p>
 <code>start_date</code> and <code>end_date</code> we specified during
 creation of <code>ds</code>):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_lwgKnzgPt6&gt; [?? x 5]</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_JLhCKyB81F&gt; [?? x 5]</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.2.0 [B246705@Windows 10 x64:R 4.4.2/:memory:]</span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1 AR           2                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3 AR           6                    0 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4 AR           2                    2 2020-03-03 2020-03-04 </span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5 AR           4                    3 2020-03-07 2020-03-08 </span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1 AR           8                    1 2020-03-02 2020-03-03 </span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2 AR           9                   NA 2020-03-02 2020-03-03 </span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3 AR           2                    2 2020-03-03 2020-03-04 </span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4 AR           7                    1 2020-03-05 2020-03-06 </span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5 AR           9                   NA 2020-03-05 2020-03-06 </span></span>
 <span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 <p>Notice that features have associated “key_*” and “valid_from/until”
 columns. These are used for one of the primary selling points of
@@ -413,15 +413,15 @@ columns. These are used for one of the primary selling points of
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-01&quot;</span>),</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-02&quot;</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_zI20mZ09GP&gt; [?? x 5]</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_RFHikIuo9Q&gt; [?? x 5]</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.2.0 [B246705@Windows 10 x64:R 4.4.2/:memory:]</span></span>
 <span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
 <span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 AR           2                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 AR           6                    0 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 AR           3                    0 2020-03-02 2020-03-03 </span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 AR           6                    1 2020-03-02 2020-03-03 </span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 AR           8                    1 2020-03-02 2020-03-03 </span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 AR           9                   NA 2020-03-02 2020-03-03 </span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 AR           0                   NA 2020-03-01 2020-03-02 </span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 AR           8                   NA 2020-03-01 2020-03-02 </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 AR           9                   NA 2020-03-01 2020-03-02 </span></span>
 <span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 </div>
 <div id="dynamically-expanded" class="section level1">
@@ -512,11 +512,11 @@ supply any valid R expression:</p>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 4</span></span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;   date       country_id old   n_hospital</span></span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;      &lt;lgl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR         TRUE           3</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR         TRUE           6</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR         TRUE           5</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR         TRUE          12</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR         TRUE           8</span></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-15 AR         TRUE          70</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-01 AR         TRUE           3</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-02 AR         TRUE           6</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-03 AR         TRUE           5</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-04 AR         TRUE          12</span></span>
 <span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; # ℹ 25 more rows</span></span></code></pre></div>
 </div>
 <div id="dropping-computed-features" class="section level1">
@@ -629,8 +629,12 @@ retry, we see that we get the fallback value.</p>
 <p>Finally, we can use the <code>.default</code> argument as a final
 fallback value in case no option is set for either general or specific
 case.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(<span class="st">&quot;non_existent&quot;</span>, <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>, <span class="at">.default =</span> <span class="st">&quot;final fallback&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;final fallback&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">diseasyoption</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>  <span class="st">&quot;non_existent&quot;</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a>  <span class="at">class =</span> <span class="st">&quot;DiseasystoreDiseaseY&quot;</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>  <span class="at">.default =</span> <span class="st">&quot;final fallback&quot;</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a>)</span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="co">#&gt; [1] &quot;final fallback&quot;</span></span></code></pre></div>
 </div>
 <div class="footnotes footnotes-end-of-document">
 <hr />

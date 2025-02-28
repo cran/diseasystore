@@ -14,8 +14,12 @@ if (rlang::is_installed("withr")) {
   withr::local_options("diseasystore.verbose" = FALSE)
   withr::local_options("diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000)
 } else {
-  opts <- options("tibble.print_min" = 5, "tibble.print_max" = 5, "diseasystore.verbose" = FALSE,
-                  "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000)
+  opts <- options(
+    "tibble.print_min" = 5,
+    "tibble.print_max" = 5,
+    "diseasystore.verbose" = FALSE,
+    "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000
+  )
 }
 
 # We have a "hard" dependency for duckdb to render parts of this vignette
@@ -30,13 +34,22 @@ available_diseasystores()
 google_files <- c("by-age.csv", "demographics.csv", "index.csv", "weather.csv")
 remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
 
-# In practice, it is best to make a local copy of the data which is stored in the "vignette_data" folder
-# This folder can either be in the package folder (preferred, please create the folder) or in the tempdir()
-local_conn <- purrr::detect("vignette_data", checkmate::test_directory_exists, .default = tempdir())
+# In practice, it is best to make a local copy of the data which is
+# stored in the "vignette_data" folder.
+# This folder can either be in the package folder
+# (preferred, please create the folder) or in the tempdir().
+local_conn <- purrr::detect(
+  "vignette_data",
+  checkmate::test_directory_exists,
+  .default = tempdir()
+)
 
 # Then we download the first n rows of each data set of interest
 try({
-  purrr::discard(google_files, ~ checkmate::test_file_exists(file.path(local_conn, .))) |>
+  purrr::discard(
+    google_files,
+    ~ checkmate::test_file_exists(file.path(local_conn, .))
+  ) |>
     purrr::walk(\(file) {
       paste0(remote_conn, file) |>
         readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
@@ -45,7 +58,12 @@ try({
 })
 
 # Check that the files are available after attempting to download
-if (purrr::some(google_files, ~ !checkmate::test_file_exists(file.path(local_conn, .)))) {
+files_missing <- purrr::some(
+  google_files,
+  ~ !checkmate::test_file_exists(file.path(local_conn, .))
+)
+
+if (files_missing) {
   data_available <- FALSE
 } else {
   data_available <- TRUE
@@ -115,7 +133,11 @@ options("diseasystore.source_conn" = file.path("local", "path"))
 diseasyoption("source_conn", class = "DiseasystoreDiseaseY")
 
 ## ----diseasyoption_example_4--------------------------------------------------
-diseasyoption("non_existent", class = "DiseasystoreDiseaseY", .default = "final fallback")
+diseasyoption(
+  "non_existent",
+  class = "DiseasystoreDiseaseY",
+  .default = "final fallback"
+)
 
 ## ----cleanup, include = FALSE-------------------------------------------------
 if (exists("ds")) rm(ds)

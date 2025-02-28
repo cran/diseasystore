@@ -395,29 +395,34 @@ time you request a feature.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># Manually update the repository</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">system2</span>(</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="st">&quot;git&quot;</span>,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">args =</span> <span class="fu">paste</span>(<span class="st">&quot;-C&quot;</span>, <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreEcdcRespiratoryViruses&quot;</span>)),</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="at">stdout =</span> <span class="cn">TRUE</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>)</span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co"># Disable automatic pulls</span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="fu">options</span>(<span class="st">&quot;diseasystore.DiseasystoreEcdcRespiratoryViruses.pull&quot;</span> <span class="ot">=</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="at">args =</span> <span class="fu">paste</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="st">&quot;-C&quot;</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>    <span class="fu">diseasyoption</span>(<span class="st">&quot;source_conn&quot;</span>, <span class="st">&quot;DiseasystoreEcdcRespiratoryViruses&quot;</span>)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>  ),</span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>  <span class="at">stdout =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co"># Disable automatic pulls</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="fu">options</span>(<span class="st">&quot;diseasystore.DiseasystoreEcdcRespiratoryViruses.pull&quot;</span> <span class="ot">=</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># And then retrieve a feature from the feature store</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="at">feature =</span> <span class="st">&quot;iliari_rates&quot;</span>,</span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-01-01&quot;</span>),</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-03-01&quot;</span>))</span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="co">#&gt; Note: method with signature &#39;DBIConnection#Id&#39; chosen for function &#39;dbExistsTable&#39;,</span></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co">#&gt;  target signature &#39;duckdb_connection#Id&#39;.</span></span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt;  &quot;duckdb_connection#ANY&quot; would also be valid</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;dbplyr_Q1isPQAJ9Z&gt; [?? x 6]</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.1.1 [B246705@Windows 10 x64:R 4.4.0/:memory:]</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt;   key_location age_group infection_type  rate valid_from valid_until</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt; 1 Austria      05-14     ILI            4752. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt; 2 Austria      &lt;NA&gt;      ILI            3299. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; 3 Austria      00-04     ILI            7024. 2023-02-20 2023-02-27 </span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; 4 Austria      05-14     ILI            1743. 2023-02-13 2023-02-20 </span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; 5 Austria      05-14     ILI            1584. 2023-02-06 2023-02-13 </span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">feature =</span> <span class="st">&quot;iliari_rates&quot;</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-01-01&quot;</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-03-01&quot;</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>)</span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; Note: method with signature &#39;DBIConnection#Id&#39; chosen for function &#39;dbExistsTable&#39;,</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;  target signature &#39;duckdb_connection#Id&#39;.</span></span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;  &quot;duckdb_connection#ANY&quot; would also be valid</span></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_2KPN2SKmme&gt; [?? x 6]</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB v1.2.0 [B246705@Windows 10 x64:R 4.4.2/:memory:]</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   key_location age_group infection_type  rate valid_from valid_until</span></span>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;          &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; 1 Austria      15-64     ILI            3849. 2023-01-02 2023-01-09 </span></span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; 2 Austria      05-14     ILI            3109. 2022-12-26 2023-01-02 </span></span>
+<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; 3 Belgium      00-04     ARI            3652. 2023-02-27 2023-03-06 </span></span>
+<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; 4 Belgium      00-04     ARI            2863. 2023-02-20 2023-02-27 </span></span>
+<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; 5 Belgium      15-64     ARI            1386. 2023-01-02 2023-01-09 </span></span>
+<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
 
 
 

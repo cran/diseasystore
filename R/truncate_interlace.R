@@ -80,7 +80,9 @@
 truncate_interlace <- function(primary, secondary = NULL) {
 
   # Check edge case
-  if (is.null(secondary)) return(primary)
+  if (is.null(secondary) || (is.list(secondary) && length(secondary) == 0)) {
+    return(primary)
+  }
 
   # Ensure secondary is list
   if (!inherits(secondary, "list")) secondary <- list(secondary)
@@ -95,7 +97,7 @@ truncate_interlace <- function(primary, secondary = NULL) {
       common_keys <- intersect(primary_keys, colnames(.x)[startsWith(colnames(.x), "key_")])
 
       if (length(common_keys) == 0) {
-        stop("No common keys found to interlace by!")
+        stop("No common keys found to interlace by!", call. = FALSE)
       }
 
       # We then join the tables by these keys and truncate the secondary table to validity range of the primary

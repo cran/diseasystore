@@ -22,249 +22,249 @@ suggests_available <- rlang::is_installed("duckdb")
 simulist_data
 
 ## ----observables_regex, eval = FALSE------------------------------------------
-#    ...
-#    private = list(
-#      .observables_regex = r"{^n_(?=\w)|_temperature$}",
-#      ...
-#    )
+#   ...
+#   private = list(
+#     .observables_regex = r"{^n_(?=\w)|_temperature$}",
+#     ...
+#   )
 
 ## ----ds_map, eval = FALSE-----------------------------------------------------
-#  DiseasystoreSimulist <- R6::R6Class(
-#    classname = "DiseasystoreSimulist",
-#    inherit = DiseasystoreBase,
-#  
-#    ...
-#  
-#    private = list(
-#      .ds_map = list(
-#        "birth"       = "simulist_birth",
-#        "sex"         = "simulist_sex",
-#        "age"         = "simulist_age",
-#        "n_positive"  = "simulist_positive",
-#        "n_admission" = "simulist_admission",
-#        "n_hospital"  = "simulist_hospital"
-#      ),
-#      .label = "Simulist Synthetic Data",
-#  
-#    ...
-#    )
-#  )
+# DiseasystoreSimulist <- R6::R6Class(
+#   classname = "DiseasystoreSimulist",
+#   inherit = DiseasystoreBase,
+# 
+#   ...
+# 
+#   private = list(
+#     .ds_map = list(
+#       "birth"       = "simulist_birth",
+#       "sex"         = "simulist_sex",
+#       "age"         = "simulist_age",
+#       "n_positive"  = "simulist_positive",
+#       "n_admission" = "simulist_admission",
+#       "n_hospital"  = "simulist_hospital"
+#     ),
+#     .label = "Simulist Synthetic Data",
+# 
+#   ...
+#   )
+# )
 
 ## ----feature_handler_birth, eval = FALSE--------------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "birth" feature contains the birth dates of the individuals and is used later
-#    # to compute the age of the individuals at any given time.
-#    simulist_birth = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ...) {
-#  
-#        out <- simulist_data |>
-#          dplyr::transmute(
-#            "key_pnr" = .data$id,
-#            "birth" = .data$birth,
-#            "valid_from" = .data$birth,
-#            "valid_until" = .data$date_death + lubridate::days(1)
-#          ) |>
-#          dplyr::filter(
-#            {{ start_date }} < .data$valid_until,
-#            .data$valid_from <= {{ end_date }}
-#          )
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    ),
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "birth" feature contains the birth dates of the individuals and is used later
+#   # to compute the age of the individuals at any given time.
+#   simulist_birth = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ...) {
+# 
+#       out <- simulist_data |>
+#         dplyr::transmute(
+#           "key_pnr" = .data$id,
+#           "birth" = .data$birth,
+#           "valid_from" = .data$birth,
+#           "valid_until" = .data$date_death + lubridate::days(1)
+#         ) |>
+#         dplyr::filter(
+#           {{ start_date }} < .data$valid_until,
+#           .data$valid_from <= {{ end_date }}
+#         )
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   ),
+# 
+#   ...
+# )
 
 ## ----key_join_birth-----------------------------------------------------------
 simulist_data |>
   dplyr::count(lubridate::year(.data$birth))
 
 ## ----feature_handler_sex, eval = FALSE----------------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "sex" feature simply stores the sex from the simulist data
-#    simulist_sex = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
-#  
-#        out <- simulist_data |>
-#          dplyr::right_join( # Join with birth data to validity period
-#            ds$get_feature("birth", start_date, end_date, slice_ts),
-#            by = c("id" = "key_pnr"),
-#            copy = TRUE
-#          ) |>
-#          dplyr::transmute(
-#            "key_pnr" = .data$id,
-#            "sex" = dplyr::if_else(.data$sex == "m", "Male", "Female"),
-#            .data$valid_from, .data$valid_until # Use values from birth feature
-#          )
-#  
-#        # No need to filter to ensure the data is only for the requested time period.
-#        # Since we right join with the birth feature, the validity period is already filtered.
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    ),
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "sex" feature simply stores the sex from the simulist data
+#   simulist_sex = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
+# 
+#       out <- simulist_data |>
+#         dplyr::right_join( # Join with birth data to validity period
+#           ds$get_feature("birth", start_date, end_date, slice_ts),
+#           by = c("id" = "key_pnr"),
+#           copy = TRUE
+#         ) |>
+#         dplyr::transmute(
+#           "key_pnr" = .data$id,
+#           "sex" = dplyr::if_else(.data$sex == "m", "Male", "Female"),
+#           .data$valid_from, .data$valid_until # Use values from birth feature
+#         )
+# 
+#       # No need to filter to ensure the data is only for the requested time period.
+#       # Since we right join with the birth feature, the validity period is already filtered.
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   ),
+# 
+#   ...
+# )
 
 ## ----feature_handler_age, eval = FALSE----------------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "age" feature computes the age of the individuals throughout the study period
-#    simulist_age = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
-#  
-#        # Using birth date, compute the age at the start of the study period
-#        age <- ds$get_feature("birth", start_date, end_date, slice_ts) |>
-#          dplyr::mutate(
-#            age_at_start = as.integer(
-#              !!age_on_date("birth", start_date, conn = ds %.% target_conn)
-#            )
-#          ) |>
-#          dplyr::compute()
-#  
-#        # Now, compute the next birthdays of the individual
-#        # (as many as we need to cover the study period)
-#        # and compute the age of the individuals throughout the study period with their
-#        # birthdays denoting the starts and ends of the validity periods.
-#        out <- purrr::map(
-#          seq.int(
-#            from = 0,
-#            to = ceiling(lubridate::interval(start_date, end_date) / lubridate::years(1))
-#          ),
-#          ~ age |>
-#            dplyr::mutate(
-#              # The age for this iteration of the age computation loop
-#              "age" = .data$age_at_start + .x
-#            ) |>
-#            dplyr::mutate( # Split to make the "age" column available for the next mutate
-#              # Compute the birthday for the age
-#              "birthday" = !!add_years("birth", "age", conn = ds %.% target_conn)
-#            ) |>
-#            dplyr::mutate( # Again, split to make "birthday" available for the next mutate
-#              # And when that age is not valid
-#              "next_birthday" = !!add_years("birthday", 1, conn = ds %.% target_conn)
-#            ) |>
-#            dplyr::filter( # Remove the birthdays that fall outside of the study period
-#              .data$birthday <= {{ end_date }},
-#              .data$birthday < .data$valid_until | is.na(.data$valid_until)
-#            ) |>
-#            dplyr::transmute( # We assign the birth dates as the validity periods
-#              "key_pnr" = .data$key_pnr,
-#              "age" = .data$age,
-#              "valid_from" = .data$birthday,
-#              "valid_until" = pmin(
-#                .data$valid_until,
-#                .data$next_birthday,
-#                na.rm = TRUE
-#              )
-#            )
-#        ) |>
-#          purrr::reduce(dplyr::union_all) # Collapse to a single dataset
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    ),
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "age" feature computes the age of the individuals throughout the study period
+#   simulist_age = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
+# 
+#       # Using birth date, compute the age at the start of the study period
+#       age <- ds$get_feature("birth", start_date, end_date, slice_ts) |>
+#         dplyr::mutate(
+#           age_at_start = as.integer(
+#             !!age_on_date("birth", start_date, conn = ds %.% target_conn)
+#           )
+#         ) |>
+#         dplyr::compute()
+# 
+#       # Now, compute the next birthdays of the individual
+#       # (as many as we need to cover the study period)
+#       # and compute the age of the individuals throughout the study period with their
+#       # birthdays denoting the starts and ends of the validity periods.
+#       out <- purrr::map(
+#         seq.int(
+#           from = 0,
+#           to = ceiling(lubridate::interval(start_date, end_date) / lubridate::years(1))
+#         ),
+#         ~ age |>
+#           dplyr::mutate(
+#             # The age for this iteration of the age computation loop
+#             "age" = .data$age_at_start + .x
+#           ) |>
+#           dplyr::mutate( # Split to make the "age" column available for the next mutate
+#             # Compute the birthday for the age
+#             "birthday" = !!add_years("birth", "age", conn = ds %.% target_conn)
+#           ) |>
+#           dplyr::mutate( # Again, split to make "birthday" available for the next mutate
+#             # And when that age is not valid
+#             "next_birthday" = !!add_years("birthday", 1, conn = ds %.% target_conn)
+#           ) |>
+#           dplyr::filter( # Remove the birthdays that fall outside of the study period
+#             .data$birthday <= {{ end_date }},
+#             .data$birthday < .data$valid_until | is.na(.data$valid_until)
+#           ) |>
+#           dplyr::transmute( # We assign the birth dates as the validity periods
+#             "key_pnr" = .data$key_pnr,
+#             "age" = .data$age,
+#             "valid_from" = .data$birthday,
+#             "valid_until" = pmin(
+#               .data$valid_until,
+#               .data$next_birthday,
+#               na.rm = TRUE
+#             )
+#           )
+#       ) |>
+#         purrr::reduce(dplyr::union_all) # Collapse to a single dataset
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   ),
+# 
+#   ...
+# )
 
 ## ----feature_handler_n_positive, eval = FALSE---------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "n_positive" feature contains the positive tests taken by the individuals
-#    simulist_positive = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ...) {
-#  
-#        out <- simulist_data |>
-#          dplyr::filter(.data$case_type == "confirmed") |>
-#          dplyr::transmute(
-#            "key_pnr" = .data$id,
-#            "valid_from" = .data$date_onset,
-#            "valid_until" = .data$valid_from + lubridate::days(1)
-#          ) |>
-#          dplyr::filter(
-#            {{ start_date }} < .data$valid_until,
-#            .data$valid_from <= {{ end_date }}
-#          )
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    ),
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "n_positive" feature contains the positive tests taken by the individuals
+#   simulist_positive = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ...) {
+# 
+#       out <- simulist_data |>
+#         dplyr::filter(.data$case_type == "confirmed") |>
+#         dplyr::transmute(
+#           "key_pnr" = .data$id,
+#           "valid_from" = .data$date_onset,
+#           "valid_until" = .data$valid_from + lubridate::days(1)
+#         ) |>
+#         dplyr::filter(
+#           {{ start_date }} < .data$valid_until,
+#           .data$valid_from <= {{ end_date }}
+#         )
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   ),
+# 
+#   ...
+# )
 
 ## ----feature_handler_n_hospital, eval = FALSE---------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "n_hospital" feature contains the hospitalizations of the individuals
-#    simulist_hospital = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
-#  
-#        out <- simulist_data |>
-#          dplyr::filter(
-#            .data$case_type == "confirmed",
-#            !is.na(.data$date_admission)
-#          ) |>
-#          dplyr::transmute(
-#            "key_pnr" = .data$id,
-#            "valid_from" = .data$date_admission,
-#            "valid_until" = .data$date_discharge + lubridate::days(1)
-#          ) |>
-#          dplyr::filter(
-#            {{ start_date }} < .data$valid_until,
-#            .data$valid_from <= {{ end_date }}
-#          )
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    ),
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "n_hospital" feature contains the hospitalizations of the individuals
+#   simulist_hospital = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
+# 
+#       out <- simulist_data |>
+#         dplyr::filter(
+#           .data$case_type == "confirmed",
+#           !is.na(.data$date_admission)
+#         ) |>
+#         dplyr::transmute(
+#           "key_pnr" = .data$id,
+#           "valid_from" = .data$date_admission,
+#           "valid_until" = .data$date_discharge + lubridate::days(1)
+#         ) |>
+#         dplyr::filter(
+#           {{ start_date }} < .data$valid_until,
+#           .data$valid_from <= {{ end_date }}
+#         )
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   ),
+# 
+#   ...
+# )
 
 ## ----feature_handler_n_admission, eval = FALSE--------------------------------
-#  private = list(
-#    ...
-#  
-#    # The "n_admission" feature contains the admissions of the individuals
-#    # We here use the "n_hospital" feature to compute the admissions since the admission
-#    # is an entry for the first date of hospitalisation
-#    simulist_admission = FeatureHandler$new(
-#      compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
-#  
-#        out <- ds$get_feature("n_hospital", start_date, end_date, slice_ts) |>
-#          dplyr::mutate("valid_until" = .data$valid_from + 1L) |>
-#          dplyr::filter({{ start_date }} < .data$valid_until) # valid_from filtered in n_hospital
-#  
-#        return(out)
-#      },
-#      key_join = key_join_count
-#    )
-#  
-#    ...
-#  )
+# private = list(
+#   ...
+# 
+#   # The "n_admission" feature contains the admissions of the individuals
+#   # We here use the "n_hospital" feature to compute the admissions since the admission
+#   # is an entry for the first date of hospitalisation
+#   simulist_admission = FeatureHandler$new(
+#     compute = function(start_date, end_date, slice_ts, source_conn, ds, ...) {
+# 
+#       out <- ds$get_feature("n_hospital", start_date, end_date, slice_ts) |>
+#         dplyr::mutate("valid_until" = .data$valid_from + 1L) |>
+#         dplyr::filter({{ start_date }} < .data$valid_until) # valid_from filtered in n_hospital
+# 
+#       return(out)
+#     },
+#     key_join = key_join_count
+#   )
+# 
+#   ...
+# )
 
 ## ----configure_diseasystore, eval = FALSE-------------------------------------
-#  # We define target_conn as a function that opens a DBIconnection to the DB
-#  target_conn <- \() DBI::dbConnect(duckdb::duckdb())
-#  options(
-#    "diseasystore.target_conn" = target_conn
-#  )
+# # We define target_conn as a function that opens a DBIconnection to the DB
+# target_conn <- \() DBI::dbConnect(duckdb::duckdb())
+# options(
+#   "diseasystore.target_conn" = target_conn
+# )
 
 ## ----configure_diseasystore_hidden, include = FALSE, eval = suggests_available----
 target_conn <- \() DBI::dbConnect(duckdb::duckdb())

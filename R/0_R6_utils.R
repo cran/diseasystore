@@ -79,7 +79,7 @@ diseasyoption <- function(option, class = NULL, namespace = NULL, .default = NUL
 
   # Only class OR namespace can be given, not both
   if (!is.null(namespace) && !is.null(class)) {
-    stop("Only one of `namespace` or `class` can be given!")
+    stop("Only one of `namespace` or `class` can be given!", call. = FALSE)
   }
 
   # Ensure class is character if given
@@ -145,17 +145,15 @@ diseasyoption <- function(option, class = NULL, namespace = NULL, .default = NUL
       purrr::map(\(opt_regex) purrr::keep_at(options(), ~ stringr::str_detect(., opt_regex))) |>
       purrr::map(\(opts) purrr::discard(opts, ~ is.null(.) | identical(., ""))) |>
       purrr::discard(~ length(.) == 0) |>
-      purrr::map(unlist) |>
-      purrr::pluck(1, .default = .default) |>
-      unlist()
+      purrr::pluck(1)
 
     # Check options are non-ambiguous
     if (length(options) > 1) {
-      stop(glue::glue("Multiple options found ({toString(names(options))})!"))
+      stop(glue::glue("Multiple options found ({toString(names(options))})!"), call. = FALSE)
     }
 
     # Then remove the name from the option
-    options <- purrr::pluck(options, 1)
+    options <- purrr::pluck(options, 1, .default = .default)
   }
 
   return(options)
@@ -191,19 +189,21 @@ parse_diseasyconn <- function(conn, type = "source_conn") {
   } else if (is.function(conn)) {
     conn <- tryCatch(
       conn(),
-      error = \(e) stop(glue::glue("`{type}` could not be parsed! ({e$message})"))
+      error = \(e) stop(glue::glue("`{type}` could not be parsed! ({e$message})"), call. = FALSE)
     )
+    attr(conn, "needs_cleanup") <- TRUE # Internally instanced, we clean it up
     return(conn)
   }
 
   # From here, we need to consider the type of connection
   # "target_conn" must be a valid DBI conn while source_conn can be whatever
   if (type == "target_conn" && inherits(conn, "DBIConnection")) {
+    attr(conn, "needs_cleanup") <- FALSE # Externally provided, we do not clean it up
     return(conn)
   } else if (type == "source_conn") {
     return(conn)
   }
 
   # Catch all other cases
-  stop(glue::glue("`{type}` could not be parsed!"))
+  stop(glue::glue("`{type}` could not be parsed!"), call. = FALSE)
 }

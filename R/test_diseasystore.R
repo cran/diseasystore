@@ -15,8 +15,7 @@
 #'   Should take a `skip_backend` that does not open connections for the given backends.
 #' @param data_files (`character()`)\cr
 #'   List of files that should be available when testing.
-#' @param target_schema (`character(1)`)\cr
-#'   The data base schema where the tests should be run.
+#' @param target_schema `r rd_target_schema()`
 #' @param test_start_date (`Date`)\cr
 #'   The earliest date to retrieve data from during tests.
 #' @param skip_backends (`character()`)\cr
@@ -97,7 +96,7 @@ test_diseasystore <- function(
                                    r"{\b(?:https?|ftp):\/\/[-A-Za-z0-9+&@#\/%?=~_|!:,.;]*[-A-Za-z0-9+&@#\/%=~_|]}")) {
       source_conn_helper <- source_conn_path                                                                            # nolint: object_usage_linter
     } else {
-      stop("`source_conn_helper` could not be determined!")
+      stop("`source_conn_helper` could not be determined!", call. = FALSE)
     }
 
     # Then look for availability of files and download if needed
@@ -138,7 +137,10 @@ test_diseasystore <- function(
 
   # Throw warning if remote data unavailable (only throw if we are working locally, don't run this check on CRAN)
   if (!is.null(remote_conn) && curl::has_internet() && !on_cran && !remote_data_available) {
-    warning(glue::glue("remote_conn for {diseasystore_class} unavailable despite internet being available!"))
+    warning(
+      glue::glue("remote_conn for {diseasystore_class} unavailable despite internet being available!"),
+      call. = FALSE
+    )
   }
 
   # Check that the files are available after attempting to download
@@ -157,6 +159,13 @@ test_diseasystore <- function(
 
 
 
+  # Make a little helper function to clean up the connection after each test
+  # and check that intermediate dbplyr and SCDB tables (e.g. from dplyr::compute() calls) are cleaned up
+  connection_clean_up <- function(conn) {
+    testthat::expect_identical(nrow(SCDB::get_tables(conn, show_temporary = TRUE, pattern = "dbplyr_")), 0L)
+    testthat::expect_identical(nrow(SCDB::get_tables(conn, show_temporary = TRUE, pattern = "SCDB_")), 0L)
+    DBI::dbDisconnect(conn)
+  }
 
   #     ######## ########  ######  ########  ######     ########  ########  ######   #### ##    ##  ######
   #        ##    ##       ##    ##    ##    ##    ##    ##     ## ##       ##    ##   ##  ###   ## ##    ##
@@ -195,6 +204,7 @@ test_diseasystore <- function(
     checkmate::expect_date(ds$min_start_date, upper = lubridate::today())
     checkmate::expect_date(ds$max_end_date,   upper = lubridate::today())
 
+    # Clean up
     rm(ds)
     invisible(gc())
   })
@@ -225,6 +235,7 @@ test_diseasystore <- function(
     feature <- testthat::expect_no_error(ds$available_features[[1]])
     testthat::expect_no_error(ds$get_feature(feature))
 
+    # Clean up
     rm(ds)
     invisible(gc())
   })
@@ -245,6 +256,7 @@ test_diseasystore <- function(
 
     testthat::expect_no_error(ds$get_feature(ds$available_features[[1]]))
 
+    # Clean up
     rm(ds)
     invisible(gc())
   })
@@ -270,7 +282,7 @@ test_diseasystore <- function(
               stringr::str_remove_all(stringr::fixed("\n *")) |>
               stringr::str_remove_all(stringr::fixed("* ")) |>
               simpleError(message = _) |>
-              stop()
+              stop()                                                                                                    # nolint: condition_call_linter
           }
         ),
         paste0("Must be disjunct from \\{'", paste(skip_backends, collapse = "|"), "\\'}")
@@ -304,7 +316,12 @@ test_diseasystore <- function(
           ),
           expr = {
             feature_checksums <- ds$get_feature(.x, start_date = test_start_date, end_date = test_end_date) |>
-              SCDB::digest_to_checksum() |>
+              SCDB::digest_to_checksum()
+
+            # digest_to_checksum() creates an intermediary table in SQLite
+            if (inherits(conn, "SQLiteConnection")) SCDB::defer_db_cleanup(feature_checksums)
+
+            feature_checksums <- feature_checksums |>
               dplyr::pull("checksum") |>
               sort()
 
@@ -326,9 +343,9 @@ test_diseasystore <- function(
           dplyr::collect() |>
           dplyr::filter(.data$valid_until <= !!test_start_date | !!test_end_date < .data$valid_from)
 
-        testthat::expect_equal(
+        testthat::expect_identical(
           SCDB::nrow(reference_out_of_bounds),
-          0,
+          0L,
           info = glue::glue("Feature `{.x}` returns data outside the study period.")
         )
 
@@ -339,12 +356,12 @@ test_diseasystore <- function(
           dplyr::collect() |>
           purrr::map(~ DBI::dbDataType(dbObj = conn, obj = .))
 
-        testthat::expect_equal(
+        testthat::expect_identical(
           purrr::pluck(validity_period_data_types, "valid_from"),
           DBI::dbDataType(dbObj = conn, obj = as.Date(0)),
           info = glue::glue("Feature `{.x}` has a non-Date `valid_from` column.")
         )
-        testthat::expect_equal(
+        testthat::expect_identical(
           purrr::pluck(validity_period_data_types, "valid_until"),
           DBI::dbDataType(dbObj = conn, obj = as.Date(0)),
           info = glue::glue("Feature `{.x}` has a non-Date `valid_until` column.")
@@ -352,16 +369,11 @@ test_diseasystore <- function(
 
         # Check that valid_until (date or NA) is (strictly) greater than valid_from (date)
         # Remember that data is valid in the interval [valid_from, valid_until) and NA is treated as infinite
-        testthat::expect_equal(
-          SCDB::nrow(dplyr::filter(reference, is.na(.data$valid_from))),
-          0
-        )
+        testthat::expect_identical(sum(is.na(dplyr::pull(reference, "valid_from"))), 0L)
 
-        testthat::expect_equal(
-          reference |>
-            dplyr::filter(.data$valid_from >= .data$valid_until) |>
-            SCDB::nrow(),
-          0,
+        testthat::expect_identical(
+          sum(dplyr::pull(reference, "valid_from") >= dplyr::pull(reference, "valid_until"), na.rm = TRUE),
+          0L,
           info = glue::glue("Feature `{.x}` has some elements where `valid_from` >= `valid_until`.")
         )
 
@@ -369,12 +381,17 @@ test_diseasystore <- function(
         # Copy to remote and continue checks
         if (!inherits(reference, "tbl_sql") ||
               (inherits(reference, "tbl_sql") && !identical(dbplyr::remote_con(reference), conn))) {
-          reference <- dplyr::copy_to(conn, df = reference, name = SCDB::unique_table_name("ds"))
+          reference <- dplyr::copy_to(conn, df = reference, name = SCDB::unique_table_name("ds_reference"))
           SCDB::defer_db_cleanup(reference)
         }
 
         reference_checksums <- reference |>
-          SCDB::digest_to_checksum() |>
+          SCDB::digest_to_checksum()
+
+        # digest_to_checksum() creates an intermediary table in SQLite
+        if (inherits(conn, "SQLiteConnection")) SCDB::defer_db_cleanup(reference_checksums)
+
+        reference_checksums <- reference_checksums |>
           dplyr::pull("checksum") |>
           sort()
 
@@ -383,6 +400,8 @@ test_diseasystore <- function(
 
       })
 
+      # Clean up
+      connection_clean_up(conn)
       rm(ds)
       invisible(gc())
     }
@@ -413,7 +432,12 @@ test_diseasystore <- function(
           expr = {
 
             feature_checksums <- ds$get_feature(.x, start_date = test_start_date, end_date = test_end_date) |>
-              SCDB::digest_to_checksum() |>
+              SCDB::digest_to_checksum()
+
+            # digest_to_checksum() creates an intermediary table in SQLite
+            if (inherits(conn, "SQLiteConnection")) SCDB::defer_db_cleanup(feature_checksums)
+
+            feature_checksums <- feature_checksums |>
               dplyr::pull("checksum") |>
               sort()
 
@@ -433,12 +457,17 @@ test_diseasystore <- function(
         # Copy to remote and continue checks
         if (!inherits(reference, "tbl_sql") ||
               (inherits(reference, "tbl_sql") && !identical(dbplyr::remote_con(reference), conn))) {
-          reference <- dplyr::copy_to(conn, df = reference, name = SCDB::unique_table_name("ds"))
+          reference <- dplyr::copy_to(conn, df = reference, name = SCDB::unique_table_name("ds_reference"))
           SCDB::defer_db_cleanup(reference)
         }
 
         reference_checksums <- reference |>
-          SCDB::digest_to_checksum() |>
+          SCDB::digest_to_checksum()
+
+        # digest_to_checksum() creates an intermediary table in SQLite
+        if (inherits(conn, "SQLiteConnection")) SCDB::defer_db_cleanup(reference_checksums)
+
+        reference_checksums <- reference_checksums |>
           dplyr::pull("checksum") |>
           sort()
 
@@ -451,6 +480,8 @@ test_diseasystore <- function(
 
       })
 
+      # Clean up
+      connection_clean_up(conn)
       rm(ds)
       invisible(gc())
     }
@@ -460,8 +491,8 @@ test_diseasystore <- function(
   # Helper function that checks the output of key_joins
   key_join_features_tester <- function(output, start_date, end_date) {
     # The output dates should match start and end date
-    testthat::expect_equal(min(output$date), start_date)
-    testthat::expect_equal(max(output$date), end_date)
+    testthat::expect_equal(min(output$date), start_date)                                                                # nolint: expect_identical_linter. R 4.5 makes dates more confusing than it already is
+    testthat::expect_equal(max(output$date), end_date)                                                                  # nolint: expect_identical_linter.
   }
 
 
@@ -513,6 +544,39 @@ test_diseasystore <- function(
 
         })
 
+      # Clean up
+      connection_clean_up(conn)
+      rm(ds)
+      invisible(gc())
+    }
+  })
+
+
+  testthat::test_that(glue::glue("{diseasystore_class} can key_join with feature-independent stratification"), {
+    testthat::skip_if_not(local)
+
+    for (conn in conn_generator(skip_backends)) {
+
+      # Initialise without start_date and end_date
+      ds <- testthat::expect_no_error(diseasystore_generator$new(verbose = FALSE, target_conn = conn, ...))
+
+      if (length(ds$available_observables) > 0) {
+
+        # Check we can aggregate with feature-independent stratifications
+        output <- ds$key_join_features(
+          observable = ds$available_observables[[1]],
+          stratification = rlang::quos(string = "test", number = 2),
+          test_start_date,
+          test_end_date
+        )
+
+        testthat::expect_identical(unique(dplyr::pull(output, "string")), "test")
+        testthat::expect_identical(unique(dplyr::pull(output, "number")), 2)
+      }
+
+
+      # Clean up
+      connection_clean_up(conn)
       rm(ds)
       invisible(gc())
     }
@@ -537,17 +601,12 @@ test_diseasystore <- function(
           output <- tryCatch({
             ds$key_join_features(
               observable = as.character(observable),
-              stratification = as.character(stratification), # Output of expand.grid is a factor.
+              stratification = eval(parse(text = glue::glue("rlang::quos({stratification})"))),
               start_date = test_start_date,
               end_date = test_end_date
             )
           }, error = function(e) {
-            checkmate::expect_character(
-              e$message,
-              pattern = glue::glue("Stratification variable not found. ",
-                                   "Available stratification variables are: ",
-                                   "{toString(ds$available_stratifications)}")
-            )
+            checkmate::expect_character(e$message, pattern = "Stratification could not be computed")
             return(NULL)
           })
 
@@ -571,12 +630,7 @@ test_diseasystore <- function(
               end_date = test_end_date
             )
           }, error = function(e) {
-            checkmate::expect_character(
-              e$message,
-              pattern = glue::glue("Stratification variable not found. ",
-                                   "Available stratification variables are: ",
-                                   "{toString(ds$available_stratifications)}")
-            )
+            checkmate::expect_character(e$message, pattern = "Stratification could not be computed")
             return(NULL)
           })
 
@@ -588,6 +642,7 @@ test_diseasystore <- function(
         })
 
       # Clean up
+      connection_clean_up(conn)
       rm(ds)
       invisible(gc())
     }

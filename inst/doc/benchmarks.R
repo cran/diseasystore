@@ -4,8 +4,9 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-# Set a flag to determine if this is being run on CRAN
-on_cran <- !identical(Sys.getenv("NOT_CRAN"), "true")
+# Set a flag to determine if the vignette should be run in simple context (vignettes)
+# or in an extended context (pkgdown)
+simple_rendering <- rlang::is_installed("pkgdown") && !pkgdown::in_pkgdown()
 
 ## ----setup--------------------------------------------------------------------
 library(diseasystore)
@@ -35,49 +36,52 @@ benchmark_data <- tibble::as_tibble(data_generator(1000)) |>
 benchmark_data
 
 ## ----eval = FALSE-------------------------------------------------------------
-#  DiseasystoreMtcars <- R6::R6Class(
-#    classname = "DiseasystoreBase",
-#    inherit = DiseasystoreBase,
-#    private = list(
-#      .ds_map = list("n_cyl" = "mtcars_cyl", "vs" = "mtcars_vs"),
-#      mtcars_cyl = FeatureHandler$new(
-#        compute = function(start_date, end_date, slice_ts, source_conn) {
-#          out <- benchmark_data |>
-#            dplyr::transmute(
-#              "key_car" = .data$car, "n_cyl" = .data$cyl,
-#              "valid_from" = Sys.Date() - lubridate::days(2 * .data$row_id - 1),
-#              "valid_until" = .data$valid_from + lubridate::days(2)
-#            )
-#          return(out)
-#        },
-#        key_join = key_join_sum
-#      ),
-#      mtcars_vs = FeatureHandler$new(
-#        compute = function(start_date, end_date, slice_ts, source_conn) {
-#          out <- benchmark_data |>
-#            dplyr::transmute(
-#              "key_car" = .data$car, .data$vs,
-#              "valid_from" = Sys.Date() - lubridate::days(2 * .data$row_id),
-#              "valid_until" = .data$valid_from + lubridate::days(2)
-#            )
-#          return(out)
-#        },
-#        key_join = key_join_sum
-#      )
-#    )
-#  )
+# DiseasystoreMtcars <- R6::R6Class(
+#   classname = "DiseasystoreBase",
+#   inherit = DiseasystoreBase,
+#   private = list(
+#     .ds_map = list("n_cyl" = "mtcars_cyl", "vs" = "mtcars_vs"),
+#     mtcars_cyl = FeatureHandler$new(
+#       compute = function(start_date, end_date, slice_ts, source_conn) {
+#         out <- benchmark_data |>
+#           dplyr::transmute(
+#             "key_car" = .data$car, "n_cyl" = .data$cyl,
+#             "valid_from" = Sys.Date() - lubridate::days(2 * .data$row_id - 1),
+#             "valid_until" = .data$valid_from + lubridate::days(2)
+#           )
+#         return(out)
+#       },
+#       key_join = key_join_sum
+#     ),
+#     mtcars_vs = FeatureHandler$new(
+#       compute = function(start_date, end_date, slice_ts, source_conn) {
+#         out <- benchmark_data |>
+#           dplyr::transmute(
+#             "key_car" = .data$car, .data$vs,
+#             "valid_from" = Sys.Date() - lubridate::days(2 * .data$row_id),
+#             "valid_until" = .data$valid_from + lubridate::days(2)
+#           )
+#         return(out)
+#       },
+#       key_join = key_join_sum
+#     )
+#   )
+# )
 
-## ----benchmark context, results = "asis", include = FALSE---------------------
-if (on_cran) {
+## ----benchmark context, results = "asis", echo = FALSE------------------------
+if (simple_rendering) {
   cat(
-    "The results of the benchmark are shown graphically below (mean and standard deviation), where measure the",
+    "The results of the benchmark are shown graphically below",
+    "(mean and standard deviation), where measure the",
     "performance of `diseasystore`."
   )
 } else {
   cat(
-    "The results of the benchmark are shown graphically below (mean and standard deviation), where we compare the",
-    "current development version of `diseasystore` with the current CRAN version. In addition, we run the benchmarks",
-    "with the current development version of `{SCDB}` versus the current CRAN version since `{SCDB}` is used",
+    "The results of the benchmark are shown graphically below",
+    "(mean and standard deviation), where we compare the",
+    "current development version of `diseasystore` with the current CRAN version.",
+    "In addition, we run the benchmarks with the current development version of",
+    "`{SCDB}` versus the current CRAN version since `{SCDB}` is used",
     "internally in `diseasystore`."
   )
 }
@@ -91,26 +95,37 @@ benchmark_location <- c(
   purrr::discard(~ identical(., "")) |>
   purrr::pluck(1)
 
+
 benchmarks <- readRDS(benchmark_location) |>
   dplyr::mutate("version" = as.character(.data$version))
 
-# The benchmark contains data for the CRAN version, the main branch and whatever branch the workflow was run on.
-# We need to render the vignette differently dependent on where the vignette is rendered.
+# The benchmark contains data for the CRAN version, the main branch and whatever
+# branch the workflow was run on.
+# We need to render the vignette differently dependent on where the vignette is
+# rendered.
 
-# If we render the vignette on CRAN, we need to only show benchmarks for the current CRAN version SCDB and the
-# newest development benchmarks -- but mark these benchmarks as having the new version of diseasystore.
-# (since we are releasing a new version of diseasystore, these benchmarks will belong to the new CRAN version)
+# If we render the vignette on CRAN, we need to only show benchmarks for the current
+# CRAN version SCDB and the newest development benchmarks
+# -- but mark these benchmarks as having the new version of diseasystore.
+# (since we are releasing a new version of diseasystore, these benchmarks will belong
+# to the new CRAN version)
 
-# If we render the vignette on main, we need to render the benchmarks from the non-main branch as the main results
-# That is because these benchmarks will be newer than those on main, and the code that generate the results
-# will have been merged onto main -- causing the vignette to be rendered.
+# If we render the vignette on main, we need to render the benchmarks from the
+# non-main branch as the main results.
+# That is because these benchmarks will be newer than those on main, and the code
+# that generate the results will have been merged onto main
+#-- causing the vignette to be rendered.
 
-# If we render the vignette on the non-main branch, we need to render all of the benchmarks
+# If we render the vignette on the non-main branch, we need to render all of
+# the benchmarks
 
 # Determine if the SHA is on main
 sha <- benchmarks |>
   dplyr::distinct(.data$version) |>
-  dplyr::filter(!startsWith(.data$version, "diseasystore"), .data$version != "main") |>
+  dplyr::filter(
+    !startsWith(.data$version, "diseasystore"),
+    .data$version != "main"
+  ) |>
   dplyr::pull("version")
 
 # Check local git history
@@ -124,20 +139,25 @@ on_main <- tryCatch({
   return(identical(Sys.getenv("CI"), "true"))
 })
 
-# If we are on CRAN, use the newest benchmark (version = sha) and keep only CRAN SCDB results
-# This benchmark is then labelled with the neweset version number of diseasystore (the one we just deployed to CRAN)
-if (on_cran) {
+# In the simple context we use the newest benchmark (version = sha)
+# This benchmark is then labelled with the newest version number of SCDB
+if (simple_rendering) {
 
   benchmarks <- benchmarks |>
     dplyr::filter(.data$version == !!sha, .data$SCDB != "main") |>
-    dplyr::mutate("version" = paste0("diseasystore v", packageVersion("diseasystore")))
+    dplyr::mutate(
+      "version" = paste0("diseasystore v", packageVersion("diseasystore"))
+    )
 
 } else if (on_main) {
 
-  # If the SHA has been merged, use as the "main" version and remove the other, older, main version
+  # If the SHA has been merged, use as the "main" version and remove the other,
+  # older, main version
   benchmarks <- benchmarks |>
     dplyr::filter(.data$version != "main") |>
-    dplyr::mutate("version" = dplyr::if_else(.data$version == sha, "development", .data$version))
+    dplyr::mutate(
+      "version" = dplyr::if_else(.data$version == sha, "development", .data$version)
+    )
 
 }
 
@@ -149,7 +169,9 @@ benchmark_alt_text <- benchmarks |>
     .data$database,
     "time_seconds" = .data$time / 1e9
   ) |>
-  dplyr::mutate("backend" = stringr::str_remove(.data$database, r"{\sv[\w+\.]+$}")) |>
+  dplyr::mutate(
+    "backend" = stringr::str_remove(.data$database, r"{\sv[\w+\.]+$}")
+  ) |>
   dplyr::summarise(
     "mean_time_seconds" = round(mean(.data$time_seconds)),
     .by = c("benchmark_function", "backend")
@@ -162,11 +184,15 @@ benchmark_alt_text <- benchmarks |>
   purrr::pmap_chr(
     \(benchmark_function, mean_time_seconds, backends) {
       glue::glue(
-        "The {benchmark_function} benchmark takes {mean_time_seconds} seconds to run on the {backends} backends."
+        "The {benchmark_function} benchmark takes {mean_time_seconds} seconds",
+        " to run on the {backends} backends."
       )
     }
   ) |>
-  purrr::reduce(paste, .init = "The results for the benchmarks of the CRAN versions are as follows:")
+  purrr::reduce(
+    paste,
+    .init = "The results for the benchmarks of the CRAN versions are as follows:"
+  )
 
 ## ----echo = FALSE, fig.alt = benchmark_alt_text, eval = rlang::is_installed("here")----
 # Mean and standard deviation (see ggplot2::mean_se())
@@ -177,24 +203,46 @@ mean_sd <- function(x) {
 }
 
 # Determine subgroups
-groups <- setdiff(colnames(benchmarks), c("expr", "time", "benchmark_function", "database", "version", "n"))
+groups <- setdiff(
+  colnames(benchmarks),
+  c("expr", "time", "benchmark_function", "database", "version", "n")
+)
 
 # Apply "dodging" to sub-groups to show graphically
 dodge <- ggplot2::position_dodge(width = 0.6)
 
 # Insert newline into database name to improve rendering of figures
-labeller <- ggplot2::as_labeller(\(l) stringr::str_replace_all(l, stringr::fixed(" v"), "\nv"))
+labeller <- ggplot2::as_labeller(
+  \(l) stringr::str_replace_all(l, stringr::fixed(" v"), "\nv")
+)
 
-g <- ggplot2::ggplot(
-  benchmarks,
-  ggplot2::aes(
+# Set aesthetics for CRAN and non-CRAN versions
+if (simple_rendering) {
+  aes <- ggplot2::aes(
+    x = version,
+    y = time / 1e9,
+    color = database
+  )
+} else {
+  aes <- ggplot2::aes(
     x = version,
     y = time / 1e9,
     group = !!switch(length(groups) > 0, as.symbol(groups)),
     color = !!switch(length(groups) > 0, as.symbol(groups))
   )
+}
+
+g <- ggplot2::ggplot(
+  benchmarks,
+  aes
 ) +
-  ggplot2::stat_summary(fun.data = mean_sd, geom = "pointrange", size = 0.5, linewidth = 1, position = dodge) +
+  ggplot2::stat_summary(
+    fun.data = mean_sd,
+    geom = "pointrange",
+    size = 0.5,
+    linewidth = 1,
+    position = dodge
+  ) +
   ggplot2::facet_grid(
     rows = ggplot2::vars(benchmark_function),
     cols = ggplot2::vars(database),
@@ -208,6 +256,24 @@ g <- ggplot2::ggplot(
     legend.justification = "left"
   ) +
   ggplot2::ylim(0, NA)
+
+if (simple_rendering) {
+  # Reduce font size for CRAN version
+  g <- g + ggplot2::theme(text = ggplot2::element_text(size = 8))
+
+  # Make the legend two rows
+  g <- g + ggplot2::guides(color = ggplot2::guide_legend(nrow = 2, byrow = TRUE))
+
+} else {
+  # Add facets to non-CRAN rendering
+  g <- g +
+    ggplot2::facet_grid(
+      rows = ggplot2::vars(benchmark_function),
+      cols = ggplot2::vars(database),
+      scales = "free_y",
+      labeller = labeller
+    )
+}
 
 g
 

@@ -1,6 +1,6 @@
 Package: diseasystore
 Title: Feature Stores for the 'diseasy' Framework
-Version: 0.3.2
+Version: 0.3.3
 Authors@R: 
     c(person("Rasmus Skytte", "Randl\u00F8v", , "rske@ssi.dk", role = c("aut", "cre"),
              comment = c(ORCID = "0000-0002-5860-3838")),
@@ -25,11 +25,12 @@ RoxygenNote: 7.3.3
 Language: en-GB
 Depends: R (>= 4.3.0)
 Imports: checkmate, curl, DBI, dbplyr, dplyr, glue, ISOweek, jsonlite,
-        lubridate, pkgcond, purrr, readr, rlang, R6, SCDB (>= 0.5.1),
+        lubridate, pkgcond, purrr, readr, rlang, R6, SCDB (>= 0.5.2),
         stringr, tidyr, tidyselect
 Suggests: devtools, duckdb, ggplot2, here, knitr, lintr,
-        microbenchmark, odbc, pkgdown, rmarkdown, RSQLite, RPostgres,
-        testthat (>= 3.0.0), tibble, spelling, usethis, withr
+        microbenchmark, odbc (>= 1.6.4), pkgdown, rmarkdown, RSQLite,
+        RPostgres, testthat (>= 3.0.0), tibble, spelling, usethis,
+        withr
 VignetteBuilder: knitr
 URL: https://github.com/ssi-dk/diseasystore,
         https://ssi-dk.github.io/diseasystore/
@@ -37,7 +38,7 @@ BugReports: https://github.com/ssi-dk/diseasystore/issues
 Config/testthat/edition: 3
 LazyData: true
 NeedsCompilation: no
-Packaged: 2025-10-17 11:54:58 UTC; B246705
+Packaged: 2026-03-20 12:04:54 UTC; B246705
 Author: Rasmus Skytte Randløv [aut, cre] (ORCID:
     <https://orcid.org/0000-0002-5860-3838>),
   Kaare Græsbøll [rev] (ORCID: <https://orcid.org/0000-0002-6258-8212>),
@@ -51,4 +52,4 @@ Author: Rasmus Skytte Randløv [aut, cre] (ORCID:
   Statens Serum Institut, SSI [cph, fnd]
 Maintainer: Rasmus Skytte Randløv <rske@ssi.dk>
 Repository: CRAN
-Date/Publication: 2025-10-17 13:30:02 UTC
+Date/Publication: 2026-03-20 13:20:02 UTC

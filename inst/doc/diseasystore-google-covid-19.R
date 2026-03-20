@@ -46,7 +46,7 @@ not_on_cran <- interactive() || identical(Sys.getenv("NOT_CRAN"), "true") ||
 #   )
 # 
 #   if (!file.exists(destfile)) {
-#     download.file(url, destfile)
+#     download.file(url, destfile, mode = "wb")
 #   }
 # })
 

@@ -194,15 +194,94 @@ rd_get_results_seealso <- "[diseasy::DiseasyObservables]"
 rd_side_effects <- "`NULL` (called for side effects)"
 
 
-rd_age_cuts_lower <- paste(
-  "(`numeric`)\\cr",
-  "vector of ages defining the lower bound for each age group. If `NULL`, age groups of contact_basis is used."
-)
+rd_age_cuts_lower <- function(type = "param") {
+  checkmate::assert_choice(type, c("param", "field"))
+  paste(
+    "(`integer()`)\\cr",
+    "vector of ages defining the lower bound for each age group. If `NULL`, age groups of contact_basis is used.",
+    ifelse(type == "field", "Read only.", "")
+  )
+}
 
 rd_activity_weights <- paste(
   "(`numeric(4)`)\\cr",
   "vector of weights for the four types of contacts. If `NULL`, no weighting is done."
 )
+
+
+## Templates for DiseasyPopulation
+rd_regional_stratification <- function(type = "param") {
+  checkmate::assert_choice(type, c("param", "field"))
+  paste(
+    "(`character()`)\\cr",
+    "The level of spatial stratification of the population.",
+    switch(type == "field", "Read only.")
+  )
+}
+
+
+
+## Templates for DiseasyRegions
+rd_regions <- function(type = "param") {
+  checkmate::assert_choice(type, c("param", "field", "generators"))
+  paste(
+    "(`character()`)\\cr",
+    "The geographic regions of interest.",
+
+    switch(
+      type,
+      "param" = "The specified regions must be available in the `demography` and `adjacency` data.",
+      "field" = "Read only.",
+      "generators" = "If `NULL`, all regions are returned."
+    )
+  )
+}
+
+rd_adjacency <- function(type = "param") {
+  checkmate::assert_choice(type, c("param", "field", "return"))
+
+  paste(
+    "(`data.frame(1)`)\\cr",
+    "The adjacency (connectedness) of the regions.",
+    "Effectively, the `adjacency` is a long-form of the adjacency-matrix\\cr",
+
+    "The `data.frame` must include the following columns:\\cr",
+    "- `from` (`character`): Region identifier.\\cr",
+    "- `to`   (`character`): Region identifier.\\cr",
+    "- `adjacency` (`numeric`): Strength of the connectedness.\\cr",
+
+    switch(
+      type,
+      "param" = paste(
+        "The `from` and `to` columns must contain the same set of regions.",
+        'For "movement" inputs, rows are normalised before deriving the Theta matrix.',
+        'For "infection-flow" inputs, values are interpreted directly as the Theta matrix.'
+      ),
+      "field" = "Read only."
+    )
+  )
+}
+
+rd_adjacency_type <- paste(
+  "(`character`)\\cr",
+  'The type of adjacency provided ("movement" versus "infection-flow").',
+  'See `vignette("diseasy-regions")` for details.'
+)
+
+rd_demography <- function(type = "param") {
+  checkmate::assert_choice(type, c("param", "field"))
+
+  paste(
+    "(`data.frame(1)`)\\cr",
+    "The demography of the population per region.\\cr",
+
+    "The `data.frame` must include the following columns:\\cr",
+    "* `region` (`character`) Region identifier.\\cr",
+    "* `...` Optional additional stratification columns (e.g. sex, ethnicity).\\cr",
+    "* `population` (`numeric`) Number of individuals in the group.",
+    switch(type == "field", "Read only.")
+  )
+}
 
 ## Templates for DiseasyModel
 rd_diseasy_module <- paste(
@@ -213,17 +292,22 @@ rd_diseasy_module <- paste(
   "instance will not reflect in the copy that is added to `DiseasyModel`."
 )
 
+rd_module <- paste(
+  "(`R6::R6Class instance`)\\cr",
+  "This instance is cloned to the field with the same name as the class of the module"
+)
+
 ## Templates for DiseasyModelOde
 rd_initialise_state_vector_description <- paste(
   "Infer the state_vector from incidence data"
 )
 
 rd_incidence_data <- paste(
-  "incidence_data (`data.frame`)\\cr",
+  "(`data.frame`)\\cr",
   "Incidence observations as a `data.frame` with columns",
   "- `date`: The date of the observations",
-  "- `age_group`: The age group of the incidence observation (following `diseasystore::age_labels()` format)",
-  "- `variant`: The variant of the incidence observation.",
+  "- `...`: Columns corresponding to the demographic groups configured in the scenario (see `$population$groups`).",
+  "- `variant`: The variant of the incidence observation (if configured in the scenario).",
   "- `incidence`: The incidence in the age group at the given date"
 )
 

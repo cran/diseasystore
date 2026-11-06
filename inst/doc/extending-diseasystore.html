@@ -298,6 +298,12 @@ common “key_*” columns between the features. Any feature in a
 <code>diseasystore</code> therefore must have at least one “key_*”
 column. By convention, we place these column as the first columns of the
 table.</p>
+<p>Some features will not be meaningfully aggregated automatically
+e.g. the incidence of a disease must use information about the
+population size to aggregate meaningfully.</p>
+<p>In practice, any observable that can meaningfully use the
+<code>?aggregators</code> to summarise the data can automatically be
+coupled.</p>
 </div>
 <div id="features" class="section level2">
 <h2>Features</h2>
@@ -420,7 +426,7 @@ aggregate.</p></li>
 </ul>
 <p>Your aggregator should return a <code>dplyr::summarise()</code> call
 that operates on all columns specified in the <code>feature</code>
-argument.</p>
+argument and should return the result in a column named “value”.</p>
 </div>
 <div id="putting-it-all-together" class="section level2">
 <h2>Putting it all together</h2>

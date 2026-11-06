@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -394,25 +395,11 @@ data.</p>
 <p>Once configured such, we can use the feature store directly to get
 data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># We can see all the available features in the feature store</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;n_population&quot;    &quot;age_group&quot;       &quot;country_id&quot;      &quot;country&quot;        </span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;region_id&quot;       &quot;region&quot;          &quot;subregion_id&quot;    &quot;subregion&quot;      </span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;n_hospital&quot;      &quot;n_deaths&quot;        &quot;n_positive&quot;      &quot;n_icu&quot;          </span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; [13] &quot;n_ventilator&quot;    &quot;min_temperature&quot; &quot;max_temperature&quot;</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># And then retrieve a feature from the feature store</span></span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="at">feature =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-01-01&quot;</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-06-01&quot;</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_jaVM2S8k3Q&gt; [?? x 5]</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB 1.5.0 [B246705@Windows 10 x64:R 4.5.1/:memory:]</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA 2020-01-01 2020-01-02 </span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 2 AR           1                   NA 2020-01-01 2020-01-02 </span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 3 AR           2                    0 2020-01-01 2020-01-02 </span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 4 AR           3                    0 2020-01-01 2020-01-02 </span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; 5 AR           4                   NA 2020-01-01 2020-01-02 </span></span>
-<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-06-01&quot;</span>))</span></code></pre></div>
 
 
 

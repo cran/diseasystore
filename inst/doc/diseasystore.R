@@ -30,94 +30,94 @@ not_on_cran <- interactive() || as.logical(Sys.getenv("NOT_CRAN", unset = "false
 available_diseasystores()
 
 ## ----google_setup_hidden, include = FALSE, eval = suggests_available && not_on_cran----
-# The files we need are stored remotely in Google's API
-google_files <- c("by-age.csv", "demographics.csv", "index.csv", "weather.csv")
-remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
-
-# In practice, it is best to make a local copy of the data which is
-# stored in the "vignette_data" folder.
-# This folder can either be in the package folder
-# (preferred, please create the folder) or in the tempdir().
-local_conn <- purrr::detect(
-  "vignette_data",
-  checkmate::test_directory_exists,
-  .default = tempdir()
-)
-
-# Then we download the first n rows of each data set of interest
-try({
-  purrr::discard(
-    google_files,
-    ~ checkmate::test_file_exists(file.path(local_conn, .))
-  ) |>
-    purrr::walk(\(file) {
-      paste0(remote_conn, file) |>
-        readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
-        readr::write_csv(file.path(local_conn, file))
-    })
-})
-
-# Check that the files are available after attempting to download
-files_missing <- purrr::some(
-  google_files,
-  ~ !checkmate::test_file_exists(file.path(local_conn, .))
-)
-
-if (files_missing) {
-  data_available <- FALSE
-} else {
-  data_available <- TRUE
-}
-
-ds <- DiseasystoreGoogleCovid19$new(target_conn = DBI::dbConnect(duckdb::duckdb()),
-                                    source_conn = local_conn,
-                                    start_date = as.Date("2020-03-01"),
-                                    end_date = as.Date("2020-03-15"))
+# # The files we need are stored remotely in Google's API
+# google_files <- c("by-age.csv", "demographics.csv", "index.csv", "weather.csv")
+# remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
+# 
+# # In practice, it is best to make a local copy of the data which is
+# # stored in the "vignette_data" folder.
+# # This folder can either be in the package folder
+# # (preferred, please create the folder) or in the tempdir().
+# local_conn <- purrr::detect(
+#   "vignette_data",
+#   checkmate::test_directory_exists,
+#   .default = tempdir()
+# )
+# 
+# # Then we download the first n rows of each data set of interest
+# try({
+#   purrr::discard(
+#     google_files,
+#     ~ checkmate::test_file_exists(file.path(local_conn, .))
+#   ) |>
+#     purrr::walk(\(file) {
+#       paste0(remote_conn, file) |>
+#         readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
+#         readr::write_csv(file.path(local_conn, file))
+#     })
+# })
+# 
+# # Check that the files are available after attempting to download
+# files_missing <- purrr::some(
+#   google_files,
+#   ~ !checkmate::test_file_exists(file.path(local_conn, .))
+# )
+# 
+# if (files_missing) {
+#   data_available <- FALSE
+# } else {
+#   data_available <- TRUE
+# }
+# 
+# ds <- DiseasystoreGoogleCovid19$new(target_conn = DBI::dbConnect(duckdb::duckdb()),
+#                                     source_conn = local_conn,
+#                                     start_date = as.Date("2020-03-01"),
+#                                     end_date = as.Date("2020-03-15"))
 
 ## ----google_setup, eval = FALSE, eval = not_on_cran && suggests_available && data_available----
-ds <- DiseasystoreGoogleCovid19$new(
-  target_conn = DBI::dbConnect(duckdb::duckdb()),
-  start_date = as.Date("2020-03-01"),
-  end_date = as.Date("2020-03-15")
-)
+# ds <- DiseasystoreGoogleCovid19$new(
+#   target_conn = DBI::dbConnect(duckdb::duckdb()),
+#   start_date = as.Date("2020-03-01"),
+#   end_date = as.Date("2020-03-15")
+# )
 
 ## ----google_available_features, eval = not_on_cran && suggests_available && data_available----
-ds$available_features
+# ds$available_features
 
 ## ----google_get_feature_example_1, eval = not_on_cran && suggests_available && data_available----
-ds$get_feature("n_hospital")
+# ds$get_feature("n_hospital")
 
 ## ----google_get_feature_example_2, eval = not_on_cran && suggests_available && data_available----
-ds$get_feature("n_hospital",
-               start_date = as.Date("2020-03-01"),
-               end_date = as.Date("2020-03-02"))
+# ds$get_feature("n_hospital",
+#                start_date = as.Date("2020-03-01"),
+#                end_date = as.Date("2020-03-02"))
 
 ## ----available_observables, eval = not_on_cran && suggests_available && data_available----
-ds$available_observables
+# ds$available_observables
 
 ## ----available_stratifications, eval = not_on_cran && suggests_available && data_available----
-ds$available_stratifications
+# ds$available_stratifications
 
 ## ----google_key_join_features_example_1, eval = not_on_cran && suggests_available && data_available----
-ds$key_join_features(observable = "n_hospital",
-                     stratification = NULL)
+# ds$key_join_features(observable = "n_hospital",
+#                      stratification = NULL)
 
 ## ----google_key_join_features_example_2, eval = not_on_cran && suggests_available && data_available----
-ds$key_join_features(observable = "n_hospital",
-                     stratification = rlang::quos(country_id))
+# ds$key_join_features(observable = "n_hospital",
+#                      stratification = rlang::quos(country_id))
 
 ## ----google_key_join_features_example_3, eval = not_on_cran && suggests_available && data_available----
-ds$key_join_features(observable = "n_hospital",
-                     stratification = rlang::quos(country_id,
-                                                  old = age_group == "90+"))
+# ds$key_join_features(observable = "n_hospital",
+#                      stratification = rlang::quos(country_id,
+#                                                   old = age_group == "90+"))
 
 ## ----drop_diseasystore_example_1, eval = not_on_cran && suggests_available && data_available----
-SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
+# SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
 
 ## ----drop_diseasystore_example_2, eval = not_on_cran && suggests_available && data_available----
-drop_diseasystore(conn = ds$target_conn)
-
-SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
+# drop_diseasystore(conn = ds$target_conn)
+# 
+# SCDB::get_tables(ds$target_conn, show_temporary = FALSE)
 
 ## ----diseasyoption_list-------------------------------------------------------
 diseasyoption()

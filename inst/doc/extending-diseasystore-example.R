@@ -18,6 +18,9 @@ if (rlang::is_installed("withr")) {
 # We have a "hard" dependency for DuckDB to render parts of this vignette
 suggests_available <- rlang::is_installed("duckdb")
 
+# Some macos does not work with ducdb
+intel_macos <- identical(Sys.info()[["sysname"]], "Darwin") && identical(R.version$arch, "x86_64")
+
 ## ----simulist_data------------------------------------------------------------
 simulist_data
 
@@ -328,7 +331,7 @@ data2 <- ds$key_join_features(
 
 print(data2)
 
-## ----stratifications_positive_sex_age_plot, eval = suggests_available && rlang::is_installed("ggplot2"), fig.alt = "The number of positive tests over time per age group and sex in the example data."----
+## ----stratifications_positive_sex_age_plot, eval = suggests_available && rlang::is_installed("ggplot2") && !intel_macos, fig.alt = "The number of positive tests over time per age group and sex in the example data."----
 ggplot2::ggplot(data2, ggplot2::aes(x = date, y = n_positive, color = age_group)) +
   ggplot2::geom_line() +
   ggplot2::facet_wrap(~ sex)

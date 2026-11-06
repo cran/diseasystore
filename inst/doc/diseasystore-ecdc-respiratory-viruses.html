@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -386,8 +387,7 @@ Respiratory Viruses Weekly data.</p>
 <p>Once configured such, we can use the feature store directly to get
 data.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># We can see all the available features in the feature store</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; [1] &quot;iliari_rates&quot;   &quot;infection_type&quot; &quot;age_group&quot;</span></span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span></code></pre></div>
 <p>If you have locally cloned the repository, you may consider pulling
 data from the repository manually and disabling automatic pulls.
 Otherwise, the <code>diseasystore</code> will check for updates every
@@ -409,20 +409,7 @@ time you request a feature.</p>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="at">feature =</span> <span class="st">&quot;iliari_rates&quot;</span>,</span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-01-01&quot;</span>),</span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a>  <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2023-03-01&quot;</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>)</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">#&gt; Note: method with signature &#39;DBIConnection#Id&#39; chosen for function &#39;dbExistsTable&#39;,</span></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="co">#&gt;  target signature &#39;duckdb_connection#Id&#39;.</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a><span class="co">#&gt;  &quot;duckdb_connection#ANY&quot; would also be valid</span></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_AevN0AiQ5r&gt; [?? x 6]</span></span>
-<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB 1.5.0 [B246705@Windows 10 x64:R 4.5.1/:memory:]</span></span>
-<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a><span class="co">#&gt;   key_location age_group infection_type   rate valid_from valid_until</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="co">#&gt; 1 Austria      00-04     ILI            10576. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="co">#&gt; 2 Austria      15-64     ILI             3249. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-16"><a href="#cb7-16" tabindex="-1"></a><span class="co">#&gt; 3 Austria      05-14     ILI             4752. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-17"><a href="#cb7-17" tabindex="-1"></a><span class="co">#&gt; 4 Austria      65+       ILI              404. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-18"><a href="#cb7-18" tabindex="-1"></a><span class="co">#&gt; 5 Austria      &lt;NA&gt;      ILI             3299. 2023-02-27 2023-03-06 </span></span>
-<span id="cb7-19"><a href="#cb7-19" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>)</span></code></pre></div>
 
 
 

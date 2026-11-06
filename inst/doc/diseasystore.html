@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -386,25 +387,11 @@ These are not strictly required, but make getting features for this time
 interval simpler.</p>
 <p>Once configured we can query the available features in the
 <code>diseasystore</code></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;n_population&quot;    &quot;age_group&quot;       &quot;country_id&quot;      &quot;country&quot;        </span></span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt;  [5] &quot;region_id&quot;       &quot;region&quot;          &quot;subregion_id&quot;    &quot;subregion&quot;      </span></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;  [9] &quot;n_hospital&quot;      &quot;n_deaths&quot;        &quot;n_positive&quot;      &quot;n_icu&quot;          </span></span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; [13] &quot;n_ventilator&quot;    &quot;min_temperature&quot; &quot;max_temperature&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>ds<span class="sc">$</span>available_features</span></code></pre></div>
 <p>These features can be retrieved individually (using the
 <code>start_date</code> and <code>end_date</code> we specified during
 creation of <code>ds</code>):</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_P3kkgZSMZn&gt; [?? x 5]</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB 1.5.0 [B246705@Windows 10 x64:R 4.5.1/:memory:]</span></span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt; 2 AR           1                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt; 3 AR           2                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; 4 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt; 5 AR           4                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>)</span></code></pre></div>
 <p>Notice that features have associated “key_*” and “valid_from/until”
 columns. These are used for one of the primary selling points of
 <code>diseasystore</code>, namely <a href="#automatic-aggregation">automatic aggregation</a>.</p>
@@ -412,17 +399,7 @@ columns. These are used for one of the primary selling points of
 <code>start_date</code> and/or <code>end_date</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">get_feature</span>(<span class="st">&quot;n_hospital&quot;</span>,</span>
 <span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>               <span class="at">start_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-01&quot;</span>),</span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-02&quot;</span>))</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt; # Source:   table&lt;ds_get_feature_E5flRo5gm2&gt; [?? x 5]</span></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt; # Database: DuckDB 1.5.0 [B246705@Windows 10 x64:R 4.5.1/:memory:]</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;   key_location key_age_bin n_hospital valid_from valid_until</span></span>
-<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;chr&gt;            &lt;dbl&gt; &lt;date&gt;     &lt;date&gt;     </span></span>
-<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; 1 AR           0                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; 2 AR           1                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; 3 AR           2                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; 4 AR           3                   NA 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; 5 AR           4                    1 2020-03-01 2020-03-02 </span></span>
-<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; # ℹ more rows</span></span></code></pre></div>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>               <span class="at">end_date =</span> <span class="fu">as.Date</span>(<span class="st">&quot;2020-03-02&quot;</span>))</span></code></pre></div>
 </div>
 <div id="dynamically-expanded" class="section level1">
 <h1>Dynamically expanded</h1>
@@ -467,25 +444,12 @@ that you want to aggregate and the <code>stratification</code> you want
 to apply to the aggregation.</p>
 <p>To see which features are considered “observables” and which are
 considered “stratifications” you can use the included methods:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>ds<span class="sc">$</span>available_observables</span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;n_population&quot;    &quot;n_hospital&quot;      &quot;n_deaths&quot;        &quot;n_positive&quot;     </span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#&gt; [5] &quot;n_icu&quot;           &quot;n_ventilator&quot;    &quot;min_temperature&quot; &quot;max_temperature&quot;</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>ds<span class="sc">$</span>available_stratifications</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;age_group&quot;    &quot;country_id&quot;   &quot;country&quot;      &quot;region_id&quot;    &quot;region&quot;      </span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#&gt; [6] &quot;subregion_id&quot; &quot;subregion&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>ds<span class="sc">$</span>available_observables</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>ds<span class="sc">$</span>available_stratifications</span></code></pre></div>
 <p>Lets start with an simple example where we request no stratification
 (<code>NULL</code>):</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                     <span class="at">stratification =</span> <span class="cn">NULL</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 2</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#&gt;   date       n_hospital</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;          &lt;dbl&gt;</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01          3</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02          6</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03          5</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04         12</span></span>
-<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05          8</span></span>
-<span id="cb9-11"><a href="#cb9-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>                     <span class="at">stratification =</span> <span class="cn">NULL</span>)</span></code></pre></div>
 <p>This gives us the same feature information as
 <code>ds$get_feature(&quot;n_hospital&quot;)</code> but simplified to give the
 observable per day (in this case, the number of people
@@ -494,30 +458,12 @@ hospitalised).</p>
 a list of <code>quosures</code> (see
 <code>help(&quot;topic-quosure&quot;, package = &quot;rlang&quot;)</code>).</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id))</span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 3</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co">#&gt;   date       country_id n_hospital</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR                  3</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR                  6</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR                  5</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR                 12</span></span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR                  8</span></span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a><span class="co">#&gt; # ℹ 10 more rows</span></span></code></pre></div>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id))</span></code></pre></div>
 <p>The <code>stratification</code> argument is very flexible, so we can
 supply any valid R expression:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>ds<span class="sc">$</span><span class="fu">key_join_features</span>(<span class="at">observable =</span> <span class="st">&quot;n_hospital&quot;</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>                     <span class="at">stratification =</span> rlang<span class="sc">::</span><span class="fu">quos</span>(country_id,</span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                                                  <span class="at">old =</span> age_group <span class="sc">==</span> <span class="st">&quot;90+&quot;</span>))</span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 30 × 4</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co">#&gt;   date       country_id old   n_hospital</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#&gt;   &lt;date&gt;     &lt;chr&gt;      &lt;lgl&gt;      &lt;dbl&gt;</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#&gt; 1 2020-03-01 AR         FALSE         27</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co">#&gt; 2 2020-03-02 AR         FALSE         54</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a><span class="co">#&gt; 3 2020-03-03 AR         FALSE         45</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="co">#&gt; 4 2020-03-04 AR         FALSE        108</span></span>
-<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a><span class="co">#&gt; 5 2020-03-05 AR         FALSE         72</span></span>
-<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="co">#&gt; # ℹ 25 more rows</span></span></code></pre></div>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>                                                  <span class="at">old =</span> age_group <span class="sc">==</span> <span class="st">&quot;90+&quot;</span>))</span></code></pre></div>
 </div>
 <div id="dropping-computed-features" class="section level1">
 <h1>Dropping computed features</h1>
@@ -528,18 +474,10 @@ function.</p>
 <code>diseasystore</code> schema. A <code>pattern</code> argument to
 match tables by and a <code>schema</code> argument to specify the schema
 to delete from<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="co">#&gt;   catalog schema                        table</span></span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="co">#&gt; 1  memory   main ds.google_covid_19_age_group</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="co">#&gt; 2  memory   main  ds.google_covid_19_hospital</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="co">#&gt; 3  memory   main     ds.google_covid_19_index</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="co">#&gt; 4  memory   main                     ds.locks</span></span>
-<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="co">#&gt; 5  memory   main                      ds.logs</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">drop_diseasystore</span>(<span class="at">conn =</span> ds<span class="sc">$</span>target_conn)</span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co">#&gt; [1] catalog schema  table  </span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="co">#&gt; &lt;0 rows&gt; (or 0-length row.names)</span></span></code></pre></div>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>SCDB<span class="sc">::</span><span class="fu">get_tables</span>(ds<span class="sc">$</span>target_conn, <span class="at">show_temporary =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <div id="diseasystore-options" class="section level1">
 <h1>diseasystore options</h1>

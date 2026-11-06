@@ -51,66 +51,66 @@ not_on_cran <- interactive() || identical(Sys.getenv("NOT_CRAN"), "true") ||
 # )
 
 ## ----download_data_hidden, include = FALSE, eval = not_on_cran----------------
-# In practice, it is best to make a local copy of the data which is
-# stored in the "vignette_data" folder.
-# This folder can either be in the package folder
-# (preferred, please create the folder) or in the tempdir().
-local_conn <- purrr::detect(
-  "vignette_data",
-  checkmate::test_directory_exists,
-  .default = tempdir()
-)
-
-if (rlang::is_installed("withr")) {
-  withr::local_options(
-    "diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn" = local_conn,
-    "diseasystore.DiseasystoreEcdcRespiratoryViruses.n_max" = 1000
-  )
-} else {
-  opts <- c(
-    opts,
-    options(
-      "diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn" = local_conn,
-      "diseasystore.DiseasystoreEcdcRespiratoryViruses.n_max" = 1000
-    )
-  )
-}
-
-# Define the ECDC file to download
-test_file <- "data/snapshots/2023-11-24_ILIARIRates.csv"
-
-# Create folder and download file
-dir.create(
-  dirname(file.path(local_conn, test_file)),
-  recursive = TRUE,
-  showWarnings = FALSE
-)
-
-if (!file.exists(file.path(local_conn, test_file))) {
-  remote_file <- source_conn_github(
-    diseasyoption("remote_conn", "DiseasystoreEcdcRespiratoryViruses"),
-    test_file
-  )
-
-  readr::read_csv(
-    remote_file,
-    n_max = 1000,
-    show_col_types = FALSE,
-    progress = FALSE
-  ) |>
-    readr::write_csv(file.path(local_conn, test_file))
-}
-
-# Check that the files are available after attempting to download
-files_missing <- purrr::some(
-  test_file,
-  ~ !checkmate::test_file_exists(file.path(local_conn, .))
-)
-if (files_missing) {
-  data_available <- FALSE
-} else {
-  data_available <- TRUE
-}
+# # In practice, it is best to make a local copy of the data which is
+# # stored in the "vignette_data" folder.
+# # This folder can either be in the package folder
+# # (preferred, please create the folder) or in the tempdir().
+# local_conn <- purrr::detect(
+#   "vignette_data",
+#   checkmate::test_directory_exists,
+#   .default = tempdir()
+# )
+# 
+# if (rlang::is_installed("withr")) {
+#   withr::local_options(
+#     "diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn" = local_conn,
+#     "diseasystore.DiseasystoreEcdcRespiratoryViruses.n_max" = 1000
+#   )
+# } else {
+#   opts <- c(
+#     opts,
+#     options(
+#       "diseasystore.DiseasystoreEcdcRespiratoryViruses.source_conn" = local_conn,
+#       "diseasystore.DiseasystoreEcdcRespiratoryViruses.n_max" = 1000
+#     )
+#   )
+# }
+# 
+# # Define the ECDC file to download
+# test_file <- "data/snapshots/2023-11-24_ILIARIRates.csv"
+# 
+# # Create folder and download file
+# dir.create(
+#   dirname(file.path(local_conn, test_file)),
+#   recursive = TRUE,
+#   showWarnings = FALSE
+# )
+# 
+# if (!file.exists(file.path(local_conn, test_file))) {
+#   remote_file <- source_conn_github(
+#     diseasyoption("remote_conn", "DiseasystoreEcdcRespiratoryViruses"),
+#     test_file
+#   )
+# 
+#   readr::read_csv(
+#     remote_file,
+#     n_max = 1000,
+#     show_col_types = FALSE,
+#     progress = FALSE
+#   ) |>
+#     readr::write_csv(file.path(local_conn, test_file))
+# }
+# 
+# # Check that the files are available after attempting to download
+# files_missing <- purrr::some(
+#   test_file,
+#   ~ !checkmate::test_file_exists(file.path(local_conn, .))
+# )
+# if (files_missing) {
+#   data_available <- FALSE
+# } else {
+#   data_available <- TRUE
+# }
 
 ## ----configure_diseasystore, eval = FALSE-------------------------------------
 # # We define target_conn as a function that opens a DBIconnection to the DB
@@ -120,26 +120,26 @@ if (files_missing) {
 # )
 
 ## ----configure_diseasystore_hidden, include = FALSE, eval = not_on_cran && suggests_available && data_available----
-target_conn <- \() DBI::dbConnect(duckdb::duckdb())
-if (rlang::is_installed("withr")) {
-  withr::local_options(
-    "diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn
-  )
-} else {
-  opts <- c(
-    opts,
-    options(
-      "diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn
-    )
-  )
-}
+# target_conn <- \() DBI::dbConnect(duckdb::duckdb())
+# if (rlang::is_installed("withr")) {
+#   withr::local_options(
+#     "diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn
+#   )
+# } else {
+#   opts <- c(
+#     opts,
+#     options(
+#       "diseasystore.DiseasystoreEcdcRespiratoryViruses.target_conn" = target_conn
+#     )
+#   )
+# }
 
 ## ----initializing_diseasystore, eval = not_on_cran && suggests_available && data_available----
-ds <- DiseasystoreEcdcRespiratoryViruses$new()
+# ds <- DiseasystoreEcdcRespiratoryViruses$new()
 
 ## ----using_diseasystore_example_1, eval = not_on_cran && suggests_available && data_available----
-# We can see all the available features in the feature store
-ds$available_features
+# # We can see all the available features in the feature store
+# ds$available_features
 
 ## ----using_diseasystore_example_2, eval = FALSE-------------------------------
 # # Manually update the repository
@@ -156,12 +156,12 @@ ds$available_features
 # options("diseasystore.DiseasystoreEcdcRespiratoryViruses.pull" = FALSE)
 
 ## ----using_diseasystore_example_3, eval = not_on_cran && suggests_available && data_available----
-# And then retrieve a feature from the feature store
-ds$get_feature(
-  feature = "iliari_rates",
-  start_date = as.Date("2023-01-01"),
-  end_date = as.Date("2023-03-01")
-)
+# # And then retrieve a feature from the feature store
+# ds$get_feature(
+#   feature = "iliari_rates",
+#   start_date = as.Date("2023-01-01"),
+#   end_date = as.Date("2023-03-01")
+# )
 
 ## ----cleanup, include = FALSE-------------------------------------------------
 if (exists("ds")) rm(ds)

@@ -1,3 +1,14 @@
+# diseasystore 0.4.0
+
+## Minor Improvements and Fixes
+
+* Observables are now listed in `DiseasystoreEcdcRespiratoryViruses` (#227).
+
+* `%.%` made faster (#251).
+
+* Check for internet when connecting to online sources (#243).
+
+
 # diseasystore 0.3.3
 
 ## New Features
@@ -8,6 +19,10 @@
 ## Minor Improvements and Fixes
 
 * Compatibility with `duckdb v1.5.0` (#235).
+
+## Documentation
+
+* Restrictions on automatic data-coupling is now better described (#227)
 
 
 # diseasystore 0.3.2

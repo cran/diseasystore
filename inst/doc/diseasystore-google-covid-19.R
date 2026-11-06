@@ -51,58 +51,58 @@ not_on_cran <- interactive() || identical(Sys.getenv("NOT_CRAN"), "true") ||
 # })
 
 ## ----download_data_hidden, include = FALSE, eval = not_on_cran----------------
-# The files we need are stored remotely in Google's API
-google_files <- c("by-age.csv", "demographics.csv", "index.csv", "weather.csv")
-remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
-
-# In practice, it is best to make a local copy of the data which is
-# stored in the "vignette_data" folder.
-# This folder can either be in the package folder
-# (preferred, please create the folder) or in the tempdir().
-local_conn <- purrr::detect(
-  "vignette_data",
-  checkmate::test_directory_exists,
-  .default = tempdir()
-)
-
-if (rlang::is_installed("withr")) {
-  withr::local_options(
-    "diseasystore.DiseasystoreGoogleCovid19.source_conn" = local_conn,
-    "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000
-  )
-} else {
-  opts <- c(
-    opts,
-    options(
-      "diseasystore.DiseasystoreGoogleCovid19.source_conn" = local_conn,
-      "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000
-    )
-  )
-}
-
-# Then we download the first n rows of each data set of interest
-try({
-  purrr::discard(
-    google_files,
-    ~ checkmate::test_file_exists(file.path(local_conn, .))
-  ) |>
-    purrr::walk(\(file) {
-      paste0(remote_conn, file) |>
-        readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
-        readr::write_csv(file.path(local_conn, file))
-    })
-})
-
-# Check that the files are available after attempting to download
-files_missing <- purrr::some(
-  google_files,
-  ~ !checkmate::test_file_exists(file.path(local_conn, .))
-)
-if (files_missing) {
-  data_available <- FALSE
-} else {
-  data_available <- TRUE
-}
+# # The files we need are stored remotely in Google's API
+# google_files <- c("by-age.csv", "demographics.csv", "index.csv", "weather.csv")
+# remote_conn <- diseasyoption("remote_conn", "DiseasystoreGoogleCovid19")
+# 
+# # In practice, it is best to make a local copy of the data which is
+# # stored in the "vignette_data" folder.
+# # This folder can either be in the package folder
+# # (preferred, please create the folder) or in the tempdir().
+# local_conn <- purrr::detect(
+#   "vignette_data",
+#   checkmate::test_directory_exists,
+#   .default = tempdir()
+# )
+# 
+# if (rlang::is_installed("withr")) {
+#   withr::local_options(
+#     "diseasystore.DiseasystoreGoogleCovid19.source_conn" = local_conn,
+#     "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000
+#   )
+# } else {
+#   opts <- c(
+#     opts,
+#     options(
+#       "diseasystore.DiseasystoreGoogleCovid19.source_conn" = local_conn,
+#       "diseasystore.DiseasystoreGoogleCovid19.n_max" = 1000
+#     )
+#   )
+# }
+# 
+# # Then we download the first n rows of each data set of interest
+# try({
+#   purrr::discard(
+#     google_files,
+#     ~ checkmate::test_file_exists(file.path(local_conn, .))
+#   ) |>
+#     purrr::walk(\(file) {
+#       paste0(remote_conn, file) |>
+#         readr::read_csv(n_max = 1000, show_col_types = FALSE, progress = FALSE) |>
+#         readr::write_csv(file.path(local_conn, file))
+#     })
+# })
+# 
+# # Check that the files are available after attempting to download
+# files_missing <- purrr::some(
+#   google_files,
+#   ~ !checkmate::test_file_exists(file.path(local_conn, .))
+# )
+# if (files_missing) {
+#   data_available <- FALSE
+# } else {
+#   data_available <- TRUE
+# }
 
 ## ----configure_diseasystore, eval = FALSE-------------------------------------
 # # We define target_conn as a function that opens a DBIconnection to the DB
@@ -112,30 +112,30 @@ if (files_missing) {
 # )
 
 ## ----configure_diseasystore_hidden, include = FALSE, eval = not_on_cran && suggests_available && data_available----
-target_conn <- \() DBI::dbConnect(duckdb::duckdb())
-if (rlang::is_installed("withr")) {
-  withr::local_options(
-    "diseasystore.DiseasystoreGoogleCovid19.target_conn" = target_conn
-  )
-} else {
-  opts <- c(
-    opts,
-    options("diseasystore.DiseasystoreGoogleCovid19.target_conn" = target_conn)
-  )
-}
+# target_conn <- \() DBI::dbConnect(duckdb::duckdb())
+# if (rlang::is_installed("withr")) {
+#   withr::local_options(
+#     "diseasystore.DiseasystoreGoogleCovid19.target_conn" = target_conn
+#   )
+# } else {
+#   opts <- c(
+#     opts,
+#     options("diseasystore.DiseasystoreGoogleCovid19.target_conn" = target_conn)
+#   )
+# }
 
 ## ----initializing_diseasystore, eval = not_on_cran && suggests_available && data_available----
-ds <- DiseasystoreGoogleCovid19$new()
+# ds <- DiseasystoreGoogleCovid19$new()
 
 ## ----using_diseasystore_example_1, eval = not_on_cran && suggests_available && data_available----
-# We can see all the available features in the feature store
-ds$available_features
+# # We can see all the available features in the feature store
+# ds$available_features
 
 ## ----using_diseasystore_example_2, eval = not_on_cran && suggests_available && data_available----
-# And then retrieve a feature from the feature store
-ds$get_feature(feature = "n_hospital",
-               start_date = as.Date("2020-01-01"),
-               end_date = as.Date("2020-06-01"))
+# # And then retrieve a feature from the feature store
+# ds$get_feature(feature = "n_hospital",
+#                start_date = as.Date("2020-01-01"),
+#                end_date = as.Date("2020-06-01"))
 
 ## ----cleanup, include = FALSE-------------------------------------------------
 if (exists("ds")) rm(ds)
